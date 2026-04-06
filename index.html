@@ -12,26 +12,37 @@
 <meta property="og:url" content="https://veronicaandlucas.com">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1a18'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia, serif' font-size='28' font-style='italic' fill='%23d4b896'%3EV%26L%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
+    --bg: #1A1917;
+    --bg-elevated: #242220;
+    --paper: #F5F0E6;
+    --paper-soft: #EDE8DC;
+    --paper-warm: #FBF7F0;
+    --ink: #2C2825;
+    --ink-soft: #5A5450;
     --cream: #F5F0E8;
-    --paper: #FBF7F1;
-    --dark: #1A1A18;
+    --cream-muted: rgba(245,240,232,0.65);
     --gold: #B8956A;
     --gold-light: #D4B896;
-    --sage: #8B9E7E;
-    --sage-dark: #6B7E5E;
-    --blush: #E8D5CC;
+    --gold-muted: rgba(184,149,106,0.35);
+    --sage: #7A8B6F;
+    --sage-light: #9AAF8C;
+    --sage-muted: rgba(122,139,111,0.4);
     --wine: #6B3A3A;
-    --ink-soft: #3F3A35;
+    --blush: #E8D5CC;
+    --dark: #1A1A18;
     --charcoal-warm: #2A2520;
     --line: rgba(184,149,106,0.18);
-    --shadow-soft: 0 24px 60px rgba(42, 32, 18, 0.08);
-    --shadow-card: 0 18px 45px rgba(42, 32, 18, 0.06);
+    --line-dark: rgba(184,149,106,0.12);
+    --line-light: rgba(184,149,106,0.22);
+    --shadow-card: 0 20px 50px rgba(0,0,0,0.25);
+    --shadow-soft: 0 12px 36px rgba(0,0,0,0.18);
     --font-display: 'Playfair Display', serif;
     --font-elegant: 'Cormorant Garamond', serif;
     --font-body: 'Libre Franklin', sans-serif;
+    --font-hand: 'Caveat', cursive;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,22 +50,13 @@
 
   body {
     font-family: var(--font-body);
-    background:
-      radial-gradient(circle at top left, rgba(212,184,150,0.14), transparent 28%),
-      linear-gradient(180deg, var(--paper) 0%, var(--cream) 32%, #f0ebe4 100%);
-    color: var(--dark);
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 30% 20%, rgba(139,158,126,0.03), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(184,149,106,0.02), transparent 40%);
+    color: var(--cream);
     overflow-x: hidden;
     font-weight: 300;
-  }
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(90deg, transparent 0, rgba(184,149,106,0.025) 50%, transparent 100%),
-      radial-gradient(circle at 80% 20%, rgba(139,158,126,0.08), transparent 28%);
-    z-index: -1;
   }
 
   /* ─── NAV ─── */
@@ -68,10 +70,10 @@
     transition: transform 0.4s ease, background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease;
   }
   nav.scrolled {
-    background: rgba(245, 240, 232, 0.88);
+    background: rgba(26,25,23,0.92);
     backdrop-filter: blur(14px);
     border-bottom-color: rgba(184, 149, 106, 0.12);
-    box-shadow: 0 10px 30px rgba(26, 26, 24, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
   nav a {
     font-family: var(--font-body);
@@ -86,7 +88,7 @@
     position: relative;
     padding-bottom: 4px;
   }
-  nav.scrolled a { color: var(--dark); }
+  nav.scrolled a { color: var(--cream); }
   nav a::after {
     content: '';
     position: absolute;
@@ -97,7 +99,7 @@
     background: var(--gold);
     transition: width 0.25s ease, left 0.25s ease;
   }
-  nav a:hover, nav a.nav-active { opacity: 1; }
+  nav a:hover, nav a.nav-active { opacity: 1; color: var(--gold-light); }
   nav a:hover::after, nav a.nav-active::after { width: 100%; left: 0; }
   nav a:focus-visible {
     outline: 2px solid rgba(212, 184, 150, 0.75);
@@ -109,7 +111,7 @@
     opacity: 1;
     animation: urgentPulse 2.5s infinite;
   }
-  nav.scrolled a.rsvp-urgent { color: var(--wine); }
+  nav.scrolled a.rsvp-urgent { color: var(--gold-light); }
 
   /* Mobile hamburger */
   .nav-toggle {
@@ -138,28 +140,28 @@
     nav {
       justify-content: space-between;
       padding: 1rem 1.5rem;
-      background: rgba(245, 240, 232, 0.92);
+      background: rgba(26,25,23,0.92);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(184, 149, 106, 0.12);
     }
     .nav-toggle { display: block; }
-    .nav-toggle span { background: var(--dark); }
+    .nav-toggle span { background: var(--cream); }
     .nav-links {
       display: flex; flex-direction: column;
       position: fixed; top: 0; right: -100%; width: 70vw; height: 100vh;
-      background: linear-gradient(180deg, #fbf7f1 0%, #f2ece3 100%);
+      background: linear-gradient(180deg, #242220 0%, #1A1917 100%);
       padding: 5rem 2rem 2rem;
       gap: 2rem;
       transition: right 0.35s ease;
-      box-shadow: -10px 0 30px rgba(0,0,0,0.08);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.3);
     }
     .nav-links.open { right: 0; }
-    .nav-links a { font-size: 0.85rem; opacity: 0.8; color: var(--dark); }
+    .nav-links a { font-size: 0.85rem; opacity: 0.8; color: var(--cream); }
     .nav-brand-mobile {
       font-family: var(--font-display);
       font-style: italic;
       font-size: 1.1rem;
-      color: var(--dark);
+      color: var(--cream);
     }
   }
   @media (min-width: 601px) {
@@ -205,10 +207,10 @@
   .hero > * { position: relative; z-index: 2; }
 
   .hero-prelude {
-    font-family: var(--font-body);
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
     color: rgba(245,240,232,0.72);
     margin-bottom: 2rem;
     opacity: 0; animation: fadeUp 1s 0.3s forwards;
@@ -225,11 +227,11 @@
     text-shadow: 0 12px 32px rgba(0,0,0,0.22);
   }
   .hero h1 .amp {
-    font-family: var(--font-elegant);
-    font-weight: 300;
-    font-style: italic;
+    font-family: var(--font-hand);
+    font-weight: 400;
+    font-style: normal;
     display: block;
-    font-size: 0.45em;
+    font-size: 0.5em;
     color: var(--gold-light);
     margin: 0.3em 0;
     text-shadow: 0 8px 18px rgba(0,0,0,0.28);
@@ -389,7 +391,7 @@
     font-size: 0.6rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: #5A6B50;
+    color: var(--gold-muted);
     margin-bottom: 1.5rem;
   }
   .section-title {
@@ -397,6 +399,7 @@
     font-weight: 400;
     font-style: italic;
     font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--cream);
     margin-bottom: 2rem;
     line-height: 1.2;
   }
@@ -404,14 +407,14 @@
     font-family: var(--font-elegant);
     font-size: 1.15rem;
     line-height: 1.9;
-    color: var(--ink-soft);
+    color: var(--cream-muted);
     max-width: 720px;
   }
 
   .section-intro {
     max-width: 42rem;
     font-size: 1.05rem;
-    color: var(--ink-soft);
+    color: var(--cream-muted);
     margin-bottom: 2rem;
     line-height: 1.8;
   }
@@ -432,7 +435,7 @@
     border-radius: 999px;
     border: 1px solid rgba(184,149,106,0.25);
     background: rgba(251,247,241,0.8);
-    color: var(--dark);
+    color: var(--ink);
     text-decoration: none;
     font-size: 0.84rem;
     letter-spacing: 0.12em;
@@ -456,8 +459,8 @@
   .detail-card--highlight {
     border: 1px solid rgba(184,149,106,0.35);
     background:
-      linear-gradient(180deg, rgba(251,247,241,0.96) 0%, rgba(245,240,232,0.92) 100%);
-    box-shadow: 0 24px 60px rgba(42, 32, 18, 0.08);
+      linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+    box-shadow: 0 12px 32px rgba(42, 32, 18, 0.08);
   }
 
   .timeline-wrap { margin-top: 1rem; }
@@ -469,16 +472,44 @@
     font-size: 1.6rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    color: var(--cream);
   }
 
   .rsvp-helper,
   .rsvp-fallback {
     margin-top: 1.5rem;
-    color: var(--sage-dark);
+    color: var(--cream-muted);
     font-size: 0.95rem;
     line-height: 1.7;
   }
   .rsvp-fallback a { color: var(--gold); }
+
+  /* ─── PAPER SURFACE VARIANT ─── */
+  .section--paper {
+    background: var(--paper);
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .section--paper > .reveal,
+  .section--paper > div {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .section--paper .section-label { color: var(--sage); }
+  .section--paper .section-title { color: var(--ink); }
+  .section--paper p { color: var(--ink-soft); }
+  .section--paper .detail-meta { color: var(--sage); }
+  .section--paper .section-intro { color: var(--ink-soft); }
+  .section--paper .subsection-title { color: var(--ink); }
+  .section--paper .detail-card h3 { color: var(--ink); }
+  .section--paper .faq-item p { color: var(--ink-soft); }
+  .section--paper .timeline-time { color: var(--sage); }
+  .section--paper .timeline-event { color: var(--ink-soft); }
+  .section--paper .timeline-item::before { box-shadow: 0 0 0 3px var(--paper); }
+  .section--paper .rsvp-helper,
+  .section--paper .rsvp-fallback { color: var(--sage); }
 
   @media (max-width: 768px) {
     .quick-links { flex-direction: column; align-items: stretch; }
@@ -497,17 +528,17 @@
     content: '';
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
   }
   .divider-ornament {
     display: block;
     width: 180px;
     height: auto;
-    opacity: 0.55;
+    opacity: 0.7;
     padding: 0 1rem;
     transition: opacity 0.35s ease;
   }
-  .divider:hover .divider-ornament { opacity: 0.8; }
+  .divider:hover .divider-ornament { opacity: 0.9; }
 
   /* ─── INFO PENDING (styled placeholders) ─── */
   .info-pending {
@@ -530,10 +561,10 @@
   .detail-card {
     position: relative;
     padding: 2.5rem;
-    background: rgba(255,255,255,0.62);
-    border: 1px solid var(--line);
+    background: var(--paper-warm);
+    border: 1px solid var(--line-light);
     border-radius: 2px;
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 8px 24px rgba(42,32,18,0.06);
     transition: border-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
     min-height: 48px;
     overflow: hidden;
@@ -550,7 +581,7 @@
   .detail-card:hover {
     border-color: var(--gold-light);
     transform: translateY(-4px);
-    box-shadow: 0 22px 52px rgba(42, 32, 18, 0.1);
+    box-shadow: 0 22px 52px rgba(42, 32, 18, 0.12);
   }
   .detail-card h3 {
     font-family: var(--font-display);
@@ -573,7 +604,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #5A6B50;
+    color: var(--sage);
     margin-bottom: 0.6rem;
   }
   /* Add-to-calendar button */
@@ -656,7 +687,7 @@
     font-size: 0.6rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--sage-dark);
+    color: var(--sage);
     font-weight: 500;
   }
   .timeline-event {
@@ -678,18 +709,18 @@
   .shenanigans::before {
     content: '';
     position: absolute;
-    top: -120px;
+    top: -60px;
     left: 0; right: 0;
-    height: 120px;
+    height: 60px;
     background: linear-gradient(180deg, transparent, var(--charcoal-warm));
     pointer-events: none;
   }
   .shenanigans::after {
     content: '';
     position: absolute;
-    bottom: -120px;
+    bottom: -60px;
     left: 0; right: 0;
-    height: 120px;
+    height: 60px;
     background: linear-gradient(180deg, var(--charcoal-warm), transparent);
     pointer-events: none;
     z-index: 1;
@@ -821,22 +852,33 @@
     margin: 0 auto;
     text-align: center;
   }
+  .gallery .section-label { color: var(--gold-muted); }
+  .gallery .section-title { color: var(--cream); }
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-auto-rows: 220px;
-    gap: 1.1rem;
+    gap: 1.8rem;
     margin-top: 2.5rem;
   }
   .gallery-item {
-    overflow: hidden;
+    overflow: visible;
     border-radius: 2px;
     position: relative;
     cursor: pointer;
-    border: 0;
+    border: 5px solid var(--paper);
+    border-bottom-width: 24px;
     padding: 0;
-    background: transparent;
-    box-shadow: var(--shadow-soft);
+    background: var(--paper);
+    box-shadow: 2px 3px 16px rgba(0,0,0,0.35);
+    transform: rotate(0deg);
+    transition: transform 0.5s, box-shadow 0.4s;
+  }
+  .gallery-item:nth-child(2) { transform: rotate(0.7deg); }
+  .gallery-item:nth-child(4) { transform: rotate(-0.5deg); }
+  .gallery-item:hover {
+    transform: rotate(0deg) translateY(-4px);
+    box-shadow: 4px 6px 24px rgba(0,0,0,0.4);
   }
   .gallery-item:focus-visible {
     outline: 2px solid var(--gold);
@@ -850,7 +892,7 @@
   }
   .gallery-item:hover img,
   .gallery-item:focus-visible img {
-    transform: scale(1.06);
+    transform: scale(1.03);
     filter: grayscale(0%) contrast(1.05);
   }
   .gallery-item:nth-child(1) { grid-column: span 7; grid-row: span 2; }
@@ -860,21 +902,26 @@
   .gallery-item:nth-child(5) { grid-column: span 4; grid-row: span 2; }
   .gallery-item .photo-caption {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 2rem 1.2rem 1rem;
-    background: linear-gradient(to top, rgba(26,26,24,0.6), transparent);
-    font-family: var(--font-elegant);
-    font-size: 0.95rem;
-    font-style: italic;
-    color: var(--cream);
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    bottom: -24px;
+    left: 0; right: 0;
+    height: 24px;
+    background: none;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-hand);
+    font-size: 0.85rem;
+    font-style: normal;
+    color: var(--ink-soft);
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
   .gallery-item:hover .photo-caption,
   .gallery-item:focus-visible .photo-caption {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 
   .lightbox {
@@ -934,7 +981,11 @@
   .rsvp {
     text-align: center;
     padding: 8rem 2rem;
+    color: var(--cream);
   }
+  .rsvp .section-label { color: var(--gold-muted); }
+  .rsvp .section-title { color: var(--cream); }
+  .rsvp > .reveal > p { color: var(--cream-muted); }
   .rsvp p { margin: 0 auto 2.5rem; }
 
   .rsvp-deadline-banner {
@@ -943,9 +994,9 @@
     font-size: 0.65rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--wine);
-    background: rgba(107,58,58,0.06);
-    border: 1px solid rgba(107,58,58,0.15);
+    color: var(--blush);
+    background: rgba(107,58,58,0.2);
+    border: 1px solid rgba(107,58,58,0.35);
     padding: 0.7rem 1.5rem;
     margin-bottom: 2rem;
     border-radius: 2px;
@@ -957,10 +1008,11 @@
     max-width: 520px;
     margin: 0 auto;
     text-align: left;
-    background: rgba(255,255,255,0.62);
-    border: 1px solid var(--line);
+    background: var(--paper);
+    border: 1px solid var(--line-light);
     box-shadow: var(--shadow-card);
     padding: 2rem;
+    color: var(--ink);
   }
   .rsvp-form label {
     display: block;
@@ -968,7 +1020,7 @@
     font-size: 0.6rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--sage-dark);
+    color: var(--sage);
     margin-bottom: 0.4rem;
     margin-top: 1.4rem;
   }
@@ -978,9 +1030,9 @@
     font-family: var(--font-elegant);
     font-size: 1.1rem;
     padding: 0.8rem 1rem;
-    border: 1px solid rgba(184,149,106,0.25);
-    background: rgba(255,255,255,0.78);
-    color: var(--dark);
+    border: 1px solid var(--line-light);
+    background: var(--paper-warm);
+    color: var(--ink);
     border-radius: 2px;
     transition: border-color 0.3s;
     min-height: 44px;
@@ -1025,7 +1077,7 @@
     font-weight: 500;
     padding: 1.2rem 3.5rem;
     border: 1px solid var(--gold);
-    color: var(--dark);
+    color: var(--ink);
     background: transparent;
     cursor: pointer;
     transition: all 0.4s;
@@ -1055,7 +1107,7 @@
     min-height: 1.5em;
   }
   .rsvp-status.error { color: var(--wine); }
-  .rsvp-status.sending { color: var(--sage-dark); }
+  .rsvp-status.sending { color: var(--sage); }
 
   .rsvp-confirmed {
     display: none;
@@ -1063,9 +1115,10 @@
     padding: 2rem;
     max-width: 520px;
     margin: 0 auto;
-    background: rgba(255,255,255,0.62);
-    border: 1px solid var(--line);
+    background: var(--paper);
+    border: 1px solid var(--line-light);
     box-shadow: var(--shadow-card);
+    color: var(--ink);
   }
   .rsvp-confirmed.show { display: block; }
   .rsvp-confirmed h3 {
@@ -1082,7 +1135,7 @@
     font-size: 0.6rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--sage-dark);
+    color: var(--sage);
     text-decoration: underline;
     text-underline-offset: 3px;
     cursor: pointer;
@@ -1104,7 +1157,7 @@
     font-family: var(--font-elegant);
     font-size: 1.2rem;
     font-weight: 400;
-    color: var(--dark);
+    color: var(--ink);
     cursor: pointer;
     list-style: none;
     display: flex;
@@ -1141,8 +1194,9 @@
   footer {
     text-align: center;
     padding: 4rem 2rem;
-    border-top: 1px solid rgba(184,149,106,0.15);
-    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.32) 100%);
+    border-top: 1px solid var(--line-dark);
+    background: var(--bg);
+    color: var(--cream);
     position: relative;
     z-index: 2;
   }
@@ -1151,7 +1205,7 @@
     width: 80px;
     height: auto;
     margin: 0 auto 1.5rem;
-    opacity: 0.35;
+    opacity: 0.5;
   }
   footer p {
     font-family: var(--font-elegant);
@@ -1159,25 +1213,30 @@
     color: var(--gold);
     font-style: italic;
   }
+  footer .footer-tagline {
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    font-style: normal;
+  }
   footer .footer-date {
     font-family: var(--font-body);
     font-size: 0.6rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(26,26,24,0.35);
+    color: var(--cream-muted);
     margin-top: 1rem;
   }
   footer .footer-contact {
     font-family: var(--font-body);
     font-size: 0.6rem;
     letter-spacing: 0.15em;
-    color: rgba(26,26,24,0.35);
+    color: var(--cream-muted);
     margin-top: 0.6rem;
   }
   footer .footer-contact a {
     color: var(--gold);
     text-decoration: none;
-    border-bottom: 1px solid rgba(184,149,106,0.2);
+    border-bottom: 1px solid rgba(184,149,106,0.3);
   }
   footer .footer-contact a:hover { border-bottom-color: var(--gold); }
 
@@ -1235,6 +1294,21 @@
     .lightbox-nav { font-size: 1.5rem; padding: 0.6rem; }
     .rsvp-form { padding: 1.35rem; }
     .timeline { padding-left: 1.5rem; }
+    .hide-mobile { display: none; }
+    /* Mobile polaroid borders */
+    .gallery-item {
+      border-width: 3px;
+      border-bottom-width: 18px;
+    }
+    .gallery-item .photo-caption {
+      bottom: -18px;
+      height: 18px;
+      font-size: 0.75rem;
+    }
+    /* Paper sections still get cream bg on mobile */
+    .section--paper { padding-left: 0; padding-right: 0; }
+    .section--paper > .reveal,
+    .section--paper > div { padding: 0 1.5rem; }
   }
 
   /* Prefer reduced motion */
@@ -1318,7 +1392,7 @@
 
 <!-- ─── DETAILS ─── -->
 <div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
-<section id="details">
+<section id="details" class="section--paper">
   <div class="reveal">
     <p class="section-label">The Plan</p>
     <h2 class="section-title">Wedding Details</h2>
@@ -1344,7 +1418,7 @@
       <div class="detail-card">
         <p class="detail-meta">Accommodations</p>
         <h3>Where to Stay</h3>
-        <p>Room block details coming soon.<br>Code: VERONICALUCAS<br><span style="font-size: 0.9rem; color: var(--sage-dark);">The venue is in Wallingford, PA — about 20 min south of Philly.</span></p>
+        <p>Room block details coming soon.<br>Code: VERONICALUCAS<br><span style="font-size: 0.9rem; color: var(--sage);">The venue is in Wallingford, PA — about 20 min south of Philly.</span></p>
       </div>
       <div class="detail-card">
         <p class="detail-meta">Registry</p>
@@ -1442,7 +1516,7 @@
 
 <!-- ─── TRAVEL ─── -->
 <div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
-<section id="travel">
+<section id="travel" class="section--paper">
   <div class="reveal">
     <p class="section-label">Plan Your Trip</p>
     <h2 class="section-title">Travel & Parking</h2>
@@ -1484,7 +1558,7 @@
     <p class="section-label">Be There</p>
     <h2 class="section-title">RSVP</h2>
     <div class="rsvp-deadline-banner" id="rsvpDeadline"></div>
-    <p>Let us know if you'll be joining the celebration. Dancing shoes required.</p>
+    <p>We're saving a seat for you. Let us know if you'll be joining the celebration.</p>
 
     <div class="rsvp-form" id="rsvpForm">
       <label for="rsvpName">Your Name</label>
@@ -1539,7 +1613,7 @@
   <div class="reveal">
     <p class="section-label">The Fun Stuff</p>
     <h2 class="section-title">Shenanigans Corner</h2>
-    <p>Because every wedding needs a little chaos. Tap a card to contribute.</p>
+    <p>Every good wedding has a guest book. Ours has a little more personality. Tap a card to contribute.</p>
     <div class="shenanigan-cards">
       <div class="shenanigan-card" data-type="toast" tabindex="0" role="button" aria-label="Submit a toast roast" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
@@ -1604,7 +1678,7 @@
 
 <!-- ─── REGISTRY ─── -->
 <div class="divider" style="position: relative; z-index: 2;"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
-<section id="registry" style="position: relative; z-index: 2;">
+<section id="registry" class="section--paper" style="position: relative; z-index: 2;">
   <div class="reveal">
     <p class="section-label">Gifts</p>
     <h2 class="section-title">Registry</h2>
@@ -1621,7 +1695,7 @@
 
 <!-- ─── FAQ ─── -->
 <div class="divider" style="position: relative; z-index: 2;"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
-<section id="faq" style="position: relative; z-index: 2;">
+<section id="faq" class="section--paper" style="position: relative; z-index: 2;">
   <div class="reveal">
     <p class="section-label">Questions</p>
     <h2 class="section-title">FAQ</h2>
@@ -1661,7 +1735,7 @@
 <!-- ─── FOOTER ─── -->
 <footer>
   <img class="footer-monogram" src="images/ornaments/monogram-vl.png" alt="V & L monogram" width="120" height="120" loading="lazy">
-  <p>V &amp; L — forever starts here</p>
+  <p><span style="font-family:var(--font-display);font-style:italic;">V &amp; L</span> — <span class="footer-tagline">forever starts here</span></p>
   <p class="footer-date">October 24, 2026 &middot; Wallingford, PA</p>
   <p class="footer-contact">Questions? Contact details coming soon.</p>
 </footer>
