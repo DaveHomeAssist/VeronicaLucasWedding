@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://veronicaandlucas.com">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1a18'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia, serif' font-size='28' font-style='italic' fill='%23d4b896'%3EV%26L%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #1A1917;
@@ -27,8 +27,8 @@
     --gold: #B8956A;
     --gold-light: #D4B896;
     --gold-muted: rgba(184,149,106,0.35);
-    --sage: #7A8B6F;
-    --sage-light: #9AAF8C;
+    --sage: #8B9E7E;
+    --sage-light: #A3B595;
     --sage-muted: rgba(122,139,111,0.4);
     --wine: #6B3A3A;
     --blush: #E8D5CC;
@@ -39,10 +39,10 @@
     --line-light: rgba(184,149,106,0.22);
     --shadow-card: 0 20px 50px rgba(0,0,0,0.25);
     --shadow-soft: 0 12px 36px rgba(0,0,0,0.18);
-    --font-display: 'Playfair Display', serif;
-    --font-elegant: 'Cormorant Garamond', serif;
-    --font-body: 'Libre Franklin', sans-serif;
-    --font-hand: 'Caveat', cursive;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    
+    --font-body: 'Libre Franklin', system-ui, sans-serif;
+    --font-script: 'Pinyon Script', cursive;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -178,97 +178,182 @@
     position: relative;
     padding: 2rem;
     background: var(--dark);
+    background-image:
+      radial-gradient(circle at 35% 15%, rgba(139,158,126,0.05), transparent 45%),
+      radial-gradient(circle at 65% 85%, rgba(184,149,106,0.04), transparent 50%);
     overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background: url('images/00014-Veronica.jpg') center 38%/cover no-repeat;
-    filter: brightness(0.46) saturate(0.82) contrast(1.04);
-    transform: scale(1.06);
-    opacity: 0.92;
-    transition: transform 8s ease-out, opacity 1.2s ease;
-    z-index: 0;
-  }
-  .hero.loaded .hero-bg {
-    transform: scale(1);
-    opacity: 1;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background:
-      linear-gradient(180deg, rgba(16,16,15,0.25) 0%, rgba(16,16,15,0.16) 30%, rgba(26,26,24,0.7) 100%),
-      radial-gradient(ellipse at center, transparent 28%, rgba(10,10,10,0.22) 100%);
-    pointer-events: none;
-    z-index: 1;
   }
   .hero > * { position: relative; z-index: 2; }
 
+  /* Hero composition container */
+  .hero-composition {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Invitation card */
+  .hero-card {
+    aspect-ratio: auto;
+    padding: 3.5rem 3rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.22);
+    opacity: 0;
+    animation: fadeUp 1.2s 0.3s forwards;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 16px; left: 16px; right: 16px; bottom: 16px;
+    border: 1px solid var(--gold-muted);
+    pointer-events: none;
+  }
+  .hero-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: url('images/ornaments/corner-flourish.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.6;
+  }
+
+  /* Corner flourish on opposite corner */
+  .hero-card .corner-flourish-bl {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 80px; height: 80px;
+    background: url('images/ornaments/corner-flourish.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.6;
+    transform: rotate(180deg);
+  }
+
+  .hero-card .card-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
   .hero-prelude {
-    font-family: var(--font-hand);
+    font-family: var(--font-script);
     font-size: 1.2rem;
     letter-spacing: 0.05em;
     text-transform: none;
-    color: rgba(245,240,232,0.72);
-    margin-bottom: 2rem;
-    opacity: 0; animation: fadeUp 1s 0.3s forwards;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.25);
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
   }
+
   .hero h1 {
-    font-family: var(--font-elegant);
-    font-weight: 300;
+    font-family: var(--font-display);
+    font-weight: 400;
     font-style: italic;
-    font-size: clamp(3.5rem, 10vw, 8rem);
-    line-height: 1;
-    color: var(--cream);
-    opacity: 0; animation: fadeUp 1.2s 0.5s forwards;
-    text-shadow: 0 12px 32px rgba(0,0,0,0.22);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 1.2s 0.8s forwards;
+    margin: 0;
   }
+
   .hero h1 .amp {
-    font-family: var(--font-hand);
+    font-family: var(--font-script);
     font-weight: 400;
     font-style: normal;
     display: block;
     font-size: 0.5em;
-    color: var(--gold-light);
-    margin: 0.3em 0;
-    text-shadow: 0 8px 18px rgba(0,0,0,0.28);
+    color: var(--gold);
+    margin: 0.2em 0;
   }
+
   .hero-date {
-    font-family: var(--font-elegant);
-    font-size: 1.4rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
     font-weight: 300;
-    letter-spacing: 0.15em;
-    color: var(--gold-light);
-    margin-top: 2.5rem;
-    opacity: 0; animation: fadeUp 1s 0.9s forwards;
-    text-shadow: 0 1px 10px rgba(0,0,0,0.28);
-    text-wrap: balance;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-top: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 1s 1s forwards;
   }
+
   .hero-location {
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.58);
-    margin-top: 0.6rem;
-    opacity: 0; animation: fadeUp 1s 0.95s forwards;
-    text-shadow: 0 1px 6px rgba(0,0,0,0.2);
+    color: var(--ink-soft);
+    margin-top: 0.8rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.1s forwards;
   }
+
   .hero-local-time {
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.64);
-    margin-top: 0.5rem;
-    opacity: 0; animation: fadeUp 1s 1s forwards;
+    color: rgba(44,40,37,0.6);
+    margin-top: 0.6rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+
+  /* Polaroid image element */
+  .hero-polaroid {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.5s forwards;
+  }
+
+  .polaroid-frame {
+    background: var(--paper);
+    border: 8px solid var(--paper);
+    border-bottom: 32px solid var(--paper);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+    overflow: hidden;
+    transform: rotate(-2deg);
+    transition: transform 0.35s ease;
+  }
+
+  .polaroid-frame:hover {
+    transform: rotate(-2deg) translateY(-4px);
+  }
+
+  .polaroid-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+  }
+
+  .polaroid-caption {
+    position: absolute;
+    bottom: 6px;
+    left: 8px;
+    right: 8px;
+    font-family: var(--font-script);
+    font-size: 1rem;
+    color: var(--ink-soft);
+    text-align: center;
+    opacity: 0.85;
   }
 
   .countdown {
-    display: flex; gap: 0;
+    display: flex;
+    gap: 0;
     margin-top: 3rem;
     padding: 1.15rem 1.5rem;
     background: rgba(24,18,14,0.14);
@@ -276,14 +361,17 @@
     border-radius: 999px;
     backdrop-filter: blur(14px);
     box-shadow: 0 20px 48px rgba(0,0,0,0.16);
-    opacity: 0; animation: fadeUp 1s 1.2s forwards;
+    opacity: 0;
+    animation: fadeUp 1s 1.4s forwards;
   }
+
   .countdown-unit {
     text-align: center;
     min-width: 88px;
     padding: 0 1.2rem;
     position: relative;
   }
+
   .countdown-unit + .countdown-unit::before {
     content: '';
     position: absolute;
@@ -293,8 +381,9 @@
     width: 1px;
     background: rgba(245,240,232,0.12);
   }
+
   .countdown-num {
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-size: 2.8rem;
     font-weight: 300;
     color: var(--cream);
@@ -302,7 +391,11 @@
     transition: transform 0.15s;
     text-shadow: 0 1px 10px rgba(0,0,0,0.2);
   }
-  .countdown-num.tick { transform: scale(1.08); }
+
+  .countdown-num.tick {
+    transform: scale(1.08);
+  }
+
   .countdown-label {
     font-family: var(--font-body);
     font-size: 0.6rem;
@@ -314,10 +407,13 @@
 
   /* Hero CTA buttons */
   .hero-actions {
-    display: flex; gap: 1rem;
+    display: flex;
+    gap: 1rem;
     margin-top: 2.5rem;
-    opacity: 0; animation: fadeUp 1s 1.4s forwards;
+    opacity: 0;
+    animation: fadeUp 1s 1.6s forwards;
   }
+
   .hero-cta {
     font-family: var(--font-body);
     font-size: 0.6rem;
@@ -329,23 +425,28 @@
     border-radius: 2px;
     transition: all 0.35s;
     min-height: 44px;
-    display: inline-flex; align-items: center;
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
   }
+
   .hero-cta-primary {
     background: var(--gold);
     color: var(--cream);
     border: 1px solid var(--gold);
   }
+
   .hero-cta-primary:hover {
     background: var(--gold-light);
     border-color: var(--gold-light);
   }
+
   .hero-cta-secondary {
     background: transparent;
     color: rgba(245,240,232,0.8);
     border: 1px solid rgba(245,240,232,0.28);
   }
+
   .hero-cta-secondary:hover {
     border-color: rgba(245,240,232,0.5);
     color: var(--cream);
@@ -353,31 +454,111 @@
 
   /* Welcome-back banner */
   .welcome-back {
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-size: 1rem;
     font-style: italic;
     color: var(--gold-light);
     margin-top: 2rem;
-    opacity: 0; animation: fadeUp 0.8s 1.5s forwards;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.7s forwards;
     display: none;
   }
-  .welcome-back.show { display: block; }
+
+  .welcome-back.show {
+    display: block;
+  }
 
   .scroll-hint {
-    position: absolute; bottom: 2.5rem;
-    opacity: 0; animation: fadeUp 1s 1.6s forwards;
+    position: absolute;
+    bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.8s forwards;
     cursor: pointer;
   }
+
   .scroll-hint:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 8px;
   }
+
   .scroll-hint span {
     display: block;
-    width: 1px; height: 40px;
+    width: 1px;
+    height: 40px;
     background: rgba(245,240,232,0.56);
     margin: 0 auto;
     animation: scrollPulse 2s infinite;
+  }
+
+  /* Mobile stacking */
+  @media (max-width: 900px) {
+    .hero-composition {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-card {
+      padding: 2.5rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 6vw, 2.6rem);
+    }
+
+    .hero-date {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 1.5rem;
+    }
+
+    .hero-composition {
+      gap: 1.5rem;
+    }
+
+    .hero-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .hero-card::before {
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+    }
+
+    .hero-card::after,
+    .hero-card .corner-flourish-bl {
+      width: 60px;
+      height: 60px;
+    }
+
+    .hero-prelude {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .hero-date {
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.8rem;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
   }
 
   /* ─── SECTION DEFAULTS ─── */
@@ -396,7 +577,7 @@
   }
   .section-title {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-style: italic;
     font-size: clamp(2rem, 5vw, 3.2rem);
     color: var(--cream);
@@ -404,7 +585,7 @@
     line-height: 1.2;
   }
   section p {
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-size: 1.15rem;
     line-height: 1.9;
     color: var(--cream-muted);
@@ -542,7 +723,7 @@
 
   /* ─── INFO PENDING (styled placeholders) ─── */
   .info-pending {
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-style: italic;
     color: var(--sage);
     opacity: 0.7;
@@ -691,7 +872,7 @@
     font-weight: 500;
   }
   .timeline-event {
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-size: 1.15rem;
     color: var(--ink-soft);
     margin-left: 1rem;
@@ -808,7 +989,7 @@
     background: rgba(245,240,232,0.08);
     border: 1px solid rgba(184,149,106,0.3);
     color: var(--cream);
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-size: 1rem;
     padding: 0.8rem;
     border-radius: 2px;
@@ -843,6 +1024,117 @@
   .shenanigan-form .form-cancel {
     border-color: rgba(245,240,232,0.2);
     color: rgba(245,240,232,0.5);
+  }
+
+  /* ─── SCHEDULE ─── */
+  .schedule {
+    position: relative;
+    background: var(--charcoal-warm);
+    color: var(--cream);
+    padding: 8rem 2rem;
+    max-width: none;
+    text-align: center;
+  }
+  .schedule::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, var(--charcoal-warm));
+    pointer-events: none;
+  }
+  .schedule::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(180deg, var(--charcoal-warm), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .schedule .section-label {
+    color: var(--gold-light);
+  }
+  .schedule .section-title {
+    color: var(--cream);
+  }
+  .schedule .section-intro {
+    color: rgba(245,240,232,0.7);
+    margin: 0 auto;
+  }
+
+  .schedule-events {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+
+  .schedule-event {
+    padding: 1.8rem 1.5rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+    border: 1px solid rgba(184,149,106,0.2);
+    border-radius: 2px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 12px 24px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .schedule-event:hover {
+    border-color: var(--gold-light);
+    background: rgba(184,149,106,0.08);
+    transform: translateY(-3px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 36px rgba(0,0,0,0.22);
+  }
+
+  .schedule-event::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+  }
+
+  .schedule-time {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  .schedule-event-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--cream);
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 768px) {
+    .schedule-events {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .schedule-time {
+      font-size: 1.1rem;
+    }
+
+    .schedule-event-name {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .schedule-events {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* ─── GALLERY ─── */
@@ -910,8 +1202,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-hand);
-    font-size: 0.85rem;
+    font-family: var(--font-script);
+    font-size: 1.1rem;
     font-style: normal;
     color: var(--ink-soft);
     opacity: 1;
@@ -1027,7 +1319,7 @@
   .rsvp-form label:first-child { margin-top: 0; }
   .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
     width: 100%;
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-size: 1.1rem;
     padding: 0.8rem 1rem;
     border: 1px solid var(--line-light);
@@ -1154,7 +1446,7 @@
     padding: 1.5rem 0;
   }
   .faq-item summary {
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-size: 1.2rem;
     font-weight: 400;
     color: var(--ink);
@@ -1208,14 +1500,14 @@
     opacity: 0.5;
   }
   footer p {
-    font-family: var(--font-elegant);
+    font-family: var(--font-display);
     font-size: 1.1rem;
     color: var(--gold);
     font-style: italic;
   }
   footer .footer-tagline {
-    font-family: var(--font-hand);
-    font-size: 1.1rem;
+    font-family: var(--font-script);
+    font-size: 1.3rem;
     font-style: normal;
   }
   footer .footer-date {
@@ -1339,16 +1631,33 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <p class="hero-prelude">Together with their families</p>
-  <h1>
-    Veronica
-    <span class="amp">&</span>
-    Lucas
-  </h1>
-  <p class="hero-date">October Twenty-Fourth, Two Thousand Twenty-Six</p>
-  <p class="hero-location">Wallingford, Pennsylvania</p>
-  <p class="hero-local-time" id="localTimeHint"></p>
+  <div class="hero-composition">
+    <!-- Invitation Card -->
+    <div class="hero-card">
+      <div class="corner-flourish-bl"></div>
+      <div class="card-content">
+        <p class="hero-prelude">Together with their families</p>
+        <h1>
+          Veronica
+          <span class="amp">&</span>
+          Lucas
+        </h1>
+        <p class="hero-date">October Twenty-Fourth, Two Thousand Twenty-Six</p>
+        <p class="hero-location">Wallingford, Pennsylvania</p>
+        <p class="hero-local-time" id="localTimeHint"></p>
+      </div>
+    </div>
+
+    <!-- Polaroid Image -->
+    <div class="hero-polaroid">
+      <div class="polaroid-frame">
+        <img src="images/00014-Veronica.jpg" alt="Veronica on engagement day" width="300" height="400" loading="eager">
+        <div class="polaroid-caption">The dock. The question. The yes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Countdown Timer -->
   <div class="countdown" id="countdown">
     <div class="countdown-unit">
       <div class="countdown-num" id="cd-days">---</div>
@@ -1367,11 +1676,15 @@
       <div class="countdown-label">Seconds</div>
     </div>
   </div>
+
+  <!-- CTAs and Welcome -->
   <div class="hero-actions">
     <a href="#rsvp" class="hero-cta hero-cta-primary">RSVP</a>
     <a href="#details" class="hero-cta hero-cta-secondary">View Details</a>
   </div>
   <p class="welcome-back" id="welcomeBack"></p>
+
+  <!-- Scroll Hint -->
   <div class="scroll-hint" id="scrollHint" role="button" tabindex="0" aria-label="Scroll to story"><span></span></div>
 </section>
 
@@ -1442,36 +1755,41 @@
         PHL (Philadelphia International) — ~30 min drive</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="timeline-wrap" style="margin-top: 4rem;">
-    <h3 class="subsection-title">Schedule at a Glance</h3>
-    <p class="section-label" style="margin-bottom: 0;">What to expect</p>
-    <div class="timeline">
-      <div class="timeline-item">
-        <span class="timeline-time">4:00 PM</span>
-        <span class="timeline-event">Guest Arrival</span>
+<!-- ─── SCHEDULE ─── -->
+<div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
+<section class="schedule" id="schedule">
+  <div class="reveal">
+    <p class="section-label">The Day</p>
+    <h2 class="section-title">Schedule</h2>
+    <p class="section-intro">How the day will unfold — from arrival through the last dance.</p>
+    <div class="schedule-events">
+      <div class="schedule-event">
+        <div class="schedule-time">4:00 PM</div>
+        <div class="schedule-event-name">Guest Arrival</div>
       </div>
-      <div class="timeline-item">
-        <span class="timeline-time">4:30 PM</span>
-        <span class="timeline-event">Ceremony</span>
+      <div class="schedule-event">
+        <div class="schedule-time">4:30 PM</div>
+        <div class="schedule-event-name">Ceremony</div>
       </div>
-      <div class="timeline-item">
-        <span class="timeline-time">5:15 PM</span>
-        <span class="timeline-event">Cocktail Hour</span>
+      <div class="schedule-event">
+        <div class="schedule-time">5:15 PM</div>
+        <div class="schedule-event-name">Cocktail Hour</div>
       </div>
-      <div class="timeline-item">
-        <span class="timeline-time">6:30 PM</span>
-        <span class="timeline-event">Dinner & Toasts</span>
+      <div class="schedule-event">
+        <div class="schedule-time">6:30 PM</div>
+        <div class="schedule-event-name">Dinner & Toasts</div>
       </div>
-      <div class="timeline-item">
-        <span class="timeline-time">8:00 PM</span>
-        <span class="timeline-event">Dancing</span>
+      <div class="schedule-event">
+        <div class="schedule-time">8:00 PM</div>
+        <div class="schedule-event-name">Dancing</div>
       </div>
-      <div class="timeline-item">
-        <span class="timeline-time">11:00 PM</span>
-        <span class="timeline-event">Last Dance & Send-Off</span>
+      <div class="schedule-event">
+        <div class="schedule-time">11:00 PM</div>
+        <div class="schedule-event-name">Last Dance & Send-Off</div>
       </div>
-    </div>
     </div>
   </div>
 </section>
@@ -1839,7 +2157,7 @@ function updateCountdown() {
   const diff = WEDDING_DATE - now;
   if (diff <= 0) {
     document.getElementById('countdown').innerHTML =
-      '<p style="font-family:var(--font-elegant);font-size:1.4rem;color:var(--gold);">Today is the day!</p>';
+      '<p style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);">Today is the day!</p>';
     return;
   }
   const d = Math.floor(diff / 864e5);
