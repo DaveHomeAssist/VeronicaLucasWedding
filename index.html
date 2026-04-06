@@ -1415,7 +1415,7 @@
     <h2 class="section-title">Shenanigans Corner</h2>
     <p>Because every wedding needs a little chaos. Tap a card to contribute.</p>
     <div class="shenanigan-cards">
-      <div class="shenanigan-card" data-type="toast" tabindex="0">
+      <div class="shenanigan-card" data-type="toast" tabindex="0" role="button" aria-label="Submit a toast roast" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
         <span class="card-emoji">&#127908;</span>
         <h3>Toast Roast</h3>
@@ -1429,7 +1429,7 @@
           </div>
         </div>
       </div>
-      <div class="shenanigan-card" data-type="photos" tabindex="0">
+      <div class="shenanigan-card" data-type="photos" tabindex="0" role="button" aria-label="Submit a photo idea" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
         <span class="card-emoji">&#128248;</span>
         <h3>Photo Ops</h3>
@@ -1443,7 +1443,7 @@
           </div>
         </div>
       </div>
-      <div class="shenanigan-card" data-type="songs" tabindex="0">
+      <div class="shenanigan-card" data-type="songs" tabindex="0" role="button" aria-label="Request a song" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
         <span class="card-emoji">&#127925;</span>
         <h3>Song Requests</h3>
@@ -1458,7 +1458,7 @@
           </div>
         </div>
       </div>
-      <div class="shenanigan-card" data-type="advice" tabindex="0">
+      <div class="shenanigan-card" data-type="advice" tabindex="0" role="button" aria-label="Share advice or a prediction" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
         <span class="card-emoji">&#128140;</span>
         <h3>Advice & Bets</h3>
@@ -1738,7 +1738,7 @@ navSections.forEach(id => {
 });
 
 /* ─── NAV: RSVP URGENCY ─── */
-const rsvpDeadline = new Date('2026-09-01');
+const rsvpDeadline = new Date('2026-09-01T23:59:59-04:00');
 const daysUntilDeadline = Math.ceil((rsvpDeadline - new Date()) / 864e5);
 if (daysUntilDeadline <= 14 && daysUntilDeadline > 0 && !store.rsvp.submittedAt) {
   document.getElementById('navRsvp').classList.add('rsvp-urgent');
@@ -1749,13 +1749,13 @@ if (daysUntilDeadline <= 14 && daysUntilDeadline > 0 && !store.rsvp.submittedAt)
 
 /* ─── ADD TO CALENDAR ─── */
 document.getElementById('addToCal').addEventListener('click', () => {
-  const start = '20261024T200000Z'; // 4pm EDT = 8pm UTC
-  const end = '20261025T030000Z';   // ~11pm EDT
+  const start = '20261024T200000Z'; // 4:00 PM EDT = 8:00 PM UTC
+  const end = '20261025T030000Z';   // 11:00 PM EDT = 3:00 AM UTC (7h event)
   const title = encodeURIComponent('Veronica & Lucas Wedding');
   const loc = encodeURIComponent('The Duke Sculpture Garden at Dixon Mansion, 414 Plush Mill Rd, Wallingford, PA 19086');
   const details = encodeURIComponent('Ceremony at 4 PM, reception to follow. Details at veronicaandlucas.com');
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}&details=${details}`;
-  window.open(url, '_blank');
+  window.open(url, '_blank', 'noopener');
 });
 
 /* ─── GALLERY / LIGHTBOX ─── */
@@ -1824,6 +1824,22 @@ lightbox.addEventListener('touchend', (e) => {
     else navLightbox(null, 1);
   }
 }, { passive: true });
+
+/* ─── LIGHTBOX: FOCUS TRAP ─── */
+lightbox.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('open')) return;
+  const focusable = [lightboxClose, lightboxPrev, lightboxNext];
+  if (e.key === 'Tab') {
+    const idx = focusable.indexOf(document.activeElement);
+    if (e.shiftKey) {
+      e.preventDefault();
+      focusable[idx <= 0 ? focusable.length - 1 : idx - 1].focus();
+    } else {
+      e.preventDefault();
+      focusable[(idx + 1) % focusable.length].focus();
+    }
+  }
+});
 
 /* ─── RSVP FORM ─── */
 const rsvpForm = document.getElementById('rsvpForm');
@@ -1941,8 +1957,10 @@ document.getElementById('rsvpSubmit').addEventListener('click', async () => {
 
   submitBtn.disabled = false;
 
-  if (!result.ok && !result.offline) {
-    rsvpStatus.textContent = 'Saved locally — we\'ll sync it soon.';
+  if (!result.ok) {
+    rsvpStatus.textContent = result.offline
+      ? 'Saved locally — we\'ll sync when the backend is ready.'
+      : 'Something went wrong. Your info is saved locally — try again later.';
     rsvpStatus.className = 'rsvp-status';
   }
 
@@ -2094,12 +2112,6 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 reveals.forEach(el => revealObserver.observe(el));
-
-</script>
-
-</body>
-</html>
-e(el));
 
 </script>
 
