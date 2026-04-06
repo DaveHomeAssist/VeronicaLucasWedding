@@ -419,14 +419,15 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
   }
-  .divider-icon {
-    font-family: var(--font-elegant);
-    font-size: 1.4rem;
-    color: var(--gold);
-    padding: 0 1.5rem;
-    transition: transform 0.35s ease;
+  .divider-ornament {
+    display: block;
+    width: 180px;
+    height: auto;
+    opacity: 0.55;
+    padding: 0 1rem;
+    transition: opacity 0.35s ease;
   }
-  .divider:hover .divider-icon { transform: rotate(90deg); }
+  .divider:hover .divider-ornament { opacity: 0.8; }
 
   /* ─── INFO PENDING (styled placeholders) ─── */
   .info-pending {
@@ -634,16 +635,7 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 16px 36px rgba(0,0,0,0.12);
     min-height: 48px;
   }
-  .shenanigan-card::before {
-    content: '';
-    position: absolute;
-    top: 18px;
-    left: 50%;
-    width: 44px;
-    height: 1px;
-    background: rgba(184,149,106,0.38);
-    transform: translateX(-50%);
-  }
+  .shenanigan-card::before { display: none; }
   .shenanigan-card:hover, .shenanigan-card:focus-within {
     border-color: var(--gold);
     background: rgba(184,149,106,0.05);
@@ -653,17 +645,13 @@
     outline: 2px solid var(--gold-light);
     outline-offset: 4px;
   }
-  .shenanigan-card .card-emoji {
-    font-size: 1.4rem;
+  .shenanigan-card .card-icon {
+    display: block;
     margin: 0 auto 1rem;
-    display: inline-flex;
-    width: 3rem;
-    height: 3rem;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(184,149,106,0.28);
-    border-radius: 999px;
-    background: rgba(255,255,255,0.02);
+    width: auto;
+    height: 4.5rem;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
   }
   .shenanigan-card h3 {
     font-family: var(--font-display);
@@ -1075,6 +1063,13 @@
     position: relative;
     z-index: 2;
   }
+  .footer-monogram {
+    display: block;
+    width: 80px;
+    height: auto;
+    margin: 0 auto 1.5rem;
+    opacity: 0.35;
+  }
   footer p {
     font-family: var(--font-elegant);
     font-size: 1.1rem;
@@ -1223,7 +1218,7 @@
 </section>
 
 <!-- ─── STORY ─── -->
-<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
 <section id="story">
   <div class="reveal">
     <p class="section-label">How It All Began</p>
@@ -1238,7 +1233,7 @@
 </section>
 
 <!-- ─── DETAILS ─── -->
-<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
 <section id="details">
   <div class="reveal">
     <p class="section-label">The Plan</p>
@@ -1313,7 +1308,7 @@
 </section>
 
 <!-- ─── GALLERY ─── -->
-<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
 <section class="gallery" id="gallery">
   <div class="reveal">
     <p class="section-label">Moments</p>
@@ -1351,7 +1346,7 @@
 </div>
 
 <!-- ─── RSVP ─── -->
-<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
 <section class="rsvp" id="rsvp">
   <div class="reveal">
     <p class="section-label">Be There</p>
@@ -1417,7 +1412,7 @@
     <div class="shenanigan-cards">
       <div class="shenanigan-card" data-type="toast" tabindex="0" role="button" aria-label="Submit a toast roast" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
-        <span class="card-emoji">&#127908;</span>
+        <img class="card-icon" src="images/icons/icon-toast.png" alt="" width="286" height="389" loading="lazy">
         <h3>Toast Roast</h3>
         <p>Submit your best (or worst) toast material. We dare you.</p>
         <div class="shenanigan-form">
@@ -1431,7 +1426,7 @@
       </div>
       <div class="shenanigan-card" data-type="photos" tabindex="0" role="button" aria-label="Submit a photo idea" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
-        <span class="card-emoji">&#128248;</span>
+        <img class="card-icon" src="images/icons/icon-photos.png" alt="" width="283" height="368" loading="lazy">
         <h3>Photo Ops</h3>
         <p>Embarrassing photos of the couple. Bonus points for the haircuts.</p>
         <div class="shenanigan-form">
@@ -1445,7 +1440,7 @@
       </div>
       <div class="shenanigan-card" data-type="songs" tabindex="0" role="button" aria-label="Request a song" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
-        <span class="card-emoji">&#127925;</span>
+        <img class="card-icon" src="images/icons/icon-songs.png" alt="" width="397" height="265" loading="lazy">
         <h3>Song Requests</h3>
         <p>Tell the DJ what to play. Or what NOT to play. Both are useful.</p>
         <div class="shenanigan-form">
@@ -1460,7 +1455,7 @@
       </div>
       <div class="shenanigan-card" data-type="advice" tabindex="0" role="button" aria-label="Share advice or a prediction" aria-expanded="false">
         <span class="submitted-badge">Submitted</span>
-        <span class="card-emoji">&#128140;</span>
+        <img class="card-icon" src="images/icons/icon-advice.png" alt="" width="330" height="224" loading="lazy">
         <h3>Advice & Bets</h3>
         <p>Marriage advice, predictions, or side bets on the first dance song.</p>
         <div class="shenanigan-form">
@@ -1477,7 +1472,7 @@
 </section>
 
 <!-- ─── FAQ ─── -->
-<div class="divider" style="position: relative; z-index: 2;"><span class="divider-icon">&#10043;</span></div>
+<div class="divider" style="position: relative; z-index: 2;"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
 <section id="faq" style="position: relative; z-index: 2;">
   <div class="reveal">
     <p class="section-label">Questions</p>
@@ -1517,6 +1512,7 @@
 
 <!-- ─── FOOTER ─── -->
 <footer>
+  <img class="footer-monogram" src="images/ornaments/monogram-vl.png" alt="V & L monogram" width="120" height="120" loading="lazy">
   <p>V &amp; L — forever starts here</p>
   <p class="footer-date">October 24, 2026 &middot; Wallingford, PA</p>
   <p class="footer-contact">Questions? Contact details coming soon.</p>
