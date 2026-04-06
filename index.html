@@ -7,7 +7,7 @@
 <meta name="description" content="Veronica and Lucas are getting married on October 24, 2026. Wedding details, photos, RSVP, and updates all in one place.">
 <meta property="og:title" content="Veronica & Lucas — October 24, 2026">
 <meta property="og:description" content="Wedding details, photos, RSVP, and updates for Veronica and Lucas.">
-<meta property="og:image" content="images/00014-Veronica.jpg">
+<meta property="og:image" content="https://veronicaandlucas.com/images/00014-Veronica.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://veronicaandlucas.com">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1a18'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia, serif' font-size='28' font-style='italic' fill='%23d4b896'%3EV%26L%3C/text%3E%3C/svg%3E">
@@ -25,6 +25,7 @@
     --blush: #E8D5CC;
     --wine: #6B3A3A;
     --ink-soft: #3F3A35;
+    --charcoal-warm: #2A2520;
     --line: rgba(184,149,106,0.18);
     --shadow-soft: 0 24px 60px rgba(42, 32, 18, 0.08);
     --shadow-card: 0 18px 45px rgba(42, 32, 18, 0.06);
@@ -80,7 +81,7 @@
     text-transform: uppercase;
     text-decoration: none;
     color: rgba(245, 240, 232, 0.84);
-    opacity: 0.62;
+    opacity: 0.82;
     transition: opacity 0.25s ease, color 0.25s ease;
     position: relative;
     padding-bottom: 4px;
@@ -168,7 +169,7 @@
   /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
-    min-height: 100dvh; /* dynamic viewport for mobile */
+    min-height: 100dvh;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     text-align: center;
@@ -208,7 +209,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.62);
+    color: rgba(245,240,232,0.72);
     margin-bottom: 2rem;
     opacity: 0; animation: fadeUp 1s 0.3s forwards;
     text-shadow: 0 1px 8px rgba(0,0,0,0.25);
@@ -243,7 +244,16 @@
     opacity: 0; animation: fadeUp 1s 0.9s forwards;
     text-shadow: 0 1px 10px rgba(0,0,0,0.28);
   }
-  /* Localized time hint under date */
+  .hero-location {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.58);
+    margin-top: 0.6rem;
+    opacity: 0; animation: fadeUp 1s 0.95s forwards;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  }
   .hero-local-time {
     font-family: var(--font-body);
     font-size: 0.6rem;
@@ -297,6 +307,45 @@
     text-transform: uppercase;
     color: rgba(245,240,232,0.52);
     margin-top: 0.4rem;
+  }
+
+  /* Hero CTA buttons */
+  .hero-actions {
+    display: flex; gap: 1rem;
+    margin-top: 2.5rem;
+    opacity: 0; animation: fadeUp 1s 1.4s forwards;
+  }
+  .hero-cta {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 2px;
+    transition: all 0.35s;
+    min-height: 44px;
+    display: inline-flex; align-items: center;
+    cursor: pointer;
+  }
+  .hero-cta-primary {
+    background: var(--gold);
+    color: var(--cream);
+    border: 1px solid var(--gold);
+  }
+  .hero-cta-primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+  .hero-cta-secondary {
+    background: transparent;
+    color: rgba(245,240,232,0.8);
+    border: 1px solid rgba(245,240,232,0.28);
+  }
+  .hero-cta-secondary:hover {
+    border-color: rgba(245,240,232,0.5);
+    color: var(--cream);
   }
 
   /* Welcome-back banner */
@@ -379,6 +428,14 @@
   }
   .divider:hover .divider-icon { transform: rotate(90deg); }
 
+  /* ─── INFO PENDING (styled placeholders) ─── */
+  .info-pending {
+    font-family: var(--font-elegant);
+    font-style: italic;
+    color: var(--sage);
+    opacity: 0.7;
+  }
+
   /* ─── DETAILS GRID ─── */
   .details-grid {
     display: grid;
@@ -394,7 +451,6 @@
     border-radius: 2px;
     box-shadow: var(--shadow-card);
     transition: border-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
-    /* Touch-friendly tap targets */
     min-height: 48px;
     overflow: hidden;
   }
@@ -438,7 +494,7 @@
   }
   /* Add-to-calendar button */
   .add-to-cal {
-    display: inline-block;
+    display: inline-flex; align-items: center;
     margin-top: 1rem;
     font-family: var(--font-body);
     font-size: 0.6rem;
@@ -453,22 +509,106 @@
     cursor: pointer;
     transition: all 0.3s;
     min-height: 44px;
-    display: inline-flex; align-items: center;
   }
   .add-to-cal:hover {
     background: var(--gold);
     color: var(--cream);
   }
+  /* Detail action links */
+  .detail-action {
+    display: inline-flex; align-items: center;
+    margin-top: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--gold-light);
+    color: var(--gold);
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 44px;
+  }
+  .detail-action:hover {
+    background: var(--gold);
+    color: var(--cream);
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    margin-top: 2.5rem;
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold-light), rgba(184,149,106,0.2));
+  }
+  .timeline-item {
+    padding: 0.8rem 0;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 1.15rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px var(--paper);
+  }
+  .timeline-time {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    font-weight: 500;
+  }
+  .timeline-event {
+    font-family: var(--font-elegant);
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin-left: 1rem;
+  }
 
   /* ─── SHENANIGANS ─── */
   .shenanigans {
-    background:
-      radial-gradient(circle at top, rgba(184,149,106,0.09), transparent 26%),
-      linear-gradient(180deg, #201d1b 0%, var(--dark) 34%, #171715 100%);
+    position: relative;
+    background: var(--charcoal-warm);
     color: var(--cream);
     padding: 8rem 2rem;
     max-width: none;
     text-align: center;
+  }
+  .shenanigans::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(180deg, transparent, var(--charcoal-warm));
+    pointer-events: none;
+  }
+  .shenanigans::after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(180deg, var(--charcoal-warm), transparent);
+    pointer-events: none;
+    z-index: 1;
   }
   .shenanigans .section-label { color: var(--gold-light); }
   .shenanigans .section-title { color: var(--cream); }
@@ -490,7 +630,7 @@
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
-    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0));
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 16px 36px rgba(0,0,0,0.12);
     min-height: 48px;
   }
@@ -834,6 +974,18 @@
   .rsvp-form .rsvp-submit:hover { color: var(--cream); }
   .rsvp-form .rsvp-submit span { position: relative; z-index: 1; }
 
+  /* RSVP error/status */
+  .rsvp-status {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+    min-height: 1.5em;
+  }
+  .rsvp-status.error { color: var(--wine); }
+  .rsvp-status.sending { color: var(--sage-dark); }
+
   .rsvp-confirmed {
     display: none;
     text-align: center;
@@ -853,7 +1005,7 @@
   }
   .rsvp-confirmed p { margin: 0 auto; }
   .rsvp-confirmed .edit-rsvp {
-    display: inline-block;
+    display: inline-flex; align-items: center;
     margin-top: 1.5rem;
     font-family: var(--font-body);
     font-size: 0.6rem;
@@ -865,7 +1017,53 @@
     cursor: pointer;
     background: none; border: none;
     min-height: 44px;
-    display: inline-flex; align-items: center;
+  }
+
+  /* ─── FAQ ─── */
+  .faq-list {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 1.5rem 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-elegant);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--dark);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 44px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--gold);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+  .faq-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .faq-item p {
+    margin-top: 0.8rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    padding-right: 2rem;
+  }
+  .faq-item .info-pending {
+    margin-top: 0.8rem;
+    font-size: 1.05rem;
   }
 
   /* ─── FOOTER ─── */
@@ -874,6 +1072,8 @@
     padding: 4rem 2rem;
     border-top: 1px solid rgba(184,149,106,0.15);
     background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.32) 100%);
+    position: relative;
+    z-index: 2;
   }
   footer p {
     font-family: var(--font-elegant);
@@ -889,6 +1089,19 @@
     color: rgba(26,26,24,0.35);
     margin-top: 1rem;
   }
+  footer .footer-contact {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: rgba(26,26,24,0.35);
+    margin-top: 0.6rem;
+  }
+  footer .footer-contact a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,149,106,0.2);
+  }
+  footer .footer-contact a:hover { border-bottom-color: var(--gold); }
 
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
@@ -925,6 +1138,8 @@
       flex: 1;
     }
     .countdown-num { font-size: 2rem; }
+    .hero-actions { flex-direction: column; align-items: center; gap: 0.8rem; }
+    .hero-cta { width: 220px; justify-content: center; }
     .details-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     section { padding: 5rem 1.5rem; }
     .shenanigans { padding: 5rem 1.5rem; }
@@ -938,8 +1153,10 @@
     .gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
     .gallery-item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
     .gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
-    .lightbox-nav { display: none; }
+    /* Show smaller lightbox nav on mobile */
+    .lightbox-nav { font-size: 1.5rem; padding: 0.6rem; }
     .rsvp-form { padding: 1.35rem; }
+    .timeline { padding-left: 1.5rem; }
   }
 
   /* Prefer reduced motion */
@@ -960,10 +1177,10 @@
   </button>
   <div class="nav-links" id="navLinks">
     <a href="#story" data-section="story">Our Story</a>
-    <a href="#gallery" data-section="gallery">Photos</a>
     <a href="#details" data-section="details">Details</a>
-    <a href="#shenanigans" data-section="shenanigans">Shenanigans</a>
+    <a href="#gallery" data-section="gallery">Photos</a>
     <a href="#rsvp" data-section="rsvp" id="navRsvp">RSVP</a>
+    <a href="#shenanigans" data-section="shenanigans">Fun Stuff</a>
   </div>
 </nav>
 
@@ -977,6 +1194,7 @@
     Lucas
   </h1>
   <p class="hero-date">October Twenty-Fourth, Two Thousand Twenty-Six</p>
+  <p class="hero-location" id="heroLocation"></p>
   <p class="hero-local-time" id="localTimeHint"></p>
   <div class="countdown" id="countdown">
     <div class="countdown-unit">
@@ -996,6 +1214,10 @@
       <div class="countdown-label">Seconds</div>
     </div>
   </div>
+  <div class="hero-actions">
+    <a href="#rsvp" class="hero-cta hero-cta-primary">RSVP</a>
+    <a href="#details" class="hero-cta hero-cta-secondary">View Details</a>
+  </div>
   <p class="welcome-back" id="welcomeBack"></p>
   <div class="scroll-hint" id="scrollHint" role="button" tabindex="0" aria-label="Scroll to story"><span></span></div>
 </section>
@@ -1006,12 +1228,80 @@
   <div class="reveal">
     <p class="section-label">How It All Began</p>
     <h2 class="section-title">Their Story</h2>
-    <p>
-      Some love stories write themselves. This one started with [insert your origin story — or a hilariously embellished version]. From that moment on, they knew something extraordinary was unfolding.
+    <p class="info-pending">
+      Their story is still being written — check back soon for the full tale of how it all began.
     </p>
-    <p style="margin-top: 1.5rem;">
-      After [X] years of adventures, terrible puns, and unwavering devotion, Lucas asked the question — and Veronica said yes (obviously). Now it's time to celebrate.
-    </p>
+  </div>
+</section>
+
+<!-- ─── DETAILS ─── -->
+<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<section id="details">
+  <div class="reveal">
+    <p class="section-label">The Plan</p>
+    <h2 class="section-title">Wedding Details</h2>
+    <div class="details-grid">
+      <div class="detail-card">
+        <p class="detail-meta">Ceremony</p>
+        <h3>The Main Event</h3>
+        <p>Saturday, October 24, 2026<br>4:00 PM<br><em class="info-pending">Venue details coming soon</em></p>
+        <button class="add-to-cal" id="addToCal" title="Add to your calendar">+ Add to Calendar</button>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Reception</p>
+        <h3>The After Party</h3>
+        <p>Immediately following the ceremony<br><em class="info-pending">Venue details coming soon</em><br>Dinner, dancing, and questionable karaoke</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Accommodations</p>
+        <h3>Where to Stay</h3>
+        <p><em class="info-pending">Hotel details coming soon</em><br>Code: VERONICALUCAS</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Registry</p>
+        <h3>Gifts</h3>
+        <p>Your presence is the present — but if you insist, we'll share a link here soon.</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Dress Code</p>
+        <h3>What to Wear</h3>
+        <p><em class="info-pending">Dress code details coming soon.</em> Late October may bring cool evenings — bring a layer for outdoor moments.</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Getting There</p>
+        <h3>Travel & Parking</h3>
+        <p><em class="info-pending">Travel details coming soon.</em></p>
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: 1.6rem; margin-top: 4rem; margin-bottom: 0.5rem;">Schedule at a Glance</h3>
+    <p class="section-label" style="margin-bottom: 0;">What to expect</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-time">4:00 PM</span>
+        <span class="timeline-event">Guest Arrival</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">4:30 PM</span>
+        <span class="timeline-event">Ceremony</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">5:15 PM</span>
+        <span class="timeline-event">Cocktail Hour</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">6:30 PM</span>
+        <span class="timeline-event">Dinner & Toasts</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">8:00 PM</span>
+        <span class="timeline-event">Dancing</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-time">11:00 PM</span>
+        <span class="timeline-event">Last Dance & Send-Off</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1053,113 +1343,14 @@
   <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Next photo">&#8250;</button>
 </div>
 
-<!-- ─── DETAILS ─── -->
-<div class="divider"><span class="divider-icon">&#10043;</span></div>
-<section id="details">
-  <div class="reveal">
-    <p class="section-label">The Plan</p>
-    <h2 class="section-title">Wedding Details</h2>
-    <div class="details-grid">
-      <div class="detail-card">
-        <p class="detail-meta">Ceremony</p>
-        <h3>The Main Event</h3>
-        <p>Saturday, October 24, 2026<br>4:00 PM<br><em>[Venue Name]</em><br>[Address]</p>
-        <button class="add-to-cal" id="addToCal" title="Add to your calendar">+ Add to Calendar</button>
-      </div>
-      <div class="detail-card">
-        <p class="detail-meta">Reception</p>
-        <h3>The After Party</h3>
-        <p>Immediately following<br><em>[Venue Name]</em><br>Dinner, dancing, and questionable karaoke</p>
-      </div>
-      <div class="detail-card">
-        <p class="detail-meta">Accommodations</p>
-        <h3>Where to Stay</h3>
-        <p>Room block at <em>[Hotel Name]</em><br>Code: VERONICALUCAS<br>Book by [Date]</p>
-      </div>
-      <div class="detail-card">
-        <p class="detail-meta">Registry</p>
-        <h3>Gifts</h3>
-        <p>Your presence is the present — but if you insist, <a href="#" style="color: var(--gold);">click here</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SHENANIGANS ─── -->
-<section class="shenanigans" id="shenanigans">
-  <div class="reveal">
-    <p class="section-label">The Fun Stuff</p>
-    <h2 class="section-title">Shenanigans Corner</h2>
-    <p>Because every wedding needs a little chaos. Tap a card to contribute.</p>
-    <div class="shenanigan-cards">
-      <div class="shenanigan-card" data-type="toast" tabindex="0">
-        <span class="submitted-badge">Submitted</span>
-        <span class="card-emoji">🎤</span>
-        <h3>Toast Roast</h3>
-        <p>Submit your best (or worst) toast material. We dare you.</p>
-        <div class="shenanigan-form">
-          <input type="text" name="author" placeholder="Your name" autocomplete="name">
-          <textarea placeholder="Your toast material..." rows="3" style="margin-top:0.8rem"></textarea>
-          <div class="form-row">
-            <button type="button" class="form-submit" data-type="toast">Submit</button>
-            <button type="button" class="form-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-      <div class="shenanigan-card" data-type="photos" tabindex="0">
-        <span class="submitted-badge">Submitted</span>
-        <span class="card-emoji">📸</span>
-        <h3>Photo Ops</h3>
-        <p>Embarrassing photos of the couple. Bonus points for the haircuts.</p>
-        <div class="shenanigan-form">
-          <input type="text" name="author" placeholder="Your name" autocomplete="name">
-          <textarea placeholder="Describe the photo or paste a link..." rows="3" style="margin-top:0.8rem"></textarea>
-          <div class="form-row">
-            <button type="button" class="form-submit" data-type="photos">Submit</button>
-            <button type="button" class="form-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-      <div class="shenanigan-card" data-type="songs" tabindex="0">
-        <span class="submitted-badge">Submitted</span>
-        <span class="card-emoji">🎵</span>
-        <h3>Song Requests</h3>
-        <p>Tell the DJ what to play. Or what NOT to play. Both are useful.</p>
-        <div class="shenanigan-form">
-          <input type="text" name="author" placeholder="Your name" autocomplete="name">
-          <input type="text" placeholder="Song title & artist" style="margin-top:0.8rem">
-          <textarea placeholder="Play it? Or ban it? Any context..." rows="2" style="margin-top:0.8rem"></textarea>
-          <div class="form-row">
-            <button type="button" class="form-submit" data-type="songs">Submit</button>
-            <button type="button" class="form-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-      <div class="shenanigan-card" data-type="advice" tabindex="0">
-        <span class="submitted-badge">Submitted</span>
-        <span class="card-emoji">💌</span>
-        <h3>Advice & Bets</h3>
-        <p>Marriage advice, predictions, or side bets on the first dance song.</p>
-        <div class="shenanigan-form">
-          <input type="text" name="author" placeholder="Your name" autocomplete="name">
-          <textarea placeholder="Your wisdom, prediction, or wager..." rows="3" style="margin-top:0.8rem"></textarea>
-          <div class="form-row">
-            <button type="button" class="form-submit" data-type="advice">Submit</button>
-            <button type="button" class="form-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ─── RSVP ─── -->
+<div class="divider"><span class="divider-icon">&#10043;</span></div>
 <section class="rsvp" id="rsvp">
   <div class="reveal">
     <p class="section-label">Be There</p>
     <h2 class="section-title">RSVP</h2>
     <div class="rsvp-deadline-banner" id="rsvpDeadline"></div>
-    <p>Let us know if you'll be joining the celebration. Formal attire encouraged, dancing shoes required.</p>
+    <p>Let us know if you'll be joining the celebration. Dancing shoes required.</p>
 
     <div class="rsvp-form" id="rsvpForm">
       <label for="rsvpName">Your Name</label>
@@ -1195,6 +1386,7 @@
       <textarea id="rsvpNote" placeholder="Song requests, accessibility needs, parking questions..."></textarea>
 
       <button type="button" class="rsvp-submit" id="rsvpSubmit"><span>Send RSVP</span></button>
+      <p class="rsvp-status" id="rsvpStatus"></p>
     </div>
 
     <div class="rsvp-confirmed" id="rsvpConfirmed">
@@ -1209,41 +1401,126 @@
   </div>
 </section>
 
+<!-- ─── SHENANIGANS ─── -->
+<section class="shenanigans" id="shenanigans">
+  <div class="reveal">
+    <p class="section-label">The Fun Stuff</p>
+    <h2 class="section-title">Shenanigans Corner</h2>
+    <p>Because every wedding needs a little chaos. Tap a card to contribute.</p>
+    <div class="shenanigan-cards">
+      <div class="shenanigan-card" data-type="toast" tabindex="0">
+        <span class="submitted-badge">Submitted</span>
+        <span class="card-emoji">&#127908;</span>
+        <h3>Toast Roast</h3>
+        <p>Submit your best (or worst) toast material. We dare you.</p>
+        <div class="shenanigan-form">
+          <input type="text" name="author" placeholder="Your name" autocomplete="name">
+          <textarea placeholder="Your toast material..." rows="3" style="margin-top:0.8rem"></textarea>
+          <div class="form-row">
+            <button type="button" class="form-submit" data-type="toast">Submit</button>
+            <button type="button" class="form-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-type="photos" tabindex="0">
+        <span class="submitted-badge">Submitted</span>
+        <span class="card-emoji">&#128248;</span>
+        <h3>Photo Ops</h3>
+        <p>Embarrassing photos of the couple. Bonus points for the haircuts.</p>
+        <div class="shenanigan-form">
+          <input type="text" name="author" placeholder="Your name" autocomplete="name">
+          <textarea placeholder="Describe the photo or paste a link..." rows="3" style="margin-top:0.8rem"></textarea>
+          <div class="form-row">
+            <button type="button" class="form-submit" data-type="photos">Submit</button>
+            <button type="button" class="form-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-type="songs" tabindex="0">
+        <span class="submitted-badge">Submitted</span>
+        <span class="card-emoji">&#127925;</span>
+        <h3>Song Requests</h3>
+        <p>Tell the DJ what to play. Or what NOT to play. Both are useful.</p>
+        <div class="shenanigan-form">
+          <input type="text" name="author" placeholder="Your name" autocomplete="name">
+          <input type="text" name="extra" placeholder="Song title & artist" style="margin-top:0.8rem">
+          <textarea placeholder="Play it? Or ban it? Any context..." rows="2" style="margin-top:0.8rem"></textarea>
+          <div class="form-row">
+            <button type="button" class="form-submit" data-type="songs">Submit</button>
+            <button type="button" class="form-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-type="advice" tabindex="0">
+        <span class="submitted-badge">Submitted</span>
+        <span class="card-emoji">&#128140;</span>
+        <h3>Advice & Bets</h3>
+        <p>Marriage advice, predictions, or side bets on the first dance song.</p>
+        <div class="shenanigan-form">
+          <input type="text" name="author" placeholder="Your name" autocomplete="name">
+          <textarea placeholder="Your wisdom, prediction, or wager..." rows="3" style="margin-top:0.8rem"></textarea>
+          <div class="form-row">
+            <button type="button" class="form-submit" data-type="advice">Submit</button>
+            <button type="button" class="form-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<div class="divider" style="position: relative; z-index: 2;"><span class="divider-icon">&#10043;</span></div>
+<section id="faq" style="position: relative; z-index: 2;">
+  <div class="reveal">
+    <p class="section-label">Questions</p>
+    <h2 class="section-title">FAQ</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What should I wear?</summary>
+        <p class="info-pending">Dress code details coming soon. Late October can bring cool evenings, so plan for layers.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I bring my kids?</summary>
+        <p class="info-pending">Details coming soon.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there parking at the venue?</summary>
+        <p class="info-pending">Parking details coming soon.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's the weather like in late October?</summary>
+        <p>Late October tends to be crisp and beautiful — expect cooler evenings. A light jacket or wrap is a great idea, especially if there are outdoor moments.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I take photos during the ceremony?</summary>
+        <p class="info-pending">Details coming soon.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Who do I contact with questions?</summary>
+        <p class="info-pending">Contact details coming soon.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <p>V &amp; L — forever starts here</p>
   <p class="footer-date">October 24, 2026</p>
+  <p class="footer-contact">Questions? <span class="info-pending" style="font-style: italic;">Contact details coming soon</span></p>
 </footer>
 
 <script>
 /* ═══════════════════════════════════════════════
+   CONFIGURATION
+   ═══════════════════════════════════════════════ */
+
+// Set this after deploying the Cloudflare Worker:
+const API_BASE = ''; // e.g. 'https://wedding-api.youraccount.workers.dev'
+
+/* ═══════════════════════════════════════════════
    LOCAL STORAGE DATA MODEL
-   ═══════════════════════════════════════════════
-   Key: "vl_wedding" → JSON object:
-   {
-     version: 1,
-     visitCount: number,
-     firstVisit: ISO string,
-     lastVisit: ISO string,
-     guestName: string | null,
-     guestEmail: string | null,
-     rsvp: {
-       attending: "yes"|"no"|null,
-       plusOne: "yes"|"no",
-       plusOneName: string,
-       plusOneDiet: string,
-       diet: string,
-       note: string,
-       submittedAt: ISO string | null
-     },
-     shenanigans: {
-       toast: { submitted: bool, data: {} },
-       photos: { submitted: bool, data: {} },
-       songs: { submitted: bool, data: {} },
-       advice: { submitted: bool, data: {} }
-     },
-     lastScrollSection: string | null
-   }
    ═══════════════════════════════════════════════ */
 
 const STORE_KEY = 'vl_wedding';
@@ -1308,9 +1585,25 @@ function markFieldError(el, hasError) {
   el.classList.toggle('field-error', hasError);
 }
 
+/* ─── API HELPER ─── */
+async function apiPost(path, data) {
+  if (!API_BASE) return { ok: false, offline: true };
+  try {
+    const res = await fetch(`${API_BASE}${path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const json = await res.json();
+    return { ok: res.ok, ...json };
+  } catch {
+    return { ok: false, error: 'Network error' };
+  }
+}
+
 /* ─── COUNTDOWN (timezone-aware) ─── */
-// TODO: Replace with actual venue timezone offset
-const WEDDING_DATE = new Date('2026-10-24T16:00:00-05:00'); // example: Central Time
+// TODO: Replace with actual venue timezone offset once confirmed
+const WEDDING_DATE = new Date('2026-10-24T16:00:00-05:00'); // Central Time
 
 function updateCountdown() {
   const now = new Date();
@@ -1347,9 +1640,9 @@ setInterval(updateCountdown, 1000);
 const localTimeEl = document.getElementById('localTimeHint');
 const guestTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const localTime = WEDDING_DATE.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
-const venueTZ = 'Central Time'; // TODO: update
+const venueTZ = 'Central Time'; // TODO: update when confirmed
 const venueTime = '4:00 PM CT';
-if (!guestTZ.includes('America/Chicago')) { // different TZ from venue
+if (!guestTZ.includes('America/Chicago')) {
   localTimeEl.textContent = `${venueTime} · ${localTime} your time`;
 }
 
@@ -1415,7 +1708,7 @@ scrollHint.addEventListener('keydown', (event) => {
 });
 
 /* ─── NAV: ACTIVE SECTION TRACKING ─── */
-const navSections = ['story', 'gallery', 'details', 'shenanigans', 'rsvp'];
+const navSections = ['story', 'details', 'gallery', 'rsvp', 'shenanigans', 'faq'];
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1445,12 +1738,11 @@ if (daysUntilDeadline <= 14 && daysUntilDeadline > 0 && !store.rsvp.submittedAt)
 
 /* ─── ADD TO CALENDAR ─── */
 document.getElementById('addToCal').addEventListener('click', () => {
-  const start = '20261024T210000Z'; // 4pm CT = 9pm UTC (adjust as needed)
+  const start = '20261024T210000Z'; // 4pm CT = 9pm UTC
   const end = '20261025T040000Z';   // ~11pm CT
   const title = encodeURIComponent('Veronica & Lucas Wedding');
-  const loc = encodeURIComponent('[Venue Address]');
+  const loc = encodeURIComponent('Venue TBD'); // TODO: update with real address
   const details = encodeURIComponent('Ceremony at 4 PM, reception to follow. veronicaandlucas.com');
-  // Google Calendar link (works on mobile & desktop)
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}&details=${details}`;
   window.open(url, '_blank');
 });
@@ -1464,10 +1756,7 @@ const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
 const galleryImages = galleryItems.map((item) => {
   const img = item.querySelector('img');
-  return {
-    src: img.src,
-    alt: img.alt
-  };
+  return { src: img.src, alt: img.alt };
 });
 let lightboxIndex = 0;
 let lightboxTrigger = null;
@@ -1509,9 +1798,26 @@ lightboxClose.addEventListener('click', closeLightbox);
 lightboxPrev.addEventListener('click', (event) => navLightbox(event, -1));
 lightboxNext.addEventListener('click', (event) => navLightbox(event, 1));
 
+/* ─── LIGHTBOX: TOUCH SWIPE (mobile) ─── */
+let touchStartX = 0;
+let touchStartY = 0;
+lightbox.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+lightbox.addEventListener('touchend', (e) => {
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  const dy = e.changedTouches[0].screenY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+    if (dx > 0) navLightbox(null, -1);
+    else navLightbox(null, 1);
+  }
+}, { passive: true });
+
 /* ─── RSVP FORM ─── */
 const rsvpForm = document.getElementById('rsvpForm');
 const rsvpConfirmed = document.getElementById('rsvpConfirmed');
+const rsvpStatus = document.getElementById('rsvpStatus');
 
 // Pre-fill from stored data
 if (store.rsvp.submittedAt) {
@@ -1523,7 +1829,6 @@ if (store.rsvp.submittedAt) {
       ? `Thanks${name ? ', ' + name : ''}! We can't wait to celebrate with you.`
       : `We'll miss you${name ? ', ' + name : ''}. Thanks for letting us know.`;
 } else {
-  // Pre-fill name/email if known
   if (store.guestName) document.getElementById('rsvpName').value = store.guestName;
   if (store.guestEmail) document.getElementById('rsvpEmail').value = store.guestEmail;
   document.getElementById('rsvpAttending').value = store.rsvp.attending || '';
@@ -1548,7 +1853,7 @@ document.getElementById('rsvpAttending').addEventListener('change', function() {
   saveStore(store);
 });
 
-// Auto-save on blur for each field
+// Auto-save on blur
 ['rsvpName', 'rsvpEmail', 'rsvpDiet', 'rsvpNote', 'plusOneName', 'plusOneDiet'].forEach(id => {
   const el = document.getElementById(id);
   if (!el) return;
@@ -1564,7 +1869,7 @@ document.getElementById('rsvpAttending').addEventListener('change', function() {
   el.addEventListener('input', () => markFieldError(el, false));
 });
 
-document.getElementById('rsvpSubmit').addEventListener('click', () => {
+document.getElementById('rsvpSubmit').addEventListener('click', async () => {
   const nameField = document.getElementById('rsvpName');
   const emailField = document.getElementById('rsvpEmail');
   const attendingField = document.getElementById('rsvpAttending');
@@ -1573,6 +1878,7 @@ document.getElementById('rsvpSubmit').addEventListener('click', () => {
   const plusOneDietField = document.getElementById('plusOneDiet');
   const dietField = document.getElementById('rsvpDiet');
   const noteField = document.getElementById('rsvpNote');
+  const submitBtn = document.getElementById('rsvpSubmit');
   const name = nameField.value.trim();
   const email = emailField.value.trim();
   const attending = attendingField.value;
@@ -1581,6 +1887,9 @@ document.getElementById('rsvpSubmit').addEventListener('click', () => {
   markFieldError(nameField, false);
   markFieldError(attendingField, false);
   markFieldError(plusOneNameField, false);
+  rsvpStatus.textContent = '';
+  rsvpStatus.className = 'rsvp-status';
+
   if (!name || !attending) {
     markFieldError(nameField, !name);
     markFieldError(attendingField, !attending);
@@ -1594,6 +1903,7 @@ document.getElementById('rsvpSubmit').addEventListener('click', () => {
     return;
   }
 
+  // Save locally first
   store.guestName = name;
   store.guestEmail = email;
   store.rsvp.attending = attending;
@@ -1605,9 +1915,27 @@ document.getElementById('rsvpSubmit').addEventListener('click', () => {
   store.rsvp.submittedAt = new Date().toISOString();
   saveStore(store);
 
-  // TODO: POST to your backend / Formspree / Google Form here
-  // fetch('/api/rsvp', { method: 'POST', body: JSON.stringify(store.rsvp) });
+  // Send to Notion via worker
+  submitBtn.disabled = true;
+  rsvpStatus.textContent = 'Sending...';
+  rsvpStatus.className = 'rsvp-status sending';
 
+  const result = await apiPost('/rsvp', {
+    name, email, attending, plusOne,
+    plusOneName: plusOneNameField.value,
+    plusOneDiet: plusOneDietField.value,
+    diet: dietField.value,
+    note: noteField.value,
+  });
+
+  submitBtn.disabled = false;
+
+  if (!result.ok && !result.offline) {
+    rsvpStatus.textContent = 'Saved locally — we\'ll sync it soon.';
+    rsvpStatus.className = 'rsvp-status';
+  }
+
+  // Show confirmation
   rsvpForm.style.display = 'none';
   rsvpConfirmed.classList.add('show');
   const firstName = name.split(' ')[0];
@@ -1621,7 +1949,6 @@ document.getElementById('rsvpSubmit').addEventListener('click', () => {
 document.getElementById('editRsvp').addEventListener('click', () => {
   rsvpConfirmed.classList.remove('show');
   rsvpForm.style.display = 'block';
-  // Re-fill form
   document.getElementById('rsvpName').value = store.guestName || '';
   document.getElementById('rsvpEmail').value = store.guestEmail || '';
   document.getElementById('rsvpAttending').value = store.rsvp.attending || '';
@@ -1643,12 +1970,10 @@ document.querySelectorAll('.shenanigan-card').forEach(card => {
   card.setAttribute('role', 'button');
   card.setAttribute('aria-expanded', 'false');
 
-  // Mark previously submitted
   if (store.shenanigans[type]?.submitted) {
     card.classList.add('has-submitted');
   }
 
-  // Pre-fill author name across all cards
   const authorInput = card.querySelector('input[name="author"]');
   if (authorInput && store.guestName) {
     authorInput.value = store.guestName;
@@ -1672,46 +1997,38 @@ document.querySelectorAll('.shenanigan-card').forEach(card => {
     if (firstField) firstField.focus();
   }
 
-  // Open form on card click
   card.addEventListener('click', (e) => {
-    if (e.target.closest('.shenanigan-form')) return; // don't toggle if clicking inside form
-    if (card.classList.contains('form-open')) {
-      closeCard();
-    } else {
-      openCard();
-    }
+    if (e.target.closest('.shenanigan-form')) return;
+    if (card.classList.contains('form-open')) closeCard();
+    else openCard();
   });
   card.addEventListener('keydown', (e) => {
     if (e.target.closest('.shenanigan-form')) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      if (card.classList.contains('form-open')) {
-        closeCard();
-      } else {
-        openCard();
-      }
+      if (card.classList.contains('form-open')) closeCard();
+      else openCard();
     }
   });
 
-  // Cancel
   card.querySelector('.form-cancel')?.addEventListener('click', (e) => {
     e.stopPropagation();
     closeCard();
     card.focus();
   });
 
-  // Submit
-  card.querySelector('.form-submit')?.addEventListener('click', (e) => {
+  card.querySelector('.form-submit')?.addEventListener('click', async (e) => {
     e.stopPropagation();
     const data = {};
     formFields.forEach((inp, i) => {
       data[`field_${i}`] = inp.value;
       inp.style.borderColor = '';
     });
-    const contributionFields = [...formFields].filter((inp) => inp.name !== 'author');
-    const hasContent = contributionFields.some((inp) => inp.value.trim());
+    const contributionFields = [...formFields].filter((inp) => inp.name !== 'author' && inp.name !== 'extra');
+    const extraField = card.querySelector('input[name="extra"]');
+    const hasContent = contributionFields.some((inp) => inp.value.trim()) || (extraField && extraField.value.trim());
     if (!hasContent) {
-      const target = contributionFields[0];
+      const target = contributionFields[0] || extraField;
       if (target) {
         target.style.borderColor = 'var(--gold)';
         target.focus();
@@ -1719,7 +2036,6 @@ document.querySelectorAll('.shenanigan-card').forEach(card => {
       return;
     }
 
-    // Store author name globally
     if (authorInput?.value) {
       store.guestName = authorInput.value;
       document.querySelectorAll('.shenanigan-card input[name="author"]').forEach((input) => {
@@ -1727,17 +2043,28 @@ document.querySelectorAll('.shenanigan-card').forEach(card => {
       });
     }
 
+    // Build content from textarea(s)
+    const contentParts = [...contributionFields].map(f => f.value.trim()).filter(Boolean);
+    const content = contentParts.join('\n');
+    const extra = extraField ? extraField.value : '';
+
     store.shenanigans[type] = { submitted: true, data, submittedAt: new Date().toISOString() };
     saveStore(store);
 
     card.classList.add('has-submitted');
     closeCard();
 
-    // TODO: POST to backend
-    // fetch('/api/shenanigans', { method: 'POST', body: JSON.stringify({ type, ...data }) });
+    // Send to Notion via worker
+    apiPost('/shenanigans', {
+      author: authorInput?.value || 'Anonymous',
+      type,
+      content,
+      extra,
+    });
   });
 });
 
+/* ─── KEYBOARD: LIGHTBOX ─── */
 document.addEventListener('keydown', (event) => {
   if (!lightbox.classList.contains('open')) return;
   if (event.key === 'Escape') closeLightbox();

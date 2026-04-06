@@ -1,0 +1,11 @@
+name = "wedding-api"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+[vars]
+ALLOWED_ORIGIN = "https://veronicaandlucas.com"
+RSVP_DB_ID = "b02f5de12e104d0b9fc0a2e3c6598e15"
+SHENANIGANS_DB_ID = "3981d490f19a428086ed359aa44c6bd1"
+
+# Set your Notion API key as a secret (never in this file):
+#   npx wrangler secret put NOTION_API_KEY
