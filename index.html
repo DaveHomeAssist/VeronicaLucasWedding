@@ -1254,12 +1254,12 @@
     <span></span><span></span><span></span>
   </button>
   <div class="nav-links" id="navLinks">
-    <a href="#story" data-section="story">Our Story</a>
     <a href="#details" data-section="details">Details</a>
-    <a href="#gallery" data-section="gallery">Photos</a>
+    <a href="#travel" data-section="travel">Travel</a>
     <a href="#rsvp" data-section="rsvp" id="navRsvp">RSVP</a>
-    <a href="#shenanigans" data-section="shenanigans">Guest Book</a>
-    <a href="#faq" data-section="faq">FAQ</a>
+    <a href="#gallery" data-section="gallery" class="hide-mobile">Photos</a>
+    <a href="#registry" data-section="registry" class="hide-mobile">Registry</a>
+    <a href="#faq" data-section="faq" class="hide-mobile">FAQ</a>
   </div>
 </nav>
 
@@ -1322,17 +1322,18 @@
   <div class="reveal">
     <p class="section-label">The Plan</p>
     <h2 class="section-title">Wedding Details</h2>
-    <p class="section-intro">Everything you need to know about the day — when to arrive, where to stay, what to wear, and how to get there.</p>
+    <p class="section-intro">Everything you need to know about the day — when to arrive, where to stay, what to wear, how to get there, and how to RSVP.</p>
     <div class="quick-links">
+      <a href="#details" class="pill-link">Key Details</a>
+      <a href="#travel" class="pill-link">Travel & Parking</a>
       <a href="#rsvp" class="pill-link pill-link--primary">RSVP Now</a>
-      <a href="#details" class="pill-link">Schedule</a>
-      <a href="#faq" class="pill-link">FAQ</a>
+      <a href="#registry" class="pill-link">Registry</a>
     </div>
     <div class="details-grid">
       <div class="detail-card detail-card--highlight">
         <p class="detail-meta">Ceremony</p>
         <h3>The Main Event</h3>
-        <p>Saturday, October 24, 2026<br>4:00 PM<br><em>The Duke Sculpture Garden<br>at Dixon Mansion</em><br><a href="https://maps.google.com/?q=414+Plush+Mill+Rd+Wallingford+PA+19086" target="_blank" rel="noopener" style="color: var(--gold); font-size: 0.95rem;">414 Plush Mill Rd, Wallingford, PA</a></p>
+        <p>Saturday, October 24, 2026<br><strong>Arrive by 4:00 PM</strong><br>Ceremony begins at 4:30 PM<br><em>The Duke Sculpture Garden<br>at Dixon Mansion</em><br><a href="https://maps.google.com/?q=414+Plush+Mill+Rd+Wallingford+PA+19086" target="_blank" rel="noopener" style="color: var(--gold); font-size: 0.95rem;">414 Plush Mill Rd, Wallingford, PA</a></p>
         <button class="add-to-cal" id="addToCal" title="Add to your calendar">+ Add to Calendar</button>
       </div>
       <div class="detail-card">
@@ -1439,6 +1440,43 @@
   <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Next photo">&#8250;</button>
 </div>
 
+<!-- ─── TRAVEL ─── -->
+<div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
+<section id="travel">
+  <div class="reveal">
+    <p class="section-label">Plan Your Trip</p>
+    <h2 class="section-title">Travel & Parking</h2>
+    <p style="max-width: 40rem; margin-bottom: 2rem;">Getting to Wallingford should be straightforward whether you're driving in, taking the train, or flying into Philadelphia.</p>
+    <div class="details-grid">
+      <div class="detail-card">
+        <p class="detail-meta">Venue Address</p>
+        <h3>The Duke Sculpture Garden</h3>
+        <p><em>at Dixon Mansion</em><br><a href="https://maps.google.com/?q=414+Plush+Mill+Rd+Wallingford+PA+19086" target="_blank" rel="noopener noreferrer" style="color: var(--gold); font-size: 0.95rem;">414 Plush Mill Rd, Wallingford, PA</a></p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Parking</p>
+        <h3>On-Site Parking</h3>
+        <p>On-site parking available (~55 spots plus overflow).<br>Handicapped-accessible parking on-site.</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">By Train</p>
+        <h3>SEPTA Regional Rail</h3>
+        <p>The easiest transit option from the city is SEPTA Regional Rail to <strong>Wallingford Station</strong>.</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">From Philadelphia</p>
+        <h3>Driving Directions</h3>
+        <p>The venue is about <strong>20 minutes south of Philadelphia</strong> via I-476, depending on traffic.</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Nearest Airport</p>
+        <h3>PHL</h3>
+        <p><strong>Philadelphia International Airport (PHL)</strong> is approximately a 30 minute drive to the venue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── RSVP ─── -->
 <div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
 <section class="rsvp" id="rsvp">
@@ -1491,8 +1529,8 @@
       <button class="edit-rsvp" id="editRsvp">Change your response</button>
     </div>
 
-    <p class="rsvp-helper">Kindly respond by September 1, 2026</p>
-    <p class="rsvp-fallback">Having trouble? Reach out directly — contact details coming soon.</p>
+    <p class="rsvp-helper">Kindly respond by September 1, 2026.</p>
+    <p class="rsvp-fallback">If you have any trouble with the form, please email <a href="mailto:hello@veronicaandlucas.com">hello@veronicaandlucas.com</a>.</p>
   </div>
 </section>
 
@@ -1559,6 +1597,23 @@
             <button type="button" class="form-cancel">Cancel</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── REGISTRY ─── -->
+<div class="divider" style="position: relative; z-index: 2;"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
+<section id="registry" style="position: relative; z-index: 2;">
+  <div class="reveal">
+    <p class="section-label">Gifts</p>
+    <h2 class="section-title">Registry</h2>
+    <p style="max-width: 40rem; margin-bottom: 2rem;">Your presence is truly the best present. If you'd still like to give a gift, we'll share registry options here.</p>
+    <div class="details-grid">
+      <div class="detail-card">
+        <p class="detail-meta">Registry Links</p>
+        <h3>Coming Soon</h3>
+        <p>We're putting the finishing touches on our registry and will add links here as soon as everything is ready. Check back closer to invitation time.</p>
       </div>
     </div>
   </div>
@@ -1808,7 +1863,7 @@ scrollHint.addEventListener('keydown', (event) => {
 });
 
 /* ─── NAV: ACTIVE SECTION TRACKING ─── */
-const navSections = ['story', 'details', 'gallery', 'rsvp', 'shenanigans', 'faq'];
+const navSections = ['details', 'travel', 'rsvp', 'gallery', 'registry', 'faq', 'shenanigans'];
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
