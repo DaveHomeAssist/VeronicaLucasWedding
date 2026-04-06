@@ -389,7 +389,7 @@
     font-size: 0.6rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--sage-dark);
+    color: #5A6B50;
     margin-bottom: 1.5rem;
   }
   .section-title {
@@ -406,6 +406,85 @@
     line-height: 1.9;
     color: var(--ink-soft);
     max-width: 720px;
+  }
+
+  .section-intro {
+    max-width: 42rem;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2rem;
+    margin-bottom: 3.5rem;
+  }
+  .pill-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.8rem 1.15rem;
+    border-radius: 999px;
+    border: 1px solid rgba(184,149,106,0.25);
+    background: rgba(251,247,241,0.8);
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 0.84rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .pill-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(184,149,106,0.45);
+    background: rgba(245,240,232,0.98);
+  }
+  .pill-link--primary {
+    background: var(--dark);
+    color: var(--cream);
+    border-color: var(--dark);
+  }
+  .pill-link--primary:hover {
+    background: var(--charcoal-warm);
+  }
+
+  .detail-card--highlight {
+    border: 1px solid rgba(184,149,106,0.35);
+    background:
+      linear-gradient(180deg, rgba(251,247,241,0.96) 0%, rgba(245,240,232,0.92) 100%);
+    box-shadow: 0 24px 60px rgba(42, 32, 18, 0.08);
+  }
+
+  .timeline-wrap { margin-top: 1rem; }
+
+  .subsection-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .rsvp-helper,
+  .rsvp-fallback {
+    margin-top: 1.5rem;
+    color: var(--sage-dark);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .rsvp-fallback a { color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .quick-links { flex-direction: column; align-items: stretch; }
+    .pill-link { width: 100%; }
+    .section-intro { font-size: 1rem; }
+    .subsection-title { font-size: 1.4rem; }
   }
 
   /* ─── DIVIDER ─── */
@@ -494,7 +573,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--sage-dark);
+    color: #5A6B50;
     margin-bottom: 0.6rem;
   }
   /* Add-to-calendar button */
@@ -1180,6 +1259,7 @@
     <a href="#gallery" data-section="gallery">Photos</a>
     <a href="#rsvp" data-section="rsvp" id="navRsvp">RSVP</a>
     <a href="#shenanigans" data-section="shenanigans">Guest Book</a>
+    <a href="#faq" data-section="faq">FAQ</a>
   </div>
 </nav>
 
@@ -1242,8 +1322,14 @@
   <div class="reveal">
     <p class="section-label">The Plan</p>
     <h2 class="section-title">Wedding Details</h2>
+    <p class="section-intro">Everything you need to know about the day — when to arrive, where to stay, what to wear, and how to get there.</p>
+    <div class="quick-links">
+      <a href="#rsvp" class="pill-link pill-link--primary">RSVP Now</a>
+      <a href="#details" class="pill-link">Schedule</a>
+      <a href="#faq" class="pill-link">FAQ</a>
+    </div>
     <div class="details-grid">
-      <div class="detail-card">
+      <div class="detail-card detail-card--highlight">
         <p class="detail-meta">Ceremony</p>
         <h3>The Main Event</h3>
         <p>Saturday, October 24, 2026<br>4:00 PM<br><em>The Duke Sculpture Garden<br>at Dixon Mansion</em><br><a href="https://maps.google.com/?q=414+Plush+Mill+Rd+Wallingford+PA+19086" target="_blank" rel="noopener" style="color: var(--gold); font-size: 0.95rem;">414 Plush Mill Rd, Wallingford, PA</a></p>
@@ -1276,11 +1362,14 @@
         <strong style="font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;">By train</strong><br>
         SEPTA Regional Rail to Wallingford Station<br><br>
         <strong style="font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;">From Philadelphia</strong><br>
-        ~20 minutes south via I-476</p>
+        ~20 minutes south via I-476<br><br>
+        <strong style="font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;">Nearest airport</strong><br>
+        PHL (Philadelphia International) — ~30 min drive</p>
       </div>
     </div>
 
-    <h3 style="font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: 1.6rem; margin-top: 4rem; margin-bottom: 0.5rem;">Schedule at a Glance</h3>
+    <div class="timeline-wrap" style="margin-top: 4rem;">
+    <h3 class="subsection-title">Schedule at a Glance</h3>
     <p class="section-label" style="margin-bottom: 0;">What to expect</p>
     <div class="timeline">
       <div class="timeline-item">
@@ -1307,6 +1396,7 @@
         <span class="timeline-time">11:00 PM</span>
         <span class="timeline-event">Last Dance & Send-Off</span>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -1401,9 +1491,8 @@
       <button class="edit-rsvp" id="editRsvp">Change your response</button>
     </div>
 
-    <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--sage-dark);">
-      Kindly respond by September 1, 2026
-    </p>
+    <p class="rsvp-helper">Kindly respond by September 1, 2026</p>
+    <p class="rsvp-fallback">Having trouble? Reach out directly — contact details coming soon.</p>
   </div>
 </section>
 
