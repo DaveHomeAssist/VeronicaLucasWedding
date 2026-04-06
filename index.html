@@ -1,288 +1,1371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Veronica &amp; Lucas | October 24, 2026</title>
-  <meta
-    name="description"
-    content="Save the date for Veronica and Lucas. Wedding details, travel notes, and RSVP updates will live here as October gets closer."
-  >
-  <meta property="og:title" content="Veronica &amp; Lucas | October 24, 2026">
-  <meta
-    property="og:description"
-    content="Mark your calendar for October 24, 2026. More details will be added here as the wedding weekend takes shape."
-  >
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://veronicaandlucas.com">
-  <meta property="og:image" content="images/00014-Veronica.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap"
-    rel="stylesheet"
-  >
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veronica & Lucas — October 24, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A18;
+    --gold: #B8956A;
+    --gold-light: #D4B896;
+    --sage: #8B9E7E;
+    --sage-dark: #6B7E5E;
+    --blush: #E8D5CC;
+    --wine: #6B3A3A;
+    --font-display: 'Playfair Display', serif;
+    --font-elegant: 'Cormorant Garamond', serif;
+    --font-body: 'Libre Franklin', sans-serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    font-weight: 300;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex; justify-content: center; align-items: center; gap: 2.5rem;
+    background: rgba(245, 240, 232, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184, 149, 106, 0.15);
+    transition: transform 0.4s ease;
+  }
+  nav a {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--dark);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    position: relative;
+  }
+  nav a:hover, nav a.nav-active { opacity: 1; }
+  nav a.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+  }
+  /* RSVP urgency pulse in nav */
+  nav a.rsvp-urgent {
+    color: var(--wine);
+    opacity: 1;
+    animation: urgentPulse 2.5s infinite;
+  }
+
+  /* Mobile hamburger */
+  .nav-toggle {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    width: 28px; height: 20px;
+    position: relative;
+    z-index: 101;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 2px;
+    background: var(--dark);
+    position: absolute; left: 0;
+    transition: all 0.3s;
+  }
+  .nav-toggle span:nth-child(1) { top: 0; }
+  .nav-toggle span:nth-child(2) { top: 9px; }
+  .nav-toggle span:nth-child(3) { top: 18px; }
+  .nav-toggle.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+
+  .nav-links { display: contents; }
+
+  @media (max-width: 600px) {
+    nav { justify-content: space-between; padding: 1rem 1.5rem; }
+    .nav-toggle { display: block; }
+    .nav-links {
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; right: -100%; width: 70vw; height: 100vh;
+      background: var(--cream);
+      padding: 5rem 2rem 2rem;
+      gap: 2rem;
+      transition: right 0.35s ease;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+    }
+    .nav-links.open { right: 0; }
+    .nav-links a { font-size: 0.85rem; opacity: 0.8; }
+    .nav-brand-mobile {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dark);
+    }
+  }
+  @media (min-width: 601px) {
+    .nav-brand-mobile { display: none; }
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh; /* dynamic viewport for mobile */
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(139,158,126,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(184,149,106,0.06) 0%, transparent 50%),
+      var(--cream);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(184,149,106,0.03) 80px, rgba(184,149,106,0.03) 81px),
+      repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(184,149,106,0.03) 80px, rgba(184,149,106,0.03) 81px);
+    pointer-events: none;
+  }
+
+  .hero-prelude {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 1s 0.3s forwards;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 1;
+    color: var(--dark);
+    opacity: 0; animation: fadeUp 1.2s 0.5s forwards;
+  }
+  .hero h1 .amp {
+    font-family: var(--font-elegant);
+    font-weight: 300;
+    font-style: italic;
+    display: block;
+    font-size: 0.45em;
+    color: var(--gold);
+    margin: 0.3em 0;
+  }
+  .hero-date {
+    font-family: var(--font-elegant);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-top: 2.5rem;
+    opacity: 0; animation: fadeUp 1s 0.9s forwards;
+  }
+  /* Localized time hint under date */
+  .hero-local-time {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-top: 0.5rem;
+    opacity: 0; animation: fadeUp 1s 1s forwards;
+  }
+
+  .countdown {
+    display: flex; gap: 2.5rem;
+    margin-top: 3rem;
+    opacity: 0; animation: fadeUp 1s 1.2s forwards;
+  }
+  .countdown-unit { text-align: center; }
+  .countdown-num {
+    font-family: var(--font-elegant);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1;
+    transition: transform 0.15s;
+  }
+  .countdown-num.tick { transform: scale(1.08); }
+  .countdown-label {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-top: 0.4rem;
+  }
+
+  /* Welcome-back banner */
+  .welcome-back {
+    font-family: var(--font-elegant);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 2rem;
+    opacity: 0; animation: fadeUp 0.8s 1.5s forwards;
+    display: none;
+  }
+  .welcome-back.show { display: block; }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 1s 1.6s forwards;
+    cursor: pointer;
+  }
+  .scroll-hint:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 8px;
+  }
+  .scroll-hint span {
+    display: block;
+    width: 1px; height: 40px;
+    background: var(--gold-light);
+    margin: 0 auto;
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ─── SECTION DEFAULTS ─── */
+  section {
+    padding: 8rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+  section p {
+    font-family: var(--font-elegant);
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #3a3a38;
+    max-width: 600px;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 2rem;
+    max-width: 800px; margin: 0 auto;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  }
+  .divider-icon {
+    font-family: var(--font-elegant);
+    font-size: 1.4rem;
+    color: var(--gold);
+    padding: 0 1.5rem;
+  }
+
+  /* ─── DETAILS GRID ─── */
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+  .detail-card {
+    padding: 2.5rem;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(184,149,106,0.15);
+    border-radius: 2px;
+    transition: border-color 0.3s;
+    /* Touch-friendly tap targets */
+    min-height: 48px;
+  }
+  .detail-card:hover { border-color: var(--gold-light); }
+  .detail-card h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  .detail-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .detail-card .detail-meta {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 0.6rem;
+  }
+  /* Add-to-calendar button */
+  .add-to-cal {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--gold-light);
+    color: var(--gold);
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 44px;
+    display: inline-flex; align-items: center;
+  }
+  .add-to-cal:hover {
+    background: var(--gold);
+    color: var(--cream);
+  }
+
+  /* ─── SHENANIGANS ─── */
+  .shenanigans {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 8rem 2rem;
+    max-width: none;
+    text-align: center;
+  }
+  .shenanigans .section-label { color: var(--gold-light); }
+  .shenanigans .section-title { color: var(--cream); }
+  .shenanigans p { color: rgba(245,240,232,0.7); margin: 0 auto; }
+
+  .shenanigan-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 3rem auto 0;
+  }
+  .shenanigan-card {
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(184,149,106,0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    min-height: 48px;
+  }
+  .shenanigan-card:hover, .shenanigan-card:focus-within {
+    border-color: var(--gold);
+    background: rgba(184,149,106,0.05);
+    transform: translateY(-3px);
+  }
+  .shenanigan-card:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 4px;
+  }
+  .shenanigan-card .card-emoji {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .shenanigan-card h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .shenanigan-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  /* Submitted badge */
+  .shenanigan-card .submitted-badge {
+    display: none;
+    position: absolute;
+    top: 12px; right: 12px;
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    border: 1px solid var(--sage);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .shenanigan-card.has-submitted .submitted-badge { display: block; }
+
+  /* Inline form inside shenanigan cards */
+  .shenanigan-form {
+    display: none;
+    margin-top: 1.2rem;
+    text-align: left;
+  }
+  .shenanigan-card.form-open .shenanigan-form { display: block; }
+  .shenanigan-form textarea, .shenanigan-form input {
+    width: 100%;
+    background: rgba(245,240,232,0.08);
+    border: 1px solid rgba(184,149,106,0.3);
+    color: var(--cream);
+    font-family: var(--font-elegant);
+    font-size: 1rem;
+    padding: 0.8rem;
+    border-radius: 2px;
+    resize: vertical;
+    min-height: 44px;
+  }
+  .shenanigan-form textarea:focus, .shenanigan-form input:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .shenanigan-form textarea::placeholder, .shenanigan-form input::placeholder {
+    color: rgba(245,240,232,0.3);
+  }
+  .shenanigan-form .form-row {
+    display: flex; gap: 0.8rem; margin-top: 0.8rem;
+  }
+  .shenanigan-form button {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--gold);
+    color: var(--cream);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 44px;
+  }
+  .shenanigan-form button:hover { background: var(--gold); }
+  .shenanigan-form .form-cancel {
+    border-color: rgba(245,240,232,0.2);
+    color: rgba(245,240,232,0.5);
+  }
+
+  /* ─── RSVP ─── */
+  .rsvp {
+    text-align: center;
+    padding: 8rem 2rem;
+  }
+  .rsvp p { margin: 0 auto 2.5rem; }
+
+  .rsvp-deadline-banner {
+    display: none;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--wine);
+    background: rgba(107,58,58,0.06);
+    border: 1px solid rgba(107,58,58,0.15);
+    padding: 0.7rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 2px;
+  }
+  .rsvp-deadline-banner.show { display: inline-block; }
+
+  /* RSVP form */
+  .rsvp-form {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .rsvp-form label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 0.4rem;
+    margin-top: 1.4rem;
+  }
+  .rsvp-form label:first-child { margin-top: 0; }
+  .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+    width: 100%;
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(184,149,106,0.25);
+    background: rgba(255,255,255,0.5);
+    color: var(--dark);
+    border-radius: 2px;
+    transition: border-color 0.3s;
+    min-height: 44px;
+  }
+  .rsvp-form input:focus, .rsvp-form select:focus, .rsvp-form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .rsvp-form .field-error {
+    border-color: var(--wine) !important;
+  }
+  .rsvp-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8956A' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  .rsvp-form textarea { resize: vertical; min-height: 80px; }
+
+  /* Conditional +1 fields */
+  .plus-one-fields {
+    display: none;
+    padding: 1.2rem;
+    margin-top: 0.8rem;
+    background: rgba(184,149,106,0.04);
+    border: 1px solid rgba(184,149,106,0.1);
+    border-radius: 2px;
+  }
+  .plus-one-fields.show { display: block; }
+  .plus-one-fields label:first-child { margin-top: 0; }
+
+  .rsvp-form .rsvp-submit {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 1.2rem 3.5rem;
+    border: 1px solid var(--gold);
+    color: var(--dark);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    min-height: 48px;
+  }
+  .rsvp-form .rsvp-submit::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: var(--gold);
+    transition: left 0.4s;
+    z-index: 0;
+  }
+  .rsvp-form .rsvp-submit:hover::before { left: 0; }
+  .rsvp-form .rsvp-submit:hover { color: var(--cream); }
+  .rsvp-form .rsvp-submit span { position: relative; z-index: 1; }
+
+  .rsvp-confirmed {
+    display: none;
+    text-align: center;
+    padding: 2rem 0;
+  }
+  .rsvp-confirmed.show { display: block; }
+  .rsvp-confirmed h3 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .rsvp-confirmed p { margin: 0 auto; }
+  .rsvp-confirmed .edit-rsvp {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    background: none; border: none;
+    min-height: 44px;
+    display: inline-flex; align-items: center;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(184,149,106,0.15);
+  }
+  footer p {
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    color: var(--gold);
+    font-style: italic;
+  }
+  footer .footer-date {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26,26,24,0.35);
+    margin-top: 1rem;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.3); }
+  }
+  @keyframes urgentPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .countdown { gap: 1.5rem; }
+    .countdown-num { font-size: 2rem; }
+    .details-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    .shenanigans { padding: 5rem 1.5rem; }
+    .shenanigan-cards { grid-template-columns: 1fr; }
+    .rsvp-form { padding: 0 0.5rem; }
+  }
+
+  /* Prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <header class="site-header" id="top">
-    <div class="shell header-row">
-      <a class="brand-mark" href="#top" aria-label="Veronica and Lucas home">V <span>&amp;</span> L</a>
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="siteNav"
-        aria-label="Open navigation"
-      >
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="site-nav" id="siteNav" aria-label="Primary">
-        <a href="#overview">Overview</a>
-        <a href="#weekend">Weekend</a>
-        <a href="#photos">Photos</a>
-        <a href="#updates">Updates</a>
-      </nav>
+<nav id="mainNav">
+  <span class="nav-brand-mobile">V & L</span>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks" id="navToggle">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#story" data-section="story">Our Story</a>
+    <a href="#details" data-section="details">Details</a>
+    <a href="#shenanigans" data-section="shenanigans">Shenanigans</a>
+    <a href="#rsvp" data-section="rsvp" id="navRsvp">RSVP</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <p class="hero-prelude">Together with their families</p>
+  <h1>
+    Veronica
+    <span class="amp">&</span>
+    Lucas
+  </h1>
+  <p class="hero-date">October Twenty-Fourth, Two Thousand Twenty-Six</p>
+  <p class="hero-local-time" id="localTimeHint"></p>
+  <div class="countdown" id="countdown">
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-days">---</div>
+      <div class="countdown-label">Days</div>
     </div>
-  </header>
-
-  <main id="main-content">
-    <section class="hero">
-      <div class="hero-orb hero-orb-left" aria-hidden="true"></div>
-      <div class="hero-orb hero-orb-right" aria-hidden="true"></div>
-      <div class="shell hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Save The Date</p>
-          <h1>Veronica <span>&amp;</span> Lucas</h1>
-          <p class="hero-text">
-            A fall wedding weekend is on the calendar. This site will keep growing as plans lock in,
-            but the important part is simple: make room for October 24, 2026.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#overview">See the plan</a>
-            <button class="button button-secondary" type="button" id="calendarButton">Add to calendar</button>
-          </div>
-          <ul class="hero-meta" aria-label="Wedding overview">
-            <li>
-              <span class="meta-label">Date</span>
-              <strong>Saturday, October 24, 2026</strong>
-            </li>
-            <li>
-              <span class="meta-label">Status</span>
-              <strong>Venue and hotel info coming soon</strong>
-            </li>
-            <li>
-              <span class="meta-label">Home Base</span>
-              <strong>veronicaandlucas.com</strong>
-            </li>
-          </ul>
-        </div>
-
-        <div class="hero-visual">
-          <div class="hero-photo-stack">
-            <figure class="hero-photo hero-photo-main">
-              <img
-                src="images/00014-Veronica.jpg"
-                alt="Lucas proposing to Veronica on a dock with string lights"
-              >
-            </figure>
-            <figure class="hero-photo hero-photo-accent">
-              <img
-                src="images/00025-Veronica.jpg"
-                alt="Veronica and Lucas smiling together"
-              >
-            </figure>
-          </div>
-
-          <aside class="countdown-card" aria-labelledby="countdown-heading">
-            <p class="countdown-kicker">Until the wedding</p>
-            <h2 id="countdown-heading">Countdown</h2>
-            <div class="countdown-grid" aria-live="polite">
-              <div>
-                <span class="countdown-value" id="days">000</span>
-                <span class="countdown-label">Days</span>
-              </div>
-              <div>
-                <span class="countdown-value" id="hours">00</span>
-                <span class="countdown-label">Hours</span>
-              </div>
-              <div>
-                <span class="countdown-value" id="minutes">00</span>
-                <span class="countdown-label">Minutes</span>
-              </div>
-              <div>
-                <span class="countdown-value" id="seconds">00</span>
-                <span class="countdown-label">Seconds</span>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section shell" id="overview">
-      <div class="section-intro">
-        <p class="eyebrow">At A Glance</p>
-        <h2>Everything guests need right now, without the filler.</h2>
-        <p>
-          This first version is built to feel finished even before every wedding detail is finalized.
-          As plans get confirmed, the cards below can be swapped from "coming soon" to real logistics.
-        </p>
-      </div>
-
-      <div class="overview-grid">
-        <article class="info-card info-card-highlight">
-          <p class="card-label">The headline</p>
-          <h3>October 24, 2026</h3>
-          <p>
-            Save the date for a Saturday celebration. Formal invitation details, timing, and RSVP will
-            be added here closer to the wedding.
-          </p>
-        </article>
-
-        <article class="info-card">
-          <p class="card-label">Location</p>
-          <h3>Venue announcement next</h3>
-          <p>
-            The ceremony and reception location will live here as soon as it is locked. For now, keep an
-            eye on this page instead of chasing details in a group text.
-          </p>
-        </article>
-
-        <article class="info-card">
-          <p class="card-label">Travel</p>
-          <h3>Hotel block to follow</h3>
-          <p>
-            Once rooms and transportation details are confirmed, this section will point everyone to the
-            right hotel, airport, and booking window.
-          </p>
-        </article>
-
-        <article class="info-card">
-          <p class="card-label">RSVP</p>
-          <h3>Not open yet</h3>
-          <p>
-            RSVP will go live here once invitations are out. Until then, the site is serving as the
-            polished save-the-date home base.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section-band" id="weekend">
-      <div class="shell band-grid">
-        <div class="section-intro">
-          <p class="eyebrow">Weekend Shape</p>
-          <h2>A clear plan now, fuller logistics later.</h2>
-        </div>
-
-        <div class="timeline">
-          <article class="timeline-item">
-            <p class="timeline-step">1</p>
-            <div>
-              <h3>Mark the date</h3>
-              <p>
-                Saturday, October 24, 2026 is the anchor. If guests only remember one thing today, it
-                should be that.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item">
-            <p class="timeline-step">2</p>
-            <div>
-              <h3>Check back for logistics</h3>
-              <p>
-                Venue, schedule, room block, registry, and local recommendations can roll in here over the
-                next few months without redesigning the whole site.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item">
-            <p class="timeline-step">3</p>
-            <div>
-              <h3>RSVP when invited</h3>
-              <p>
-                The RSVP panel can be added later with a real backend endpoint instead of the fake local
-                submission flow that was in the current draft.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section shell photo-section" id="photos">
-      <div class="section-intro">
-        <p class="eyebrow">Photos</p>
-        <h2>A little personality beats a generic wedding template.</h2>
-      </div>
-
-      <div class="photo-grid">
-        <figure class="photo-frame photo-frame-large">
-          <img src="images/00034-Veronica.jpg" alt="Veronica standing at golden hour in a vineyard">
-        </figure>
-        <figure class="photo-frame">
-          <img src="images/00011-Veronica.jpg" alt="Veronica and Lucas dressed up by a Christmas tree">
-        </figure>
-        <figure class="photo-frame">
-          <img src="images/00020-Veronica.jpg" alt="Veronica and Lucas dressed formally together">
-        </figure>
-        <figure class="photo-frame">
-          <img src="images/00025-Veronica.jpg" alt="Veronica and Lucas smiling over dinner">
-        </figure>
-      </div>
-    </section>
-
-    <section class="section shell updates-section" id="updates">
-      <div class="updates-card">
-        <div class="section-intro">
-          <p class="eyebrow">What Gets Added Next</p>
-          <h2>Built for the next six months, not just tonight.</h2>
-          <p>
-            The foundation is intentionally simple: strong landing page, clear hierarchy, no fake forms,
-            and room to layer in real guest logistics as soon as they exist.
-          </p>
-        </div>
-
-        <div class="updates-grid">
-          <article>
-            <p class="updates-month">Spring</p>
-            <h3>Save-the-date phase</h3>
-            <p>Hero, photos, date, and a polished site that is already worth sharing.</p>
-          </article>
-          <article>
-            <p class="updates-month">Summer</p>
-            <h3>Venue and travel</h3>
-            <p>Drop in the actual venue name, address, hotel block, and nearby airport details.</p>
-          </article>
-          <article>
-            <p class="updates-month">Early Fall</p>
-            <h3>RSVP and registry</h3>
-            <p>Connect a real RSVP endpoint and swap placeholder cards for working guest actions.</p>
-          </article>
-          <article>
-            <p class="updates-month">Wedding Week</p>
-            <h3>Final notes</h3>
-            <p>Add timeline specifics, parking guidance, weather notes, and any last-minute updates.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="shell footer-row">
-      <p>Veronica &amp; Lucas | October 24, 2026</p>
-      <a href="#top">Back to top</a>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-hours">--</div>
+      <div class="countdown-label">Hours</div>
     </div>
-  </footer>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-min">--</div>
+      <div class="countdown-label">Minutes</div>
+    </div>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-sec">--</div>
+      <div class="countdown-label">Seconds</div>
+    </div>
+  </div>
+  <p class="welcome-back" id="welcomeBack"></p>
+  <div class="scroll-hint" id="scrollHint" role="button" tabindex="0" aria-label="Scroll to story"><span></span></div>
+</section>
 
-  <script src="script.js"></script>
+<!-- ─── STORY ─── -->
+<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<section id="story">
+  <div class="reveal">
+    <p class="section-label">How It All Began</p>
+    <h2 class="section-title">Their Story</h2>
+    <p>
+      Some love stories write themselves. This one started with [insert your origin story — or a hilariously embellished version]. From that moment on, they knew something extraordinary was unfolding.
+    </p>
+    <p style="margin-top: 1.5rem;">
+      After [X] years of adventures, terrible puns, and unwavering devotion, Lucas asked the question — and Veronica said yes (obviously). Now it's time to celebrate.
+    </p>
+  </div>
+</section>
+
+<!-- ─── DETAILS ─── -->
+<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<section id="details">
+  <div class="reveal">
+    <p class="section-label">The Plan</p>
+    <h2 class="section-title">Wedding Details</h2>
+    <div class="details-grid">
+      <div class="detail-card">
+        <p class="detail-meta">Ceremony</p>
+        <h3>The Main Event</h3>
+        <p>Saturday, October 24, 2026<br>4:00 PM<br><em>[Venue Name]</em><br>[Address]</p>
+        <button class="add-to-cal" id="addToCal" title="Add to your calendar">+ Add to Calendar</button>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Reception</p>
+        <h3>The After Party</h3>
+        <p>Immediately following<br><em>[Venue Name]</em><br>Dinner, dancing, and questionable karaoke</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Accommodations</p>
+        <h3>Where to Stay</h3>
+        <p>Room block at <em>[Hotel Name]</em><br>Code: VERONICALUCAS<br>Book by [Date]</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Registry</p>
+        <h3>Gifts</h3>
+        <p>Your presence is the present — but if you insist, <a href="#" style="color: var(--gold);">click here</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SHENANIGANS ─── -->
+<section class="shenanigans" id="shenanigans">
+  <div class="reveal">
+    <p class="section-label">The Fun Stuff</p>
+    <h2 class="section-title">Shenanigans Corner</h2>
+    <p>Because every wedding needs a little chaos. Tap a card to contribute.</p>
+    <div class="shenanigan-cards">
+      <div class="shenanigan-card" data-type="toast" tabindex="0">
+        <span class="submitted-badge">Submitted</span>
+        <span class="card-emoji">🎤</span>
+        <h3>Toast Roast</h3>
+        <p>Submit your best (or worst) toast material. We dare you.</p>
+        <div class="shenanigan-form">
+          <input type="text" name="author" placeholder="Your name" autocomplete="name">
+          <textarea placeholder="Your toast material..." rows="3" style="margin-top:0.8rem"></textarea>
+          <div class="form-row">
+            <button type="button" class="form-submit" data-type="toast">Submit</button>
+            <button type="button" class="form-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-type="photos" tabindex="0">
+        <span class="submitted-badge">Submitted</span>
+        <span class="card-emoji">📸</span>
+        <h3>Photo Ops</h3>
+        <p>Embarrassing photos of the couple. Bonus points for the haircuts.</p>
+        <div class="shenanigan-form">
+          <input type="text" name="author" placeholder="Your name" autocomplete="name">
+          <textarea placeholder="Describe the photo or paste a link..." rows="3" style="margin-top:0.8rem"></textarea>
+          <div class="form-row">
+            <button type="button" class="form-submit" data-type="photos">Submit</button>
+            <button type="button" class="form-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-type="songs" tabindex="0">
+        <span class="submitted-badge">Submitted</span>
+        <span class="card-emoji">🎵</span>
+        <h3>Song Requests</h3>
+        <p>Tell the DJ what to play. Or what NOT to play. Both are useful.</p>
+        <div class="shenanigan-form">
+          <input type="text" name="author" placeholder="Your name" autocomplete="name">
+          <input type="text" placeholder="Song title & artist" style="margin-top:0.8rem">
+          <textarea placeholder="Play it? Or ban it? Any context..." rows="2" style="margin-top:0.8rem"></textarea>
+          <div class="form-row">
+            <button type="button" class="form-submit" data-type="songs">Submit</button>
+            <button type="button" class="form-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-type="advice" tabindex="0">
+        <span class="submitted-badge">Submitted</span>
+        <span class="card-emoji">💌</span>
+        <h3>Advice & Bets</h3>
+        <p>Marriage advice, predictions, or side bets on the first dance song.</p>
+        <div class="shenanigan-form">
+          <input type="text" name="author" placeholder="Your name" autocomplete="name">
+          <textarea placeholder="Your wisdom, prediction, or wager..." rows="3" style="margin-top:0.8rem"></textarea>
+          <div class="form-row">
+            <button type="button" class="form-submit" data-type="advice">Submit</button>
+            <button type="button" class="form-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RSVP ─── -->
+<section class="rsvp" id="rsvp">
+  <div class="reveal">
+    <p class="section-label">Be There</p>
+    <h2 class="section-title">RSVP</h2>
+    <div class="rsvp-deadline-banner" id="rsvpDeadline"></div>
+    <p>Let us know if you'll be joining the celebration. Formal attire encouraged, dancing shoes required.</p>
+
+    <div class="rsvp-form" id="rsvpForm">
+      <label for="rsvpName">Your Name</label>
+      <input type="text" id="rsvpName" placeholder="First & Last" autocomplete="name">
+
+      <label for="rsvpEmail">Email</label>
+      <input type="email" id="rsvpEmail" placeholder="you@example.com" autocomplete="email">
+
+      <label for="rsvpAttending">Attending?</label>
+      <select id="rsvpAttending">
+        <option value="">Select one...</option>
+        <option value="yes">Joyfully Accepts</option>
+        <option value="no">Regretfully Declines</option>
+      </select>
+
+      <label for="rsvpPlusOne">Bringing a +1?</label>
+      <select id="rsvpPlusOne">
+        <option value="no">Just me</option>
+        <option value="yes">Yes, bringing a guest</option>
+      </select>
+
+      <div class="plus-one-fields" id="plusOneFields">
+        <label for="plusOneName">Guest Name</label>
+        <input type="text" id="plusOneName" placeholder="Your guest's name">
+        <label for="plusOneDiet">Guest Dietary Restrictions</label>
+        <input type="text" id="plusOneDiet" placeholder="Vegetarian, gluten-free, etc.">
+      </div>
+
+      <label for="rsvpDiet">Your Dietary Restrictions</label>
+      <input type="text" id="rsvpDiet" placeholder="Vegetarian, gluten-free, etc.">
+
+      <label for="rsvpNote">Anything Else?</label>
+      <textarea id="rsvpNote" placeholder="Song requests, accessibility needs, parking questions..."></textarea>
+
+      <button type="button" class="rsvp-submit" id="rsvpSubmit"><span>Send RSVP</span></button>
+    </div>
+
+    <div class="rsvp-confirmed" id="rsvpConfirmed">
+      <h3>You're In!</h3>
+      <p id="rsvpConfirmText">Thanks for responding. We can't wait to celebrate with you.</p>
+      <button class="edit-rsvp" id="editRsvp">Change your response</button>
+    </div>
+
+    <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--sage-dark);">
+      Kindly respond by September 1, 2026
+    </p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>V &amp; L — forever starts here</p>
+  <p class="footer-date">October 24, 2026</p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════
+   LOCAL STORAGE DATA MODEL
+   ═══════════════════════════════════════════════
+   Key: "vl_wedding" → JSON object:
+   {
+     version: 1,
+     visitCount: number,
+     firstVisit: ISO string,
+     lastVisit: ISO string,
+     guestName: string | null,
+     guestEmail: string | null,
+     rsvp: {
+       attending: "yes"|"no"|null,
+       plusOne: "yes"|"no",
+       plusOneName: string,
+       plusOneDiet: string,
+       diet: string,
+       note: string,
+       submittedAt: ISO string | null
+     },
+     shenanigans: {
+       toast: { submitted: bool, data: {} },
+       photos: { submitted: bool, data: {} },
+       songs: { submitted: bool, data: {} },
+       advice: { submitted: bool, data: {} }
+     },
+     lastScrollSection: string | null
+   }
+   ═══════════════════════════════════════════════ */
+
+const STORE_KEY = 'vl_wedding';
+const DEFAULT_STORE = {
+  version: 1,
+  visitCount: 0,
+  firstVisit: null,
+  lastVisit: null,
+  guestName: null,
+  guestEmail: null,
+  rsvp: { attending: null, plusOne: 'no', plusOneName: '', plusOneDiet: '', diet: '', note: '', submittedAt: null },
+  shenanigans: {
+    toast: { submitted: false, data: {} },
+    photos: { submitted: false, data: {} },
+    songs: { submitted: false, data: {} },
+    advice: { submitted: false, data: {} }
+  },
+  lastScrollSection: null
+};
+
+function getStore() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch { return null; }
+}
+
+function saveStore(data) {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch {}
+}
+
+function initStore() {
+  let store = getStore();
+  if (!store) {
+    store = { ...DEFAULT_STORE, firstVisit: new Date().toISOString(), visitCount: 1, lastVisit: new Date().toISOString() };
+  } else {
+    store.visitCount++;
+    store.lastVisit = new Date().toISOString();
+  }
+  saveStore(store);
+  return store;
+}
+
+const store = initStore();
+
+function setNavOpen(isOpen) {
+  navToggle.classList.toggle('open', isOpen);
+  navLinks.classList.toggle('open', isOpen);
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+  document.body.style.overflow = isOpen && window.innerWidth <= 600 ? 'hidden' : '';
+}
+
+function markFieldError(el, hasError) {
+  if (!el) return;
+  el.classList.toggle('field-error', hasError);
+}
+
+/* ─── COUNTDOWN (timezone-aware) ─── */
+// TODO: Replace with actual venue timezone offset
+const WEDDING_DATE = new Date('2026-10-24T16:00:00-05:00'); // example: Central Time
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = WEDDING_DATE - now;
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML =
+      '<p style="font-family:var(--font-elegant);font-size:1.4rem;color:var(--gold);">Today is the day!</p>';
+    return;
+  }
+  const d = Math.floor(diff / 864e5);
+  const h = Math.floor((diff % 864e5) / 36e5);
+  const m = Math.floor((diff % 36e5) / 6e4);
+  const s = Math.floor((diff % 6e4) / 1e3);
+
+  setNum('cd-days', d);
+  setNum('cd-hours', String(h).padStart(2, '0'));
+  setNum('cd-min', String(m).padStart(2, '0'));
+  setNum('cd-sec', String(s).padStart(2, '0'));
+}
+
+function setNum(id, val) {
+  const el = document.getElementById(id);
+  if (el.textContent !== String(val)) {
+    el.textContent = val;
+    el.classList.add('tick');
+    setTimeout(() => el.classList.remove('tick'), 150);
+  }
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Show localized ceremony time
+const localTimeEl = document.getElementById('localTimeHint');
+const guestTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const localTime = WEDDING_DATE.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+const venueTZ = 'Central Time'; // TODO: update
+const venueTime = '4:00 PM CT';
+if (!guestTZ.includes('America/Chicago')) { // different TZ from venue
+  localTimeEl.textContent = `${venueTime} · ${localTime} your time`;
+}
+
+/* ─── WELCOME BACK ─── */
+if (store.visitCount > 1) {
+  const wb = document.getElementById('welcomeBack');
+  if (store.guestName) {
+    wb.textContent = `Welcome back, ${store.guestName.split(' ')[0]}.`;
+  } else {
+    wb.textContent = 'Welcome back — we saved your spot.';
+  }
+  wb.classList.add('show');
+}
+
+/* ─── NAV: MOBILE TOGGLE ─── */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+const mainNav = document.getElementById('mainNav');
+navToggle.addEventListener('click', () => {
+  const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+  setNavOpen(!isOpen);
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    setNavOpen(false);
+  });
+});
+document.addEventListener('click', (event) => {
+  if (window.innerWidth > 600) return;
+  if (!mainNav.contains(event.target)) setNavOpen(false);
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') setNavOpen(false);
+});
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 600) setNavOpen(false);
+});
+
+/* ─── HERO: SCROLL HINT ─── */
+const scrollHint = document.getElementById('scrollHint');
+const storySection = document.getElementById('story');
+function scrollToStory() {
+  storySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+scrollHint.addEventListener('click', scrollToStory);
+scrollHint.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    scrollToStory();
+  }
+});
+
+/* ─── NAV: ACTIVE SECTION TRACKING ─── */
+const navSections = ['story', 'details', 'shenanigans', 'rsvp'];
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('nav-active'));
+      const active = document.querySelector(`nav a[data-section="${id}"]`);
+      if (active) active.classList.add('nav-active');
+      store.lastScrollSection = id;
+      saveStore(store);
+    }
+  });
+}, { threshold: 0.3 });
+navSections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) sectionObserver.observe(el);
+});
+
+/* ─── NAV: RSVP URGENCY ─── */
+const rsvpDeadline = new Date('2026-09-01');
+const daysUntilDeadline = Math.ceil((rsvpDeadline - new Date()) / 864e5);
+if (daysUntilDeadline <= 14 && daysUntilDeadline > 0 && !store.rsvp.submittedAt) {
+  document.getElementById('navRsvp').classList.add('rsvp-urgent');
+  const banner = document.getElementById('rsvpDeadline');
+  banner.textContent = `${daysUntilDeadline} day${daysUntilDeadline === 1 ? '' : 's'} left to RSVP`;
+  banner.classList.add('show');
+}
+
+/* ─── ADD TO CALENDAR ─── */
+document.getElementById('addToCal').addEventListener('click', () => {
+  const start = '20261024T210000Z'; // 4pm CT = 9pm UTC (adjust as needed)
+  const end = '20261025T040000Z';   // ~11pm CT
+  const title = encodeURIComponent('Veronica & Lucas Wedding');
+  const loc = encodeURIComponent('[Venue Address]');
+  const details = encodeURIComponent('Ceremony at 4 PM, reception to follow. veronicaandlucas.com');
+  // Google Calendar link (works on mobile & desktop)
+  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}&details=${details}`;
+  window.open(url, '_blank');
+});
+
+/* ─── RSVP FORM ─── */
+const rsvpForm = document.getElementById('rsvpForm');
+const rsvpConfirmed = document.getElementById('rsvpConfirmed');
+
+// Pre-fill from stored data
+if (store.rsvp.submittedAt) {
+  rsvpForm.style.display = 'none';
+  rsvpConfirmed.classList.add('show');
+  const name = store.guestName ? store.guestName.split(' ')[0] : '';
+  document.getElementById('rsvpConfirmText').textContent =
+    store.rsvp.attending === 'yes'
+      ? `Thanks${name ? ', ' + name : ''}! We can't wait to celebrate with you.`
+      : `We'll miss you${name ? ', ' + name : ''}. Thanks for letting us know.`;
+} else {
+  // Pre-fill name/email if known
+  if (store.guestName) document.getElementById('rsvpName').value = store.guestName;
+  if (store.guestEmail) document.getElementById('rsvpEmail').value = store.guestEmail;
+  document.getElementById('rsvpAttending').value = store.rsvp.attending || '';
+  document.getElementById('rsvpPlusOne').value = store.rsvp.plusOne || 'no';
+  document.getElementById('plusOneName').value = store.rsvp.plusOneName || '';
+  document.getElementById('plusOneDiet').value = store.rsvp.plusOneDiet || '';
+  document.getElementById('rsvpDiet').value = store.rsvp.diet || '';
+  document.getElementById('rsvpNote').value = store.rsvp.note || '';
+  if (store.rsvp.plusOne === 'yes') document.getElementById('plusOneFields').classList.add('show');
+}
+
+// +1 toggle
+document.getElementById('rsvpPlusOne').addEventListener('change', function() {
+  document.getElementById('plusOneFields').classList.toggle('show', this.value === 'yes');
+  store.rsvp.plusOne = this.value;
+  saveStore(store);
+});
+
+document.getElementById('rsvpAttending').addEventListener('change', function() {
+  markFieldError(this, false);
+  store.rsvp.attending = this.value || null;
+  saveStore(store);
+});
+
+// Auto-save on blur for each field
+['rsvpName', 'rsvpEmail', 'rsvpDiet', 'rsvpNote', 'plusOneName', 'plusOneDiet'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('blur', () => {
+    if (id === 'rsvpName') store.guestName = el.value;
+    if (id === 'rsvpEmail') store.guestEmail = el.value;
+    if (id === 'rsvpDiet') store.rsvp.diet = el.value;
+    if (id === 'rsvpNote') store.rsvp.note = el.value;
+    if (id === 'plusOneName') store.rsvp.plusOneName = el.value;
+    if (id === 'plusOneDiet') store.rsvp.plusOneDiet = el.value;
+    saveStore(store);
+  });
+  el.addEventListener('input', () => markFieldError(el, false));
+});
+
+document.getElementById('rsvpSubmit').addEventListener('click', () => {
+  const nameField = document.getElementById('rsvpName');
+  const emailField = document.getElementById('rsvpEmail');
+  const attendingField = document.getElementById('rsvpAttending');
+  const plusOneField = document.getElementById('rsvpPlusOne');
+  const plusOneNameField = document.getElementById('plusOneName');
+  const plusOneDietField = document.getElementById('plusOneDiet');
+  const dietField = document.getElementById('rsvpDiet');
+  const noteField = document.getElementById('rsvpNote');
+  const name = nameField.value.trim();
+  const email = emailField.value.trim();
+  const attending = attendingField.value;
+  const plusOne = plusOneField.value;
+
+  markFieldError(nameField, false);
+  markFieldError(attendingField, false);
+  markFieldError(plusOneNameField, false);
+  if (!name || !attending) {
+    markFieldError(nameField, !name);
+    markFieldError(attendingField, !attending);
+    (name ? attendingField : nameField).focus();
+    return;
+  }
+
+  if (plusOne === 'yes' && !plusOneNameField.value.trim()) {
+    markFieldError(plusOneNameField, true);
+    plusOneNameField.focus();
+    return;
+  }
+
+  store.guestName = name;
+  store.guestEmail = email;
+  store.rsvp.attending = attending;
+  store.rsvp.plusOne = plusOne;
+  store.rsvp.plusOneName = plusOneNameField.value;
+  store.rsvp.plusOneDiet = plusOneDietField.value;
+  store.rsvp.diet = dietField.value;
+  store.rsvp.note = noteField.value;
+  store.rsvp.submittedAt = new Date().toISOString();
+  saveStore(store);
+
+  // TODO: POST to your backend / Formspree / Google Form here
+  // fetch('/api/rsvp', { method: 'POST', body: JSON.stringify(store.rsvp) });
+
+  rsvpForm.style.display = 'none';
+  rsvpConfirmed.classList.add('show');
+  const firstName = name.split(' ')[0];
+  document.getElementById('rsvpConfirmText').textContent =
+    attending === 'yes'
+      ? `Thanks, ${firstName}! We can't wait to celebrate with you.`
+      : `We'll miss you, ${firstName}. Thanks for letting us know.`;
+});
+
+// Edit RSVP
+document.getElementById('editRsvp').addEventListener('click', () => {
+  rsvpConfirmed.classList.remove('show');
+  rsvpForm.style.display = 'block';
+  // Re-fill form
+  document.getElementById('rsvpName').value = store.guestName || '';
+  document.getElementById('rsvpEmail').value = store.guestEmail || '';
+  document.getElementById('rsvpAttending').value = store.rsvp.attending || '';
+  document.getElementById('rsvpPlusOne').value = store.rsvp.plusOne || 'no';
+  document.getElementById('plusOneName').value = store.rsvp.plusOneName || '';
+  document.getElementById('plusOneDiet').value = store.rsvp.plusOneDiet || '';
+  document.getElementById('rsvpDiet').value = store.rsvp.diet || '';
+  document.getElementById('rsvpNote').value = store.rsvp.note || '';
+  if (store.rsvp.plusOne === 'yes') document.getElementById('plusOneFields').classList.add('show');
+  store.rsvp.submittedAt = null;
+  saveStore(store);
+});
+
+/* ─── SHENANIGANS: INLINE FORMS ─── */
+document.querySelectorAll('.shenanigan-card').forEach(card => {
+  const type = card.dataset.type;
+  const form = card.querySelector('.shenanigan-form');
+  const formFields = card.querySelectorAll('.shenanigan-form input, .shenanigan-form textarea');
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-expanded', 'false');
+
+  // Mark previously submitted
+  if (store.shenanigans[type]?.submitted) {
+    card.classList.add('has-submitted');
+  }
+
+  // Pre-fill author name across all cards
+  const authorInput = card.querySelector('input[name="author"]');
+  if (authorInput && store.guestName) {
+    authorInput.value = store.guestName;
+  }
+
+  function closeCard() {
+    card.classList.remove('form-open');
+    card.setAttribute('aria-expanded', 'false');
+  }
+
+  function openCard() {
+    document.querySelectorAll('.shenanigan-card.form-open').forEach(c => {
+      if (c !== card) {
+        c.classList.remove('form-open');
+        c.setAttribute('aria-expanded', 'false');
+      }
+    });
+    card.classList.add('form-open');
+    card.setAttribute('aria-expanded', 'true');
+    const firstField = form?.querySelector('input, textarea');
+    if (firstField) firstField.focus();
+  }
+
+  // Open form on card click
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.shenanigan-form')) return; // don't toggle if clicking inside form
+    if (card.classList.contains('form-open')) {
+      closeCard();
+    } else {
+      openCard();
+    }
+  });
+  card.addEventListener('keydown', (e) => {
+    if (e.target.closest('.shenanigan-form')) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (card.classList.contains('form-open')) {
+        closeCard();
+      } else {
+        openCard();
+      }
+    }
+  });
+
+  // Cancel
+  card.querySelector('.form-cancel')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeCard();
+    card.focus();
+  });
+
+  // Submit
+  card.querySelector('.form-submit')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const data = {};
+    formFields.forEach((inp, i) => {
+      data[`field_${i}`] = inp.value;
+      inp.style.borderColor = '';
+    });
+    const contributionFields = [...formFields].filter((inp) => inp.name !== 'author');
+    const hasContent = contributionFields.some((inp) => inp.value.trim());
+    if (!hasContent) {
+      const target = contributionFields[0];
+      if (target) {
+        target.style.borderColor = 'var(--gold)';
+        target.focus();
+      }
+      return;
+    }
+
+    // Store author name globally
+    if (authorInput?.value) {
+      store.guestName = authorInput.value;
+      document.querySelectorAll('.shenanigan-card input[name="author"]').forEach((input) => {
+        input.value = authorInput.value;
+      });
+    }
+
+    store.shenanigans[type] = { submitted: true, data, submittedAt: new Date().toISOString() };
+    saveStore(store);
+
+    card.classList.add('has-submitted');
+    closeCard();
+
+    // TODO: POST to backend
+    // fetch('/api/shenanigans', { method: 'POST', body: JSON.stringify({ type, ...data }) });
+  });
+});
+
+/* ─── SCROLL REVEAL ─── */
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => revealObserver.observe(el));
+
+/* ─── RETURN VISITOR: SCROLL TO LAST SECTION ─── */
+if (store.visitCount > 1 && store.lastScrollSection && !store.rsvp.submittedAt) {
+  // If they haven't RSVP'd yet, nudge to RSVP after 2nd visit
+  if (store.visitCount >= 3) {
+    setTimeout(() => {
+      document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
+    }, 2000);
+  }
+}
+</script>
+
 </body>
 </html>
