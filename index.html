@@ -1613,7 +1613,7 @@ async function apiPost(path, data) {
 }
 
 /* ─── COUNTDOWN (timezone-aware) ─── */
-// TODO: Replace with actual venue timezone offset once confirmed
+// Oct 24 2026 is still in EDT (DST ends Nov 1 2026). UTC-4 is correct.
 const WEDDING_DATE = new Date('2026-10-24T16:00:00-04:00'); // Eastern Daylight Time (Wallingford, PA)
 
 function updateCountdown() {
