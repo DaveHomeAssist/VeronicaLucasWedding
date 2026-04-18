@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veronica & Lucas — October 24, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A18;
+    --gold: #B8956A;
+    --gold-light: #D4B896;
+    --sage: #8B9E7E;
+    --sage-dark: #6B7E5E;
+    --blush: #E8D5CC;
+    --wine: #6B3A3A;
+    --success: #5E8B6A;
+    --error: #8B5E5E;
+    --font-display: 'Playfair Display', serif;
+    --font-elegant: 'Cormorant Garamond', serif;
+    --font-body: 'Libre Franklin', sans-serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    font-weight: 300;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex; justify-content: center; gap: 2.5rem;
+    background: transparent;
+    backdrop-filter: blur(0px);
+    border-bottom: 1px solid transparent;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom-color: rgba(184, 149, 106, 0.15);
+  }
+  nav.scrolled a { color: var(--dark); }
+  nav.hidden { transform: translateY(-100%); }
+  nav a {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--cream);
+    opacity: 0.45;
+    transition: opacity 0.18s ease, transform 0.15s ease, color 0.4s ease;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%; width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1), left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  nav a:hover { opacity: 1; }
+  nav a:hover::after { width: 100%; left: 0; }
+  nav a.active { opacity: 1; }
+  nav a.active::after { width: 100%; left: 0; }
+  nav a:active { transform: scale(0.95); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+    background: var(--dark);
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('images/00034-Veronica.jpg') center/cover no-repeat;
+    filter: brightness(0.45) saturate(0.85);
+    transform: scale(1.05);
+    transition: transform 8s ease-out;
+    z-index: 0;
+  }
+  .hero.loaded .hero-bg { transform: scale(1); }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(26,26,24,0.3) 0%, rgba(26,26,24,0.15) 40%, rgba(26,26,24,0.5) 100%),
+      radial-gradient(ellipse at center, transparent 30%, rgba(26,26,24,0.25) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero > * { position: relative; z-index: 2; }
+
+  .hero-prelude {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 1s 0.3s forwards;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 1;
+    color: var(--cream);
+    opacity: 0; animation: fadeUp 1.2s 0.5s forwards;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.25);
+  }
+  .hero h1 .amp {
+    font-family: var(--font-elegant);
+    font-weight: 300;
+    font-style: italic;
+    display: block;
+    font-size: 0.45em;
+    color: var(--gold-light);
+    margin: 0.3em 0;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    text-shadow: 0 1px 12px rgba(0,0,0,0.3);
+  }
+  .hero:hover h1 .amp { transform: scale(1.08) rotate(2deg); }
+  .hero-date {
+    font-family: var(--font-elegant);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    margin-top: 2.5rem;
+    opacity: 0; animation: fadeUp 1s 0.9s forwards;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+  }
+
+  /* ─── COUNTDOWN ─── */
+  .countdown {
+    display: flex; gap: 2.5rem;
+    margin-top: 3rem;
+    opacity: 0; animation: fadeUp 1s 1.2s forwards;
+  }
+  .countdown-unit { text-align: center; }
+  .countdown-num {
+    font-family: var(--font-elegant);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+    text-shadow: 0 1px 12px rgba(0,0,0,0.3);
+  }
+  .countdown-num.tick {
+    transform: scale(1.08);
+  }
+  .countdown-label {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-top: 0.4rem;
+  }
+  .countdown-mood {
+    font-family: var(--font-elegant);
+    font-style: italic;
+    font-size: 1rem;
+    color: rgba(245,240,232,0.5);
+    margin-top: 1.5rem;
+    opacity: 0; animation: fadeUp 1s 1.5s forwards;
+    min-height: 1.4em;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 1s 1.6s forwards;
+    cursor: pointer;
+    transition: transform 0.18s ease;
+  }
+  .scroll-hint:hover { transform: translateY(3px); }
+  .scroll-hint:active { transform: translateY(6px); }
+  .scroll-hint span {
+    display: block;
+    width: 1px; height: 40px;
+    background: var(--gold-light);
+    margin: 0 auto;
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ─── SECTION DEFAULTS ─── */
+  section {
+    padding: 8rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+  section p {
+    font-family: var(--font-elegant);
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #3a3a38;
+    max-width: 600px;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 2rem;
+    max-width: 800px; margin: 0 auto;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  }
+  .divider-icon {
+    font-family: var(--font-elegant);
+    font-size: 1.4rem;
+    color: var(--gold);
+    padding: 0 1.5rem;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .divider:hover .divider-icon { transform: rotate(90deg); }
+
+  /* ─── DETAILS GRID ─── */
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+  .detail-card {
+    padding: 2.5rem;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(184,149,106,0.15);
+    border-radius: 2px;
+    transition: border-color 0.25s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .detail-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .detail-card:hover {
+    border-color: var(--gold-light);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(184,149,106,0.08);
+  }
+  .detail-card:hover::after { transform: scaleX(1); }
+  .detail-card h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  .detail-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .detail-card .detail-meta {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 0.6rem;
+  }
+  /* Add to Calendar hint */
+  .detail-card .cal-hint {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .detail-card:hover .cal-hint { opacity: 1; transform: translateY(0); }
+  .cal-hint:active { transform: scale(0.96) !important; }
+
+  /* ─── SHENANIGANS ─── */
+  .shenanigans {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 8rem 2rem;
+    max-width: none;
+    text-align: center;
+  }
+  .shenanigans .section-label { color: var(--gold-light); }
+  .shenanigans .section-title { color: var(--cream); }
+  .shenanigans p { color: rgba(245,240,232,0.7); margin: 0 auto; }
+
+  .shenanigan-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    max-width: 980px;
+    margin: 3rem auto 0;
+  }
+  .shenanigan-card {
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(184,149,106,0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .shenanigan-card:hover {
+    border-color: var(--gold);
+    background: rgba(184,149,106,0.05);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
+  .shenanigan-card:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition-duration: 0.08s;
+  }
+  .shenanigan-card .card-emoji {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .shenanigan-card:hover .card-emoji { transform: scale(1.15) rotate(-5deg); }
+  .shenanigan-card h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .shenanigan-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  /* Expand hint on hover */
+  .shenanigan-card .expand-hint {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: block;
+  }
+  .shenanigan-card:hover .expand-hint { opacity: 0.7; transform: translateY(0); }
+
+  /* Shenanigan expanded panel */
+  .shenanigan-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    opacity: 0;
+  }
+  .shenanigan-panel.open {
+    max-height: 500px;
+    opacity: 1;
+  }
+  .shenanigan-panel-inner {
+    padding: 1.5rem 0 0;
+    border-top: 1px solid rgba(184,149,106,0.15);
+    margin-top: 1rem;
+  }
+  .shenanigan-panel textarea,
+  .shenanigan-panel input[type="text"] {
+    width: 100%;
+    background: rgba(245,240,232,0.06);
+    border: 1px solid rgba(184,149,106,0.25);
+    border-radius: 2px;
+    padding: 0.8rem 1rem;
+    font-family: var(--font-elegant);
+    font-size: 1rem;
+    color: var(--cream);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .shenanigan-panel textarea:focus,
+  .shenanigan-panel input[type="text"]:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(184,149,106,0.15);
+  }
+  .shenanigan-panel textarea::placeholder,
+  .shenanigan-panel input::placeholder {
+    color: rgba(245,240,232,0.3);
+    font-style: italic;
+  }
+  .shenanigan-panel .panel-submit {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.7rem 2rem;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold-light);
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .panel-submit:hover { background: var(--gold); color: var(--dark); }
+  .panel-submit:active { transform: scale(0.96); transition-duration: 0.06s; }
+  .panel-submit.submitted {
+    border-color: var(--success);
+    color: var(--success);
+    pointer-events: none;
+  }
+
+  /* ─── RSVP ─── */
+  .rsvp {
+    text-align: center;
+    padding: 8rem 2rem;
+  }
+  .rsvp p { margin: 0 auto 2.5rem; }
+
+  /* RSVP Form */
+  .rsvp-form {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .rsvp-field {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .rsvp-field label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 0.5rem;
+  }
+  .rsvp-field input,
+  .rsvp-field select,
+  .rsvp-field textarea {
+    width: 100%;
+    padding: 0.9rem 1.1rem;
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    border: 1px solid rgba(184,149,106,0.25);
+    border-radius: 2px;
+    background: rgba(255,255,255,0.5);
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+  }
+  .rsvp-field input:focus,
+  .rsvp-field select:focus,
+  .rsvp-field textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,149,106,0.1);
+    transform: translateY(-1px);
+  }
+  .rsvp-field input::placeholder,
+  .rsvp-field textarea::placeholder {
+    color: rgba(26,26,24,0.25);
+    font-style: italic;
+  }
+  /* Attendance toggle */
+  .rsvp-toggle {
+    display: flex; gap: 0; margin-bottom: 2rem;
+    border: 1px solid rgba(184,149,106,0.25);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .rsvp-toggle button {
+    flex: 1;
+    padding: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none;
+    background: rgba(255,255,255,0.3);
+    color: var(--dark);
+    opacity: 0.5;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    position: relative;
+  }
+  .rsvp-toggle button.selected {
+    background: var(--gold);
+    color: var(--cream);
+    opacity: 1;
+  }
+  .rsvp-toggle button:not(.selected):hover { opacity: 0.8; background: rgba(255,255,255,0.5); }
+  .rsvp-toggle button:active { transform: scale(0.97); transition-duration: 0.06s; }
+
+  /* Guest count stepper */
+  .guest-stepper {
+    display: flex; align-items: center; gap: 1rem;
+    justify-content: center;
+  }
+  .guest-stepper button {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(184,149,106,0.3);
+    border-radius: 50%;
+    background: transparent;
+    font-family: var(--font-elegant);
+    font-size: 1.3rem;
+    color: var(--gold);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex; align-items: center; justify-content: center;
+    user-select: none;
+  }
+  .guest-stepper button:hover { background: var(--gold); color: var(--cream); }
+  .guest-stepper button:active { transform: scale(0.9); transition-duration: 0.06s; }
+  .guest-stepper .guest-count {
+    font-family: var(--font-elegant);
+    font-size: 2rem;
+    min-width: 2.5rem;
+    text-align: center;
+    transition: transform 0.12s ease;
+  }
+  .guest-stepper .guest-count.bump { transform: scale(1.15); }
+
+  .rsvp-submit {
+    display: block;
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 1.2rem 3.5rem;
+    border: 1px solid var(--gold);
+    color: var(--dark);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+  .rsvp-submit::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: var(--gold);
+    transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+  }
+  .rsvp-submit:hover::before { left: 0; }
+  .rsvp-submit:hover { color: var(--cream); }
+  .rsvp-submit:active { transform: scale(0.98); transition-duration: 0.06s; }
+  .rsvp-submit.success {
+    border-color: var(--success);
+    background: var(--success);
+    color: var(--cream);
+    pointer-events: none;
+  }
+  .rsvp-submit.error {
+    animation: shake 0.4s ease;
+    border-color: var(--error);
+  }
+
+  .rsvp-confirmation {
+    text-align: center;
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .rsvp-confirmation.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery {
+    padding: 8rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .gallery-item {
+    overflow: hidden;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+    filter: grayscale(15%) contrast(1.02);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.06);
+    filter: grayscale(0%) contrast(1.05);
+  }
+  /* Masonry-like layout */
+  .gallery-item:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+  .gallery-item:nth-child(2) { grid-column: span 5; grid-row: span 2; }
+  .gallery-item:nth-child(3) { grid-column: span 4; grid-row: span 2; }
+  .gallery-item:nth-child(4) { grid-column: span 4; grid-row: span 2; }
+  .gallery-item:nth-child(5) { grid-column: span 4; grid-row: span 2; }
+  .gallery-item .photo-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 2rem 1.2rem 1rem;
+    background: linear-gradient(to top, rgba(26,26,24,0.6), transparent);
+    font-family: var(--font-elegant);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--cream);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .gallery-item:hover .photo-caption { opacity: 1; transform: translateY(0); }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(26,26,24,0.92);
+    backdrop-filter: blur(20px);
+    z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+    cursor: pointer;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox img {
+    max-width: 90vw; max-height: 85vh;
+    object-fit: contain;
+    border-radius: 2px;
+    transform: scale(0.92);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .lightbox.open img { transform: scale(1); }
+  .lightbox-close {
+    position: absolute;
+    top: 2rem; right: 2rem;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    cursor: pointer;
+    transition: color 0.2s;
+    background: none; border: none;
+  }
+  .lightbox-close:hover { color: var(--cream); }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    font-size: 2rem;
+    color: rgba(245,240,232,0.4);
+    cursor: pointer;
+    background: none; border: none;
+    padding: 1rem;
+    transition: color 0.18s, transform 0.15s;
+    user-select: none;
+  }
+  .lightbox-nav:hover { color: var(--cream); }
+  .lightbox-nav:active { transform: translateY(-50%) scale(0.9); transition-duration: 0.06s; }
+  .lightbox-nav.prev { left: 1rem; }
+  .lightbox-nav.next { right: 1rem; }
+
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 180px;
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+    .gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+    .gallery-item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+    .gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
+    .lightbox-nav { display: none; }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(184,149,106,0.15);
+  }
+  footer p {
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    color: var(--gold);
+    font-style: italic;
+  }
+  footer .footer-date {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26,26,24,0.35);
+    margin-top: 1rem;
+  }
+  /* Returning visitor nudge */
+  .welcome-back {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: var(--dark);
+    color: var(--cream);
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    font-family: var(--font-elegant);
+    font-size: 1rem;
+    font-style: italic;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 90;
+    max-width: 280px;
+    cursor: pointer;
+  }
+  .welcome-back.show { opacity: 1; transform: translateY(0); }
+  .welcome-back:hover { transform: translateY(-2px); }
+  .welcome-back .wb-close {
+    position: absolute;
+    top: 0.4rem; right: 0.6rem;
+    font-size: 0.8rem;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    font-style: normal;
+  }
+  .welcome-back .wb-close:hover { opacity: 1; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.3); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    15% { transform: translateX(-6px); }
+    30% { transform: translateX(5px); }
+    45% { transform: translateX(-4px); }
+    60% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+  }
+  @keyframes confettiPop {
+    0% { transform: scale(0); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Stagger children on reveal */
+  .reveal.visible .detail-card,
+  .reveal.visible .shenanigan-card {
+    opacity: 0;
+    animation: fadeUp 0.6s forwards;
+  }
+  .reveal.visible .detail-card:nth-child(1),
+  .reveal.visible .shenanigan-card:nth-child(1) { animation-delay: 0.05s; }
+  .reveal.visible .detail-card:nth-child(2),
+  .reveal.visible .shenanigan-card:nth-child(2) { animation-delay: 0.12s; }
+  .reveal.visible .detail-card:nth-child(3),
+  .reveal.visible .shenanigan-card:nth-child(3) { animation-delay: 0.19s; }
+  .reveal.visible .detail-card:nth-child(4),
+  .reveal.visible .shenanigan-card:nth-child(4) { animation-delay: 0.26s; }
+
+  /* Parallax-subtle on hero text */
+  .hero-parallax { transition: transform 0.1s linear; will-change: transform; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    nav { gap: 1.2rem; padding: 1rem 1rem; flex-wrap: wrap; }
+    nav a { font-size: 0.6rem; letter-spacing: 0.15em; }
+    .countdown { gap: 1.5rem; }
+    .countdown-num { font-size: 2rem; }
+    .details-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .shenanigan-cards { grid-template-columns: 1fr; }
+    section { padding: 5rem 1.5rem; }
+    .shenanigans { padding: 5rem 1.5rem; }
+    .welcome-back { right: 1rem; left: 1rem; bottom: 1rem; max-width: none; }
+  }
+
+  /* ─── TOUCH FEEDBACK (mobile) ─── */
+  @media (hover: none) {
+    .detail-card:active {
+      transform: scale(0.98);
+      border-color: var(--gold-light);
+      transition-duration: 0.08s;
+    }
+    .shenanigan-card:active {
+      transform: scale(0.97);
+      transition-duration: 0.08s;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="#story" data-section="story">Our Story</a>
+  <a href="#gallery" data-section="gallery">Photos</a>
+  <a href="#details" data-section="details">Details</a>
+  <a href="#shenanigans" data-section="shenanigans">Shenanigans</a>
+  <a href="#rsvp" data-section="rsvp">RSVP</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <p class="hero-prelude">Together with their families</p>
+  <h1 class="hero-parallax">
+    Veronica
+    <span class="amp">&</span>
+    Lucas
+  </h1>
+  <p class="hero-date hero-parallax">October Twenty-Fourth, Two Thousand Twenty-Six</p>
+  <div class="countdown" id="countdown">
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-days">---</div>
+      <div class="countdown-label">Days</div>
+    </div>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-hours">--</div>
+      <div class="countdown-label">Hours</div>
+    </div>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-min">--</div>
+      <div class="countdown-label">Minutes</div>
+    </div>
+    <div class="countdown-unit">
+      <div class="countdown-num" id="cd-sec">--</div>
+      <div class="countdown-label">Seconds</div>
+    </div>
+  </div>
+  <p class="countdown-mood" id="countdownMood"></p>
+  <div class="scroll-hint" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})"><span></span></div>
+</section>
+
+<!-- ─── STORY ─── -->
+<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<section id="story">
+  <div class="reveal">
+    <p class="section-label">How It All Began</p>
+    <h2 class="section-title">Their Story</h2>
+    <p>
+      Some love stories write themselves. This one started with [insert your origin story — or a hilariously embellished version]. From that moment on, they knew something extraordinary was unfolding.
+    </p>
+    <p style="margin-top: 1.5rem;">
+      After [X] years of adventures, terrible puns, and unwavering devotion, Lucas asked the question — and Veronica said yes (obviously). Now it's time to celebrate.
+    </p>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<section class="gallery" id="gallery">
+  <div class="reveal">
+    <p class="section-label">Moments</p>
+    <h2 class="section-title">The Two of Them</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox(0)">
+        <img src="images/00011-Veronica.jpg" alt="Veronica and Lucas by the Christmas tree" loading="lazy">
+        <div class="photo-caption">Date night</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1)">
+        <img src="images/00014-Veronica.jpg" alt="Lucas proposing to Veronica on the dock" loading="lazy">
+        <div class="photo-caption">The moment everything changed</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(2)">
+        <img src="images/00020-Veronica.jpg" alt="Veronica and Lucas dressed up" loading="lazy">
+        <div class="photo-caption">Dressed to the nines</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3)">
+        <img src="images/00025-Veronica.jpg" alt="Veronica and Lucas at a restaurant" loading="lazy">
+        <div class="photo-caption">These two</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4)">
+        <img src="images/00034-Veronica.jpg" alt="Veronica at the vineyard" loading="lazy">
+        <div class="photo-caption">Golden hour</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">Close &times;</button>
+  <button class="lightbox-nav prev" onclick="navLightbox(event, -1)">&#8249;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav next" onclick="navLightbox(event, 1)">&#8250;</button>
+</div>
+
+<!-- ─── DETAILS ─── -->
+<div class="divider"><span class="divider-icon">&#10043;</span></div>
+<section id="details">
+  <div class="reveal">
+    <p class="section-label">The Plan</p>
+    <h2 class="section-title">Wedding Details</h2>
+    <div class="details-grid">
+      <div class="detail-card">
+        <p class="detail-meta">Ceremony</p>
+        <h3>The Main Event</h3>
+        <p>Saturday, October 24, 2026<br>4:00 PM<br><em>[Venue Name]</em><br>[Address]</p>
+        <a class="cal-hint" onclick="addToCalendar()" title="Add to Google Calendar">+ Add to Calendar</a>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Reception</p>
+        <h3>The After Party</h3>
+        <p>Immediately following<br><em>[Venue Name]</em><br>Dinner, dancing, and questionable karaoke</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Accommodations</p>
+        <h3>Where to Stay</h3>
+        <p>Room block at <em>[Hotel Name]</em><br>Code: VERONICALUCAS<br>Book by [Date]</p>
+      </div>
+      <div class="detail-card">
+        <p class="detail-meta">Registry</p>
+        <h3>Gifts</h3>
+        <p>Your presence is the present — but if you insist, <a href="#" style="color: var(--gold);">click here</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SHENANIGANS ─── -->
+<section class="shenanigans" id="shenanigans">
+  <div class="reveal">
+    <p class="section-label">The Fun Stuff</p>
+    <h2 class="section-title">Shenanigans Corner</h2>
+    <p>Because every wedding needs a little chaos.</p>
+    <div class="shenanigan-cards">
+      <div class="shenanigan-card" data-panel="toast">
+        <span class="card-emoji">&#127908;</span>
+        <h3>Toast Roast</h3>
+        <p>Submit your best (or worst) toast material. We dare you.</p>
+        <span class="expand-hint">Tap to submit</span>
+        <div class="shenanigan-panel" id="panel-toast">
+          <div class="shenanigan-panel-inner">
+            <textarea rows="3" placeholder="Your roast or toast..." data-key="toast"></textarea>
+            <button class="panel-submit" onclick="submitShenanigan(this, 'toast')">Send It</button>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-panel="photo">
+        <span class="card-emoji">&#128248;</span>
+        <h3>Photo Ops</h3>
+        <p>Embarrassing photos of the couple. Bonus points for the haircuts.</p>
+        <span class="expand-hint">Tap for details</span>
+        <div class="shenanigan-panel" id="panel-photo">
+          <div class="shenanigan-panel-inner">
+            <p style="font-size: 0.9rem; margin-bottom: 0.8rem;">Email your best photos to <span style="color: var(--gold-light);">photos@veronicaandlucas.com</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-panel="song">
+        <span class="card-emoji">&#127925;</span>
+        <h3>Song Requests</h3>
+        <p>Tell the DJ what to play. Or what NOT to play. Both are useful.</p>
+        <span class="expand-hint">Tap to request</span>
+        <div class="shenanigan-panel" id="panel-song">
+          <div class="shenanigan-panel-inner">
+            <input type="text" placeholder="Song name or artist..." data-key="song">
+            <button class="panel-submit" onclick="submitShenanigan(this, 'song')">Request</button>
+          </div>
+        </div>
+      </div>
+      <div class="shenanigan-card" data-panel="advice">
+        <span class="card-emoji">&#128140;</span>
+        <h3>Advice & Bets</h3>
+        <p>Marriage advice, predictions, or side bets on the first dance song.</p>
+        <span class="expand-hint">Tap to share</span>
+        <div class="shenanigan-panel" id="panel-advice">
+          <div class="shenanigan-panel-inner">
+            <textarea rows="3" placeholder="Your wisdom (or chaos)..." data-key="advice"></textarea>
+            <button class="panel-submit" onclick="submitShenanigan(this, 'advice')">Drop It</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RSVP ─── -->
+<section class="rsvp" id="rsvp">
+  <div class="reveal">
+    <p class="section-label">Be There</p>
+    <h2 class="section-title">RSVP</h2>
+    <p>Let us know if you'll be joining the celebration. Formal attire encouraged, dancing shoes required.</p>
+
+    <div class="rsvp-form" id="rsvpForm">
+      <div class="rsvp-toggle">
+        <button type="button" onclick="selectAttendance(this, true)" id="btn-accept">Joyfully Accept</button>
+        <button type="button" onclick="selectAttendance(this, false)" id="btn-decline">Regretfully Decline</button>
+      </div>
+
+      <div id="rsvp-details" style="display:none;">
+        <div class="rsvp-field">
+          <label for="rsvp-name">Your Name</label>
+          <input type="text" id="rsvp-name" placeholder="First and last name" autocomplete="name">
+        </div>
+        <div class="rsvp-field">
+          <label for="rsvp-email">Email</label>
+          <input type="text" id="rsvp-email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="rsvp-field">
+          <label>Number of Guests</label>
+          <div class="guest-stepper">
+            <button type="button" onclick="adjustGuests(-1)">-</button>
+            <span class="guest-count" id="guestCount">1</span>
+            <button type="button" onclick="adjustGuests(1)">+</button>
+          </div>
+        </div>
+        <div class="rsvp-field">
+          <label for="rsvp-dietary">Dietary Restrictions</label>
+          <input type="text" id="rsvp-dietary" placeholder="Allergies, vegetarian, etc.">
+        </div>
+        <div class="rsvp-field">
+          <label for="rsvp-note">Note to the Couple</label>
+          <textarea id="rsvp-note" rows="2" placeholder="Optional message..."></textarea>
+        </div>
+        <button class="rsvp-submit" type="button" onclick="submitRsvp()">Send RSVP</button>
+      </div>
+
+      <div id="rsvp-decline-msg" style="display:none;">
+        <div class="rsvp-field">
+          <label for="rsvp-decline-name">Your Name</label>
+          <input type="text" id="rsvp-decline-name" placeholder="So we know who to miss" autocomplete="name">
+        </div>
+        <button class="rsvp-submit" type="button" onclick="submitRsvp()">Send Regrets</button>
+      </div>
+
+      <div class="rsvp-confirmation" id="rsvpConfirmation"></div>
+    </div>
+
+    <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--sage-dark);">
+      Kindly respond by September 1, 2026
+    </p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>V &amp; L — forever starts here</p>
+  <p class="footer-date">October 24, 2026</p>
+</footer>
+
+<!-- ─── RETURNING VISITOR NUDGE ─── -->
+<div class="welcome-back" id="welcomeBack" onclick="this.classList.remove('show')">
+  <span class="wb-close">&times;</span>
+  <span id="wb-message"></span>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ═══════════════════════════════════════
+  // LOCAL STORAGE DATA MODEL
+  // ═══════════════════════════════════════
+  // Keys:
+  //   vl_visits        : number — visit count
+  //   vl_lastVisit     : ISO string — last visit timestamp
+  //   vl_lastSection   : string — last scrolled-to section ID
+  //   vl_rsvpDone      : boolean — whether RSVP submitted
+  //   vl_rsvpName      : string — name from RSVP (for welcome back)
+  //   vl_attending     : boolean — attending or declining
+  //   vl_guestCount    : number — guest stepper value
+  //   vl_shenanigans   : object — { toast, song, advice } submitted content
+
+  const LS = {
+    get(k) { try { return JSON.parse(localStorage.getItem('vl_' + k)); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem('vl_' + k, JSON.stringify(v)); } catch {} }
+  };
+
+  // ═══════════════════════════════════════
+  // VISIT TRACKING & WELCOME BACK
+  // ═══════════════════════════════════════
+  const visits = (LS.get('visits') || 0) + 1;
+  LS.set('visits', visits);
+  const lastVisit = LS.get('lastVisit');
+  LS.set('lastVisit', new Date().toISOString());
+
+  if (visits > 1) {
+    const wb = document.getElementById('welcomeBack');
+    const msg = document.getElementById('wb-message');
+    const name = LS.get('rsvpName');
+    const rsvpDone = LS.get('rsvpDone');
+    const lastSec = LS.get('lastSection');
+
+    if (rsvpDone && name) {
+      msg.textContent = 'Welcome back, ' + name + '! Your RSVP is confirmed.';
+    } else if (name) {
+      msg.innerHTML = 'Welcome back, ' + name + '! <span style="color:var(--gold)">Still need to RSVP?</span>';
+      wb.onclick = function() { document.getElementById('rsvp').scrollIntoView({behavior:'smooth'}); wb.classList.remove('show'); };
+    } else if (lastSec) {
+      msg.innerHTML = 'Welcome back! <span style="color:var(--gold)">Pick up where you left off?</span>';
+      wb.onclick = function() { document.getElementById(lastSec).scrollIntoView({behavior:'smooth'}); wb.classList.remove('show'); };
+    } else {
+      msg.textContent = 'Welcome back! Visit #' + visits + ' — someone\'s excited.';
+    }
+    setTimeout(() => wb.classList.add('show'), 1500);
+    setTimeout(() => wb.classList.remove('show'), 7000);
+  }
+
+  // ═══════════════════════════════════════
+  // COUNTDOWN + MOOD TEXT
+  // ═══════════════════════════════════════
+  const weddingDate = new Date('2026-10-24T16:00:00');
+
+  const moods = [
+    { days: 365, texts: ['Still plenty of time to panic about outfits.', 'A whole year of anticipation.', 'Mark those calendars.'] },
+    { days: 180, texts: ['Six months — it\'s getting real.', 'Halfway there. Excitement level: rising.'] },
+    { days: 90, texts: ['Three months out. The countdown is ON.', 'Close enough to taste the cake.'] },
+    { days: 30, texts: ['One month. ONE MONTH.', 'We can almost hear the music.', 'Final stretch!'] },
+    { days: 14, texts: ['Two weeks! This is happening.', 'Pack your bags and your dance moves.'] },
+    { days: 7, texts: ['One week! The countdown is deafening.', 'Seven days of barely contained joy.'] },
+    { days: 3, texts: ['Three. More. Days.', 'Almost time to celebrate.'] },
+    { days: 1, texts: ['TOMORROW.', 'Sleep tight — tomorrow changes everything.'] },
+    { days: 0, texts: ['TODAY IS THE DAY!'] }
+  ];
+
+  let prevSec = null;
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = '<p style="font-family:var(--font-elegant);font-size:1.6rem;color:var(--gold);">Today is the day!</p>';
+      document.getElementById('countdownMood').textContent = '';
+      return;
+    }
+
+    const days = Math.floor(diff / 864e5);
+    const hours = Math.floor((diff % 864e5) / 36e5);
+    const mins = Math.floor((diff % 36e5) / 6e4);
+    const secs = Math.floor((diff % 6e4) / 1000);
+
+    const secEl = document.getElementById('cd-sec');
+    if (prevSec !== null && prevSec !== secs) {
+      secEl.classList.add('tick');
+      setTimeout(() => secEl.classList.remove('tick'), 150);
+    }
+    prevSec = secs;
+
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cd-min').textContent = String(mins).padStart(2, '0');
+    secEl.textContent = String(secs).padStart(2, '0');
+
+    // Mood text
+    const moodEl = document.getElementById('countdownMood');
+    for (let i = moods.length - 1; i >= 0; i--) {
+      if (days <= moods[i].days || i === 0) {
+        const texts = moods[i].texts;
+        moodEl.textContent = texts[days % texts.length];
+        break;
+      }
+    }
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Hero background slow zoom on load
+  requestAnimationFrame(() => {
+    document.querySelector('.hero').classList.add('loaded');
+  });
+
+  // ═══════════════════════════════════════
+  // SCROLL: NAV HIDE/SHOW + SECTION TRACKING
+  // ═══════════════════════════════════════
+  let lastScroll = 0;
+  const nav = document.getElementById('mainNav');
+  const sections = ['hero', 'story', 'gallery', 'details', 'shenanigans', 'rsvp'];
+  const navLinks = document.querySelectorAll('nav a[data-section]');
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+
+    // Nav background transition
+    nav.classList.toggle('scrolled', y > window.innerHeight * 0.7);
+
+    // Auto-hide nav on scroll down, show on scroll up
+    if (y > 200) {
+      nav.classList.toggle('hidden', y > lastScroll && y - lastScroll > 5);
+    } else {
+      nav.classList.remove('hidden');
+    }
+    lastScroll = y;
+
+    // Active section highlight
+    let current = 'hero';
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) current = id;
+    }
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current));
+    if (current !== 'hero') LS.set('lastSection', current);
+  }, { passive: true });
+
+  // ═══════════════════════════════════════
+  // SCROLL REVEAL
+  // ═══════════════════════════════════════
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => revealObs.observe(el));
+
+  // ═══════════════════════════════════════
+  // SUBTLE HERO PARALLAX (desktop only)
+  // ═══════════════════════════════════════
+  if (window.matchMedia('(hover: hover)').matches) {
+    const parallaxEls = document.querySelectorAll('.hero-parallax');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        parallaxEls.forEach((el, i) => {
+          el.style.transform = 'translateY(' + (y * (0.08 + i * 0.04)) + 'px)';
+        });
+      }
+    }, { passive: true });
+  }
+
+  // ═══════════════════════════════════════
+  // SHENANIGAN CARD EXPAND/COLLAPSE
+  // ═══════════════════════════════════════
+  document.querySelectorAll('.shenanigan-card[data-panel]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.shenanigan-panel')) return; // don't toggle when interacting with panel
+      const panelId = 'panel-' + card.dataset.panel;
+      const panel = document.getElementById(panelId);
+      const isOpen = panel.classList.contains('open');
+
+      // Close all panels
+      document.querySelectorAll('.shenanigan-panel').forEach(p => p.classList.remove('open'));
+
+      if (!isOpen) {
+        panel.classList.add('open');
+        const input = panel.querySelector('textarea, input');
+        if (input) setTimeout(() => input.focus(), 300);
+      }
+    });
+  });
+
+  // Submit shenanigan content
+  window.submitShenanigan = function(btn, type) {
+    const panel = btn.closest('.shenanigan-panel');
+    const input = panel.querySelector('textarea, input');
+    const val = input ? input.value.trim() : '';
+    if (!val) {
+      input.style.borderColor = 'var(--error)';
+      input.style.animation = 'shake 0.4s ease';
+      setTimeout(() => { input.style.borderColor = ''; input.style.animation = ''; }, 500);
+      return;
+    }
+
+    // Save to localStorage
+    const shenanigans = LS.get('shenanigans') || {};
+    shenanigans[type] = val;
+    LS.set('shenanigans', shenanigans);
+
+    btn.textContent = 'Saved!';
+    btn.classList.add('submitted');
+    input.disabled = true;
+
+    // TODO: Wire to a real backend (Firebase, Supabase, Formspree, etc.)
+    console.log('[Shenanigan]', type, val);
+  };
+
+  // Restore previously submitted shenanigans
+  const savedShenanigans = LS.get('shenanigans') || {};
+  Object.entries(savedShenanigans).forEach(([type, val]) => {
+    const panel = document.getElementById('panel-' + type);
+    if (!panel) return;
+    const input = panel.querySelector('textarea, input');
+    const btn = panel.querySelector('.panel-submit');
+    if (input) { input.value = val; input.disabled = true; }
+    if (btn) { btn.textContent = 'Saved!'; btn.classList.add('submitted'); }
+  });
+
+  // ═══════════════════════════════════════
+  // RSVP FORM
+  // ═══════════════════════════════════════
+  let attending = null;
+  let guestCount = LS.get('guestCount') || 1;
+  document.getElementById('guestCount').textContent = guestCount;
+
+  // Pre-fill name if we have it
+  const savedName = LS.get('rsvpName');
+  if (savedName) {
+    const nameInput = document.getElementById('rsvp-name');
+    if (nameInput) nameInput.value = savedName;
+    const declineNameInput = document.getElementById('rsvp-decline-name');
+    if (declineNameInput) declineNameInput.value = savedName;
+  }
+
+  // If already RSVP'd, show confirmation
+  if (LS.get('rsvpDone')) {
+    const conf = document.getElementById('rsvpConfirmation');
+    const wasAttending = LS.get('attending');
+    conf.innerHTML = '<p style="font-family:var(--font-elegant);font-size:1.2rem;color:var(--gold);font-style:italic;">' +
+      (wasAttending ? 'You\'re confirmed! See you October 24th.' : 'We\'ll miss you! Your regrets have been noted.') +
+      '</p><p style="font-family:var(--font-body);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage-dark);margin-top:0.8rem;cursor:pointer;" onclick="resetRsvp()">Change your response</p>';
+    conf.classList.add('show');
+    document.getElementById('rsvp-details').style.display = 'none';
+    document.getElementById('rsvp-decline-msg').style.display = 'none';
+    document.querySelector('.rsvp-toggle').style.display = 'none';
+  }
+
+  window.selectAttendance = function(btn, isAttending) {
+    attending = isAttending;
+    document.getElementById('btn-accept').classList.toggle('selected', isAttending);
+    document.getElementById('btn-decline').classList.toggle('selected', !isAttending);
+
+    const details = document.getElementById('rsvp-details');
+    const decline = document.getElementById('rsvp-decline-msg');
+    details.style.display = isAttending ? 'block' : 'none';
+    decline.style.display = isAttending ? 'none' : 'block';
+
+    // Focus first input after a beat
+    setTimeout(() => {
+      const input = (isAttending ? details : decline).querySelector('input');
+      if (input) input.focus();
+    }, 150);
+  };
+
+  window.adjustGuests = function(delta) {
+    guestCount = Math.max(1, Math.min(10, guestCount + delta));
+    const el = document.getElementById('guestCount');
+    el.textContent = guestCount;
+    el.classList.add('bump');
+    setTimeout(() => el.classList.remove('bump'), 120);
+    LS.set('guestCount', guestCount);
+  };
+
+  window.submitRsvp = function() {
+    const btn = document.querySelector('#rsvpForm .rsvp-submit:not([style*="display:none"])');
+    if (!btn) return;
+
+    const name = attending
+      ? document.getElementById('rsvp-name').value.trim()
+      : document.getElementById('rsvp-decline-name').value.trim();
+
+    if (!name) {
+      const nameInput = attending ? document.getElementById('rsvp-name') : document.getElementById('rsvp-decline-name');
+      nameInput.style.borderColor = 'var(--error)';
+      nameInput.style.animation = 'shake 0.4s ease';
+      btn.classList.add('error');
+      setTimeout(() => {
+        nameInput.style.borderColor = '';
+        nameInput.style.animation = '';
+        btn.classList.remove('error');
+      }, 500);
+      nameInput.focus();
+      return;
+    }
+
+    // Collect data
+    const rsvpData = {
+      name,
+      attending,
+      guests: attending ? guestCount : 0,
+      email: attending ? (document.getElementById('rsvp-email').value.trim() || '') : '',
+      dietary: attending ? (document.getElementById('rsvp-dietary').value.trim() || '') : '',
+      note: attending ? (document.getElementById('rsvp-note').value.trim() || '') : '',
+      timestamp: new Date().toISOString()
+    };
+
+    // TODO: POST to your backend (Firebase, Supabase, Formspree, Google Sheets, etc.)
+    console.log('[RSVP]', rsvpData);
+
+    // Save state
+    LS.set('rsvpDone', true);
+    LS.set('rsvpName', name);
+    LS.set('attending', attending);
+
+    // Success feedback
+    btn.classList.add('success');
+    btn.textContent = attending ? 'See You There!' : 'Regrets Sent';
+
+    // Show confirmation
+    const conf = document.getElementById('rsvpConfirmation');
+    conf.innerHTML = '<p style="font-family:var(--font-elegant);font-size:1.2rem;color:var(--gold);font-style:italic;">' +
+      (attending ? 'You\'re in, ' + name + '! See you October 24th.' : 'We\'ll miss you, ' + name + '!') +
+      '</p>';
+    conf.classList.add('show');
+
+    // Disable form
+    document.querySelectorAll('#rsvpForm input, #rsvpForm textarea, #rsvpForm select').forEach(el => el.disabled = true);
+  };
+
+  window.resetRsvp = function() {
+    LS.set('rsvpDone', false);
+    location.reload();
+  };
+
+  // ═══════════════════════════════════════
+  // ADD TO CALENDAR
+  // ═══════════════════════════════════════
+  window.addToCalendar = function() {
+    const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent('Veronica & Lucas Wedding') +
+      '&dates=20261024T160000/20261024T230000' +
+      '&details=' + encodeURIComponent('The wedding of Veronica and Lucas! veronicaandlucas.com') +
+      '&location=' + encodeURIComponent('[Venue Address]');
+    window.open(url, '_blank');
+  };
+
+  // ═══════════════════════════════════════
+  // LIGHTBOX
+  // ═══════════════════════════════════════
+  const galleryImages = Array.from(document.querySelectorAll('.gallery-item img')).map(img => img.src);
+  let lightboxIndex = 0;
+
+  window.openLightbox = function(i) {
+    lightboxIndex = i;
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src = galleryImages[i];
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeLightbox = function(e) {
+    if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  window.navLightbox = function(e, dir) {
+    e.stopPropagation();
+    lightboxIndex = (lightboxIndex + dir + galleryImages.length) % galleryImages.length;
+    const img = document.getElementById('lightbox-img');
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      img.src = galleryImages[lightboxIndex];
+      img.style.opacity = '1';
+      img.style.transform = 'scale(1)';
+    }, 150);
+  };
+
+  // Keyboard nav for lightbox
+  document.addEventListener('keydown', (e) => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') navLightbox(e, 1);
+    if (e.key === 'ArrowLeft') navLightbox(e, -1);
+  });
+
+})();
+</script>
+
+</body>
+</html>

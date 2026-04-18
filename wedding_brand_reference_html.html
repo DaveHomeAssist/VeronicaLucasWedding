@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veronica & Lucas — Brand Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a1a18;
+      --bg-soft: #23211f;
+      --bg-panel: #2b2825;
+      --paper: #f5f0e8;
+      --paper-soft: #ebe3d7;
+      --ink: #2c2c2c;
+      --ink-soft: #5f5a55;
+      --sage: #8b9e7e;
+      --olive: #6b7e5e;
+      --gold: #b8956a;
+      --gold-soft: #d4b896;
+      --border: rgba(212,184,150,0.18);
+      --border-strong: rgba(212,184,150,0.35);
+      --shadow: 0 18px 48px rgba(0,0,0,0.28);
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Libre Franklin', system-ui, sans-serif;
+      --font-script: 'Pinyon Script', cursive;
+
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 40px;
+      --space-5: 64px;
+      --space-6: 88px;
+      --radius: 26px;
+      --radius-sm: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at top, rgba(184,149,106,0.08), transparent 28%),
+        linear-gradient(180deg, #141412 0%, #1a1a18 100%);
+      color: var(--paper);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px 120px;
+    }
+
+    header {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+    }
+
+    .eyebrow, .section-label, .meta, .chip, .swatch-meta, .rule-head {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow { color: var(--sage); margin-bottom: 14px; }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 0.95;
+      font-weight: 600;
+      color: var(--paper);
+    }
+
+    .brand-script {
+      display: block;
+      font-family: var(--font-script);
+      font-size: clamp(40px, 6vw, 62px);
+      line-height: 0.8;
+      color: var(--gold-soft);
+      margin-top: 10px;
+    }
+
+    .meta {
+      color: rgba(245,240,232,0.65);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    section { margin-bottom: 72px; }
+
+    .section-label {
+      color: var(--gold);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-label::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .hero-card,
+    .panel,
+    .rule-card,
+    .usage-card,
+    .type-card,
+    .lockup-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      padding: 32px;
+      overflow: hidden;
+    }
+
+    .hero-main {
+      background: linear-gradient(180deg, rgba(20,20,18,0.76), rgba(20,20,18,0.94));
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) - 10px);
+      padding: 34px;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(245,240,232,0.08);
+      border-radius: calc(var(--radius) - 16px);
+      pointer-events: none;
+    }
+
+    .hero-kicker {
+      text-align: center;
+      color: var(--gold-soft);
+      font-family: var(--font-script);
+      font-size: 34px;
+      margin-bottom: 20px;
+    }
+
+    .names {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: clamp(54px, 8vw, 96px);
+      line-height: 0.92;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+    .amp {
+      display: block;
+      font-size: 64px;
+      color: var(--gold-soft);
+      margin: 18px 0;
+    }
+
+    .date-line {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--gold-soft);
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing: 0.08em;
+    }
+
+    .place-line {
+      margin-top: 8px;
+      text-align: center;
+      color: rgba(245,240,232,0.72);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 20px;
+    }
+
+    .mini-note, .mini-photo {
+      border-radius: calc(var(--radius) - 10px);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .mini-note {
+      background: var(--paper);
+      color: var(--ink);
+      padding: 28px 26px 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+      transform: rotate(-1.2deg);
+    }
+
+    .mini-note .save {
+      font-family: var(--font-script);
+      color: var(--sage);
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .mini-note .foil {
+      font-family: var(--font-script);
+      font-size: 50px;
+      line-height: 0.95;
+      color: var(--gold);
+      margin: 18px 0;
+    }
+
+    .mini-note .small {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .mini-photo {
+      background: var(--paper-soft);
+      padding: 16px 16px 24px;
+    }
+
+    .photo-box {
+      aspect-ratio: 1 / 1;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(20,20,18,0.14), rgba(20,20,18,0.24)),
+        radial-gradient(circle at 70% 20%, rgba(139,158,126,0.35), transparent 30%),
+        linear-gradient(135deg, #2c3528 0%, #1e241d 45%, #3a4837 100%);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .photo-caption {
+      text-align: center;
+      margin-top: 14px;
+      color: var(--olive);
+      font-family: var(--font-script);
+      font-size: 28px;
+      line-height: 1.05;
+    }
+
+    .grid-2, .grid-3, .palette, .type-grid, .usage-grid, .rules-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .palette { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+    .type-grid { grid-template-columns: 1.1fr 0.9fr; }
+    .usage-grid, .rules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .panel {
+      padding: 28px;
+    }
+
+    .panel h3, .usage-card h3, .rule-card h3 {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 10px;
+      color: var(--paper);
+    }
+
+    .panel p, .usage-card p, .rule-card li, .type-card p {
+      color: rgba(245,240,232,0.76);
+      font-size: 15px;
+    }
+
+    .mood-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .mood-list li {
+      padding: 14px 0 0;
+      border-top: 1px solid rgba(245,240,232,0.08);
+    }
+
+    .mood-list strong {
+      display: block;
+      color: var(--paper);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .lockup-card {
+      padding: 26px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .lockup-card.dark {
+      background: linear-gradient(180deg, #151513 0%, #1a1a18 100%);
+    }
+
+    .lockup-card.light {
+      background: linear-gradient(180deg, #f5f0e8 0%, #ece3d6 100%);
+      color: var(--ink);
+      box-shadow: none;
+    }
+
+    .lockup-card.light .lockup-script,
+    .lockup-card.light .lockup-sub,
+    .lockup-card.light .lockup-meta { color: var(--ink); }
+    .lockup-card.light .lockup-date { color: var(--olive); }
+
+    .lockup-script {
+      font-family: var(--font-script);
+      font-size: 46px;
+      color: var(--gold-soft);
+      text-align: center;
+    }
+
+    .lockup-sub {
+      font-family: var(--font-display);
+      text-align: center;
+      font-size: 58px;
+      line-height: 0.92;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+    .lockup-date, .lockup-meta {
+      text-align: center;
+    }
+
+    .lockup-date {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: 0.08em;
+      color: var(--gold-soft);
+    }
+
+    .lockup-meta {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(245,240,232,0.65);
+    }
+
+    .swatch {
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+
+    .swatch-meta {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 10px 9px;
+      background: rgba(0,0,0,0.28);
+      color: #fff;
+      line-height: 1.45;
+      letter-spacing: 0.12em;
+    }
+
+    .swatch.light .swatch-meta {
+      background: rgba(255,255,255,0.4);
+      color: #1f1b18;
+    }
+
+    .type-card {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .type-row {
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(245,240,232,0.08);
+    }
+
+    .type-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .type-meta { color: var(--gold-soft); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; }
+    .spec-display { font-family: var(--font-display); font-size: 58px; line-height: 0.95; }
+    .spec-display-sm { font-family: var(--font-display); font-size: 34px; }
+    .spec-script { font-family: var(--font-script); font-size: 56px; color: var(--gold-soft); }
+    .spec-body { font-family: var(--font-body); font-size: 16px; color: rgba(245,240,232,0.76); }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      color: var(--gold-soft);
+      background: rgba(212,184,150,0.05);
+    }
+
+    .usage-card, .rule-card {
+      padding: 28px;
+    }
+
+    .usage-card .sample-nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--gold-soft);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .usage-card .sample-button-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn {
+      min-width: 148px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border-strong);
+    }
+
+    .btn.fill {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--paper);
+    }
+
+    .rule-card ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .rule-card li {
+      padding-top: 12px;
+      border-top: 1px solid rgba(245,240,232,0.08);
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .rule-card li::before {
+      position: absolute;
+      left: 0;
+      top: 13px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .rule-card.do .rule-head { color: var(--sage); }
+    .rule-card.do li::before { content: '+'; color: var(--sage); }
+    .rule-card.dont .rule-head { color: var(--gold-soft); }
+    .rule-card.dont li::before { content: '×'; color: var(--gold-soft); }
+
+    footer {
+      padding-top: 26px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: rgba(245,240,232,0.58);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .hero-card,
+      .type-grid,
+      .usage-grid,
+      .rules-grid,
+      .grid-2,
+      .grid-3,
+      .palette {
+        grid-template-columns: 1fr;
+      }
+
+      header,
+      footer {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .meta { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      section {
+        animation: fade-up 420ms ease both;
+      }
+      section:nth-of-type(1) { animation-delay: 40ms; }
+      section:nth-of-type(2) { animation-delay: 90ms; }
+      section:nth-of-type(3) { animation-delay: 140ms; }
+      section:nth-of-type(4) { animation-delay: 190ms; }
+      section:nth-of-type(5) { animation-delay: 240ms; }
+      section:nth-of-type(6) { animation-delay: 290ms; }
+      section:nth-of-type(7) { animation-delay: 340ms; }
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="eyebrow">Wedding Brand Reference</div>
+        <div class="brand-title">Veronica &amp; Lucas</div>
+        <span class="brand-script">moody botanical keepsake</span>
+      </div>
+      <div class="meta">
+        OCTOBER 24, 2026<br>
+        WALLINGFORD, PENNSYLVANIA<br>
+        BRAND SYSTEM v1.0
+      </div>
+    </header>
+
+    <section>
+      <div class="section-label">01 — Creative direction</div>
+      <div class="hero-card">
+        <div class="hero-main">
+          <div class="hero-kicker">Together with their families</div>
+          <div class="names">Veronica<span class="amp">&amp;</span>Lucas</div>
+          <div class="date-line">October Twenty Fourth, Two Thousand Twenty Six</div>
+          <div class="place-line">Wallingford, Pennsylvania</div>
+        </div>
+        <div class="hero-side">
+          <div class="mini-note">
+            <div class="save">Save the Date</div>
+            <div class="foil">Veronica Robertson<br>&amp;<br>Lucas Franco</div>
+            <div class="small">Dark romantic • handwritten warmth • keepsake print feel</div>
+          </div>
+          <div class="mini-photo">
+            <div class="photo-box"></div>
+            <div class="photo-caption">Veronica Robertson &amp; Lucas Franco<br>10.24.2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">02 — Mood pillars</div>
+      <div class="grid-3">
+        <div class="panel">
+          <h3>Keepsake nostalgia</h3>
+          <p>The site should feel like a printed memory, not a generic wedding template. Think Polaroid framing, paper surfaces, and personal artifacts.</p>
+          <ul class="mood-list">
+            <li><strong>Visual cue</strong> Cream borders, mounted photo treatment, tactile layering</li>
+            <li><strong>Emotion</strong> Intimate, personal, collected over time</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Dark botanical romance</h3>
+          <p>Build from charcoal, moss, sage, and antique gold. The mood is evening garden, candlelit, earthy, and elegant without feeling stiff.</p>
+          <ul class="mood-list">
+            <li><strong>Visual cue</strong> Deep backgrounds, restrained glow, foliage-adjacent tones</li>
+            <li><strong>Emotion</strong> Warm, cinematic, grounded</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Handwritten warmth</h3>
+          <p>Script is an accent, not the whole system. Use it to make the site feel human and romantic, while preserving clarity for guests.</p>
+          <ul class="mood-list">
+            <li><strong>Visual cue</strong> Script moments, small flourishes, soft micro copy</li>
+            <li><strong>Emotion</strong> Personal, affectionate, lightly playful</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">03 — Lockups</div>
+      <div class="grid-2">
+        <div class="lockup-card dark">
+          <div class="lockup-script">Together with their families</div>
+          <div class="lockup-sub">Veronica<br>&amp;<br>Lucas</div>
+          <div class="lockup-date">October 24, 2026</div>
+          <div class="lockup-meta">Wallingford, Pennsylvania</div>
+        </div>
+        <div class="lockup-card light">
+          <div class="lockup-script">Save the Date</div>
+          <div class="lockup-sub">Veronica Robertson<br>&amp;<br>Lucas Franco</div>
+          <div class="lockup-date">10.24.2026</div>
+          <div class="lockup-meta">Formal invitation to follow</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">04 — Color palette</div>
+      <div class="palette">
+        <div class="swatch" style="background:#1a1a18"><div class="swatch-meta">CHARCOAL<br>#1A1A18</div></div>
+        <div class="swatch" style="background:#23211f"><div class="swatch-meta">SOFT CHARCOAL<br>#23211F</div></div>
+        <div class="swatch" style="background:#2b2825"><div class="swatch-meta">PANEL<br>#2B2825</div></div>
+        <div class="swatch" style="background:#8b9e7e"><div class="swatch-meta">SAGE<br>#8B9E7E</div></div>
+        <div class="swatch" style="background:#6b7e5e"><div class="swatch-meta">OLIVE<br>#6B7E5E</div></div>
+        <div class="swatch light" style="background:#b8956a"><div class="swatch-meta">ANTIQUE GOLD<br>#B8956A</div></div>
+        <div class="swatch light" style="background:#f5f0e8"><div class="swatch-meta">CREAM PAPER<br>#F5F0E8</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">05 — Typography</div>
+      <div class="type-grid">
+        <div class="type-card">
+          <div class="type-row">
+            <div class="type-meta">Cormorant Garamond — Display serif</div>
+            <div class="spec-display">Veronica &amp; Lucas</div>
+            <p>Use for hero names, major headings, dates, and elegant editorial moments.</p>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">Pinyon Script — Accent script</div>
+            <div class="spec-script">Together with their families</div>
+            <p>Use for selective script moments only. Never use for nav, buttons, or paragraph text.</p>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">Libre Franklin — Body and UI</div>
+            <div class="spec-body">Clear, guest friendly body copy for travel, details, FAQs, and RSVP flow.</div>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="type-row">
+            <div class="type-meta">Type pairing goals</div>
+            <div class="spec-display-sm">Elegant. Readable. Intentional.</div>
+            <div class="chip-row">
+              <span class="chip">Script for accents</span>
+              <span class="chip">Serif for romance</span>
+              <span class="chip">Sans for clarity</span>
+            </div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">Voice</div>
+            <p>Warm, personal, lightly playful, and polished. Never stiff, cheesy, or templated.</p>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">Spacing and rhythm</div>
+            <p>Generous whitespace, centered moments in the hero, compact and scannable info blocks everywhere else.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">06 — Component direction</div>
+      <div class="usage-grid">
+        <div class="usage-card">
+          <div class="sample-nav">
+            <span>Details</span>
+            <span>Travel</span>
+            <span>RSVP</span>
+            <span>Photos</span>
+          </div>
+          <h3>Navigation and CTA language</h3>
+          <p>Navigation should stay clean and guest-first. The site can be romantic, but nobody should have to decode the UI to find practical information.</p>
+          <div class="sample-button-row">
+            <div class="btn fill">RSVP</div>
+            <div class="btn ghost">View Details</div>
+          </div>
+        </div>
+        <div class="usage-card">
+          <h3>Photo presentation</h3>
+          <p>Photos should feel mounted, printed, and treasured. Use cream frames, consistent crops, and calm spacing. Avoid glossy grid-gallery energy.</p>
+          <div class="chip-row">
+            <span class="chip">Polaroid framing</span>
+            <span class="chip">Soft captions</span>
+            <span class="chip">Warm greens</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">07 — Brand rules</div>
+      <div class="rules-grid">
+        <div class="rule-card do">
+          <div class="rule-head">Do</div>
+          <h3>Keep it intimate</h3>
+          <ul>
+            <li>Use cream paper surfaces against dark charcoal backgrounds.</li>
+            <li>Let script appear as an accent, not the whole identity.</li>
+            <li>Keep RSVP and details immediately accessible.</li>
+            <li>Use muted gold sparingly for warmth and emphasis.</li>
+            <li>Favor photo treatments that feel printed and personal.</li>
+            <li>Write copy that sounds warm, direct, and guest friendly.</li>
+          </ul>
+        </div>
+        <div class="rule-card dont">
+          <div class="rule-head">Do not</div>
+          <h3>Break the mood</h3>
+          <ul>
+            <li>Do not flood the site with bright white or sterile sections.</li>
+            <li>Do not use script for navigation, forms, or body paragraphs.</li>
+            <li>Do not lean into rustic clichés or overdone floral graphics.</li>
+            <li>Do not make logistics harder to find for the sake of style.</li>
+            <li>Do not overuse glow, blur, glassmorphism, or decorative flourishes.</li>
+            <li>Do not let the site feel disconnected from the save the date.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>Veronica &amp; Lucas — Brand Reference</div>
+      <div>Moody botanical polaroid editorial • October 24, 2026</div>
+    </footer>
+  </div>
+</body>
+</html>
