@@ -8,14 +8,14 @@
 // Redirect common deep-link paths to anchor sections on the homepage
 const redirects = {
   '/rsvp': '#rsvp',
-  '/travel': '#details',
-  '/registry': '#details',
+  '/travel': '#travel',
+  '/registry': '#registry',
   '/details': '#details',
   '/faq': '#faq',
   '/photos': '#gallery',
   '/gallery': '#gallery',
   '/story': '#story',
-  '/schedule': '#details',
+  '/schedule': '#schedule',
 };
 const path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
 const anchor = redirects[path];
