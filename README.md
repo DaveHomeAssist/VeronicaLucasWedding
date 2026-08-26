@@ -23,3 +23,13 @@ python3 -m http.server 4173
 ```
 
 Then open `http://127.0.0.1:4173/`.
+
+## Tests
+
+CI (`.github/workflows/ci.yml`) runs both checks on every push and pull
+request to `main`; run them locally with plain Node (no dependencies):
+
+```bash
+node tests/site-check.mjs             # inline script parses, ids resolve, RSVP stays wired
+node --test worker/test/index.test.js # Cloudflare Worker unit tests (Notion mocked)
+```
