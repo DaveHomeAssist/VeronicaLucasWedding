@@ -1,6 +1,15 @@
 # Wedding Site Context
 
-Last updated: 2026-04-06
+Last updated: 2026-08-26 (audit remediation note below; body last fully revised 2026-04-06)
+
+## Update 2026-08-26 — RSVP audit remediation (`4e90b7c`)
+
+- RSVP submissions no longer show a false confirmation when the backend write fails: failures are surfaced honestly with an email fallback for the guest.
+- The Cloudflare Worker (`worker/`) was hardened, and repeat submissions dedupe by `responseId` so edits update in place instead of duplicating.
+- Files touched: `index.html`, `worker/src/index.js`.
+- **Pending:** the hardened Worker still needs an operator `wrangler deploy` before the live RSVP path picks up these fixes.
+
+Earlier same-cycle fix `4f19fd5`: corrected 404 deep-link map anchors (`/travel`, `/registry`, `/schedule`) and noindexed 4 orphaned homepage snapshots (audit P1-14, P2-9).
 Repo path: `/Users/daverobertson/Desktop/Code/99-VeronicaLucasWedding`
 Live site: `https://veronicaandlucas.com/`
 GitHub repo: `https://github.com/DaveHomeAssist/VeronicaLucasWedding`
