@@ -665,6 +665,22 @@
   }
   .rsvp-fallback a { color: var(--gold); }
 
+  .rsvp-privacy {
+    margin-top: 0.75rem;
+    color: var(--cream-muted);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+  .clear-data-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--gold);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
   /* ─── PAPER SURFACE VARIANT ─── */
   .section--paper {
     background: var(--paper);
@@ -690,7 +706,8 @@
   .section--paper .timeline-event { color: var(--ink-soft); }
   .section--paper .timeline-item::before { box-shadow: 0 0 0 3px var(--paper); }
   .section--paper .rsvp-helper,
-  .section--paper .rsvp-fallback { color: var(--sage); }
+  .section--paper .rsvp-fallback,
+  .section--paper .rsvp-privacy { color: var(--sage); }
 
   @media (max-width: 768px) {
     .quick-links { flex-direction: column; align-items: stretch; }
@@ -1940,6 +1957,7 @@
 
     <p class="rsvp-helper">Kindly respond by September 1, 2026.</p>
     <p class="rsvp-fallback">If you have any trouble with the form, please email <a href="mailto:thefrancos2026@gmail.com">thefrancos2026@gmail.com</a>.</p>
+    <p class="rsvp-privacy">Your answers are saved in this browser only — never on a server — so you can pick up where you left off, and they clear automatically after the wedding. On a shared or public device, you can <button type="button" class="clear-data-link" id="clearLocalData">clear your saved info</button> at any time.</p>
   </div>
 </section>
 
@@ -2089,6 +2107,10 @@ const API_BASE = ''; // e.g. 'https://wedding-api.youraccount.workers.dev'
    ═══════════════════════════════════════════════ */
 
 const STORE_KEY = 'vl_wedding';
+// Guest details (names, email, dietary/accessibility notes) should not sit
+// in a shared browser forever: everything stored under STORE_KEY is purged
+// automatically once the celebration is well past.
+const STORE_EXPIRY = Date.parse('2027-02-01T00:00:00-05:00');
 const DEFAULT_STORE = {
   version: 1,
   visitCount: 0,
@@ -2120,6 +2142,9 @@ function saveStore(data) {
 }
 
 function initStore() {
+  if (Date.now() > STORE_EXPIRY) {
+    try { localStorage.removeItem(STORE_KEY); } catch {}
+  }
   let store = getStore();
   if (!store) {
     store = { ...DEFAULT_STORE, firstVisit: new Date().toISOString(), visitCount: 1, lastVisit: new Date().toISOString() };
@@ -2577,6 +2602,14 @@ document.getElementById('editRsvp').addEventListener('click', () => {
   if (store.rsvp.plusOne === 'yes') document.getElementById('plusOneFields').classList.add('show');
   store.rsvp.submittedAt = null;
   saveStore(store);
+});
+
+/* ─── PRIVACY: CLEAR SAVED DATA ─── */
+// Removes everything this site keeps in the browser (RSVP answers, name,
+// email, dietary notes, visit history) — for guests on shared devices.
+document.getElementById('clearLocalData').addEventListener('click', () => {
+  try { localStorage.removeItem(STORE_KEY); } catch {}
+  location.reload();
 });
 
 /* ─── SHENANIGANS: INLINE FORMS ─── */
