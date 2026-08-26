@@ -1400,6 +1400,18 @@
   }
   .rsvp-status.error { color: var(--wine); }
   .rsvp-status.sending { color: var(--sage); }
+  .rsvp-status a { color: inherit; text-decoration: underline; }
+
+  /* Honeypot field: hidden from humans, tempting to bots */
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
 
   .rsvp-confirmed {
     display: none;
@@ -1911,6 +1923,11 @@
       <label for="rsvpNote">Anything Else?</label>
       <textarea id="rsvpNote" placeholder="Song requests, accessibility needs, parking questions..."></textarea>
 
+      <div class="hp-field" aria-hidden="true">
+        <label for="rsvpWebsite">Website</label>
+        <input type="text" id="rsvpWebsite" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
       <button type="button" class="rsvp-submit" id="rsvpSubmit"><span>Send RSVP</span></button>
       <p class="rsvp-status" id="rsvpStatus"></p>
     </div>
@@ -2079,6 +2096,7 @@ const DEFAULT_STORE = {
   lastVisit: null,
   guestName: null,
   guestEmail: null,
+  responseId: null,
   rsvp: { attending: null, plusOne: 'no', plusOneName: '', plusOneDiet: '', diet: '', note: '', submittedAt: null },
   shenanigans: {
     toast: { submitted: false, data: {} },
@@ -2108,6 +2126,13 @@ function initStore() {
   } else {
     store.visitCount++;
     store.lastVisit = new Date().toISOString();
+  }
+  // Stable per-browser response ID so an edited RSVP updates the same
+  // record instead of creating a duplicate.
+  if (!store.responseId) {
+    store.responseId = (window.crypto && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : 'r-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
   }
   saveStore(store);
   return store;
@@ -2467,7 +2492,7 @@ document.getElementById('rsvpSubmit').addEventListener('click', async () => {
     return;
   }
 
-  // Save locally first
+  // Save locally first (submittedAt is only set once the send succeeds)
   store.guestName = name;
   store.guestEmail = email;
   store.rsvp.attending = attending;
@@ -2476,7 +2501,6 @@ document.getElementById('rsvpSubmit').addEventListener('click', async () => {
   store.rsvp.plusOneDiet = plusOneDietField.value;
   store.rsvp.diet = dietField.value;
   store.rsvp.note = noteField.value;
-  store.rsvp.submittedAt = new Date().toISOString();
   saveStore(store);
 
   // Send to Notion via worker
@@ -2490,18 +2514,45 @@ document.getElementById('rsvpSubmit').addEventListener('click', async () => {
     plusOneDiet: plusOneDietField.value,
     diet: dietField.value,
     note: noteField.value,
+    responseId: store.responseId,
+    website: document.getElementById('rsvpWebsite')?.value || '',
   });
 
   submitBtn.disabled = false;
 
   if (!result.ok) {
+    // Do NOT pretend the RSVP went through — keep the form up and give the
+    // guest a working email fallback so no response is silently lost.
+    const lines = [
+      `Name: ${name}`,
+      email ? `Email: ${email}` : '',
+      `Attending: ${attending === 'yes' ? 'Joyfully Accepts' : 'Regretfully Declines'}`,
+      `Plus one: ${plusOne === 'yes' ? 'Yes — ' + plusOneNameField.value : 'No'}`,
+      plusOne === 'yes' && plusOneDietField.value ? `Guest dietary: ${plusOneDietField.value}` : '',
+      dietField.value ? `Dietary: ${dietField.value}` : '',
+      noteField.value ? `Note: ${noteField.value}` : '',
+    ].filter(Boolean);
+    const mailto = 'mailto:thefrancos2026@gmail.com'
+      + '?subject=' + encodeURIComponent(`Wedding RSVP — ${name}`)
+      + '&body=' + encodeURIComponent(lines.join('\n'));
     rsvpStatus.textContent = result.offline
-      ? 'Saved locally — we\'ll sync when the backend is ready.'
-      : 'Something went wrong. Your info is saved locally — try again later.';
-    rsvpStatus.className = 'rsvp-status';
+      ? 'The online RSVP isn\'t live yet, so your response was not sent — please '
+      : 'We couldn\'t send your RSVP. Your answers are saved on this device — please try again, or ';
+    const link = document.createElement('a');
+    link.href = mailto;
+    link.textContent = 'email us your RSVP instead';
+    rsvpStatus.appendChild(link);
+    rsvpStatus.appendChild(document.createTextNode('.'));
+    rsvpStatus.className = 'rsvp-status error';
+    return;
   }
 
+  store.rsvp.submittedAt = new Date().toISOString();
+  saveStore(store);
+
   // Show confirmation
+  rsvpStatus.textContent = '';
+  rsvpStatus.className = 'rsvp-status';
   rsvpForm.style.display = 'none';
   rsvpConfirmed.classList.add('show');
   const firstName = name.split(' ')[0];
