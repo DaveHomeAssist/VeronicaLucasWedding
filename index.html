@@ -1042,6 +1042,19 @@
     border-color: rgba(245,240,232,0.2);
     color: rgba(245,240,232,0.5);
   }
+  /* Send status: mirrors .rsvp-status so a failed send is never silent */
+  .shenanigan-status {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0.8rem 0 0;
+    text-align: left;
+  }
+  .shenanigan-status:empty { display: none; }
+  .shenanigan-status.error { color: var(--gold); }
+  .shenanigan-status.sending { color: rgba(245,240,232,0.6); }
+  .shenanigan-status a { color: inherit; text-decoration: underline; }
 
   /* ─── SCHEDULE ─── */
   .schedule {
@@ -2697,20 +2710,56 @@ document.querySelectorAll('.shenanigan-card').forEach(card => {
     const contentParts = [...contributionFields].map(f => f.value.trim()).filter(Boolean);
     const content = contentParts.join('\n');
     const extra = extraField ? extraField.value : '';
+    const author = authorInput?.value || 'Anonymous';
 
+    // Keep the draft locally, but "submitted" is only true once the
+    // worker acknowledges the write (same contract as the RSVP form).
+    store.shenanigans[type] = { submitted: false, data };
+    saveStore(store);
+
+    const submitBtn = card.querySelector('.form-submit');
+    let status = form.querySelector('.shenanigan-status');
+    if (!status) {
+      status = document.createElement('p');
+      status.className = 'shenanigan-status';
+      status.setAttribute('role', 'status');
+      form.appendChild(status);
+    }
+    status.textContent = 'Sending...';
+    status.className = 'shenanigan-status sending';
+    submitBtn.disabled = true;
+
+    // Send to Notion via worker
+    const result = await apiPost('/shenanigans', { author, type, content, extra });
+
+    submitBtn.disabled = false;
+
+    if (!result.ok) {
+      // Do NOT mark the card submitted for a contribution that never left
+      // the browser: keep the form open and offer a working email fallback.
+      const title = card.querySelector('h3')?.textContent || 'Shenanigans';
+      const mailto = 'mailto:thefrancos2026@gmail.com'
+        + '?subject=' + encodeURIComponent(`${title} — ${author}`)
+        + '&body=' + encodeURIComponent([`From: ${author}`, extra ? `Extra: ${extra}` : '', content].filter(Boolean).join('\n'));
+      status.textContent = result.offline
+        ? 'This form isn\'t live yet, so your entry was not sent — please '
+        : 'We couldn\'t send your entry. It\'s saved on this device — please try again, or ';
+      const link = document.createElement('a');
+      link.href = mailto;
+      link.textContent = 'email it to us instead';
+      status.appendChild(link);
+      status.appendChild(document.createTextNode('.'));
+      status.className = 'shenanigan-status error';
+      return;
+    }
+
+    status.textContent = '';
+    status.className = 'shenanigan-status';
     store.shenanigans[type] = { submitted: true, data, submittedAt: new Date().toISOString() };
     saveStore(store);
 
     card.classList.add('has-submitted');
     closeCard();
-
-    // Send to Notion via worker
-    apiPost('/shenanigans', {
-      author: authorInput?.value || 'Anonymous',
-      type,
-      content,
-      extra,
-    });
   });
 });
 
