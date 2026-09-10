@@ -180,13 +180,14 @@ The master record for every person. All other person-facing databases point here
 | *Has Dietary Need* | *formula* | — | `if(length(prop("Dietary")) > 0, true, false)` |
 | *RSVPd on Site* | *rollup* | — | Count of RSVP Response relation (0 or 1) |
 
-### 📬 RSVP Responses (existing + 1 addition)
+### 📬 RSVP Responses (existing + 2 additions)
 
 Existing schema unchanged. Add:
 
 | Property | Type | Notes |
 |----------|------|-------|
 | Guest Record | relation | → Guest List. Links digital response to master record |
+| Response ID | rich text | Set by the worker from the browser's per-device `responseId`. The worker queries this property to update an edited RSVP in place (`worker/src/index.js`, `findExistingRSVP`). If the property is missing the worker still creates rows, but every edit lands as a new row |
 
 ### 🎉 Shenanigans (existing, no changes)
 
@@ -1071,7 +1072,7 @@ These components already exist and are production-ready.
 |-----------|----------|--------|
 | Wedding site | [veronicaandlucas.com](https://veronicaandlucas.com) | Live |
 | GitHub repo | `DaveHomeAssist/VeronicaLucasWedding` | Active |
-| RSVP Responses DB | Notion (existing) | Schema matches worker |
+| RSVP Responses DB | Notion (existing) | Worker also needs the `Response ID` rich text property (§3) for update-in-place; without it edits duplicate |
 | Shenanigans DB | Notion (existing) | Schema matches worker |
 | Cloudflare Worker code | `worker/src/index.js` | Ready, not deployed |
 | Worker config | `worker/wrangler.toml` | Configured |
@@ -1084,5 +1085,8 @@ These components already exist and are production-ready.
 cd worker
 npx wrangler secret put NOTION_API_KEY   # paste Notion integration token
 npx wrangler deploy                       # deploys to Cloudflare
-# Copy the URL → update API_BASE in index.html line 1531
+# Copy the URL → set `const API_BASE = '...'` in index.html (search for API_BASE),
+# commit and push: GitHub Pages serves index.html, and with API_BASE empty the
+# live form never calls the worker (it falls back to a mailto).
+# `node tests/site-check.mjs` prints whether API_BASE is set.
 ```
