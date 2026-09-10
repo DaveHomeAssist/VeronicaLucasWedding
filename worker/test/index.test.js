@@ -179,6 +179,58 @@ test('an RSVP whose Response ID already exists updates the page in place', async
   assert.equal(patch.body.properties['Attending'].select.name, 'Regretfully Declines');
 });
 
+test('a Notion update failure surfaces as 502, not a fake success', async () => {
+  queryResults = [{ id: 'existing-page-id' }];
+  notionFailures.add('v1/pages/existing-page-id');
+  const res = await worker.fetch(makeRequest('/rsvp', { body: validRsvp }), env);
+  assert.equal(res.status, 502);
+  const body = await res.json();
+  assert.equal(body.success, undefined);
+  assert.ok(body.error);
+});
+
+test('when the Response ID lookup fails the RSVP is still created, tagged with its Response ID', async () => {
+  // e.g. the Notion database has no "Response ID" property yet.
+  notionFailures.add('/databases/');
+  const res = await worker.fetch(makeRequest('/rsvp', { body: validRsvp }), env);
+  assert.equal(res.status, 200);
+  const body = await res.json();
+  assert.equal(body.success, true);
+  assert.equal(body.updated, undefined);
+  const create = notionCalls[1];
+  assert.equal(create.init.method, 'POST');
+  assert.match(create.url, /v1\/pages$/);
+  assert.equal(create.body.properties['Response ID'].rich_text[0].text.content, validRsvp.responseId);
+});
+
+test('when the create with Response ID is rejected the RSVP is retried without it and not lost', async () => {
+  let createAttempts = 0;
+  const baseFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).endsWith('/v1/pages') && init?.method === 'POST') {
+      createAttempts += 1;
+      if (createAttempts === 1) {
+        notionCalls.push({ url: String(url), init, body: JSON.parse(init.body) });
+        return new Response(JSON.stringify({ message: 'Response ID is not a property' }), { status: 400 });
+      }
+    }
+    return baseFetch(url, init);
+  };
+  try {
+    const res = await worker.fetch(makeRequest('/rsvp', { body: validRsvp }), env);
+    assert.equal(res.status, 200);
+    assert.equal((await res.json()).success, true);
+    assert.equal(createAttempts, 2);
+    const first = notionCalls[1];
+    const retry = notionCalls[2];
+    assert.ok(first.body.properties['Response ID']);
+    assert.equal(retry.body.properties['Response ID'], undefined);
+    assert.equal(retry.body.properties['Guest Name'].title[0].text.content, 'Test Guest');
+  } finally {
+    globalThis.fetch = baseFetch;
+  }
+});
+
 test('a Notion create failure surfaces as 502, not a fake success', async () => {
   notionFailures.add('api.notion.com/v1/pages');
   const res = await worker.fetch(makeRequest('/rsvp', { body: { ...validRsvp, responseId: '' } }), env);
