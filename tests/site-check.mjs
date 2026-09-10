@@ -8,7 +8,8 @@
  * form silently disconnected from its script):
  *   1. every inline <script> in index.html must parse as valid JavaScript;
  *   2. every element id the script looks up must exist in the markup;
- *   3. the RSVP form must stay wired to the worker endpoints;
+ *   3. the RSVP form must stay wired to the worker endpoints, and both
+ *      forms confirm only after the worker acknowledged the write;
  *   4. ids must be unique so getElementById stays deterministic.
  */
 
@@ -66,6 +67,37 @@ if (!apiBaseMatch) {
   );
 }
 
+// ── 3b. "Submitted" must mean the worker acknowledged the write ──────
+// Guards the false-confirmation class (audit C-1): the browser may only
+// record an RSVP or shenanigan as submitted after apiPost() resolved ok.
+function handlerBody(endpoint) {
+  const call = allScript.indexOf(`apiPost('${endpoint}'`);
+  if (call < 0) return null;
+  return { start: allScript.lastIndexOf('addEventListener(', call), call };
+}
+{
+  const rsvp = handlerBody('/rsvp');
+  if (rsvp) {
+    const awaited = /=\s*await\s+apiPost\(\s*'\/rsvp'/.test(allScript);
+    const okCheck = allScript.indexOf('if (!result.ok)', rsvp.call);
+    const confirm = allScript.indexOf('store.rsvp.submittedAt = new Date', rsvp.start);
+    if (!awaited) failures.push("RSVP submit does not await apiPost('/rsvp') — the result is never checked.");
+    if (okCheck < 0 || confirm < 0 || confirm < okCheck) {
+      failures.push('RSVP marks submittedAt before checking result.ok — a failed send would show a confirmation.');
+    }
+  }
+  const shen = handlerBody('/shenanigans');
+  if (shen) {
+    const awaited = /=\s*await\s+apiPost\(\s*'\/shenanigans'/.test(allScript);
+    const okCheck = allScript.indexOf('if (!result.ok)', shen.call);
+    const confirm = allScript.indexOf('submitted: true', shen.start);
+    if (!awaited) failures.push("Shenanigans submit does not await apiPost('/shenanigans') — the result is never checked.");
+    if (okCheck < 0 || confirm < 0 || confirm < okCheck) {
+      failures.push('Shenanigans marks the card submitted before checking result.ok — a failed send would show "Submitted".');
+    }
+  }
+}
+
 // ── 4. Element ids must be unique ────────────────────────────────────
 const idCounts = new Map();
 for (const [, id] of markup.matchAll(/\bid="([^"]+)"/g)) {
@@ -81,7 +113,10 @@ if (failures.length > 0) {
   for (const f of failures) console.error(`FAIL: ${f}`);
   process.exit(1);
 }
+const live = apiBaseMatch && apiBaseMatch[1] !== '';
 console.log(
   `OK: ${scripts.length} inline script(s) parse, ${referencedIds.size} referenced ids resolve, `
-    + 'RSVP + shenanigans endpoints wired, all ids unique.',
+    + 'RSVP + shenanigans post to the worker and confirm only on a server ack '
+    + (live ? `(API_BASE=${apiBaseMatch[1]}), ` : '(API_BASE empty: NOT live, email fallback only), ')
+    + 'all ids unique.',
 );

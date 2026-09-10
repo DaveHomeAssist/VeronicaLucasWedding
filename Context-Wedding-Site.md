@@ -8,6 +8,8 @@ Last updated: 2026-08-26 (audit remediation note below; body last fully revised 
 - The Cloudflare Worker (`worker/`) was hardened, and repeat submissions dedupe by `responseId` so edits update in place instead of duplicating.
 - Files touched: `index.html`, `worker/src/index.js`.
 - **Pending:** the hardened Worker still needs an operator `wrangler deploy` before the live RSVP path picks up these fixes.
+- **Also pending (2026-09-10 audit):** `const API_BASE = ''` in `index.html` has been empty since `d0d77b1`, so the deployed page has never called any Worker; every RSVP and shenanigans submit currently takes the email fallback. Go live needs both the Worker deploy and `API_BASE` set in `index.html`. `node tests/site-check.mjs` reports which state the page is in.
+- Note: `older/2index.html` is tracked and deployed (noindexed) since `4f19fd5`; the "untracked" statements in the body below are stale. The deployed snapshots `index-v2.html`, `index-v1-backup.html` and `index copy.html` still contain the pre `4e90b7c` RSVP code that confirms without a server ack.
 
 Earlier same-cycle fix `4f19fd5`: corrected 404 deep-link map anchors (`/travel`, `/registry`, `/schedule`) and noindexed 4 orphaned homepage snapshots (audit P1-14, P2-9).
 Repo path: `/Users/daverobertson/Desktop/Code/99-VeronicaLucasWedding`
