@@ -4,17 +4,19 @@ Static wedding site for `veronicaandlucas.com`.
 
 ## Files
 
-- `index.html`: page structure and copy
-- `styles.css`: visual design, layout, and responsive behavior
-- `script.js`: countdown, mobile navigation, and add-to-calendar button
+- `index.html`: the one deployed page. Structure, copy, CSS and JS are all inline; this is the only file GitHub Pages serves as the site.
+- `worker/`: Cloudflare Worker (`wedding-api`) that receives `/rsvp` and `/shenanigans` POSTs and writes to Notion. See `docs/wedding-ops-system-spec.md` for the schema and deploy steps.
+- `tests/`: static behavior checks for `index.html`.
 - `images/`: photo assets used by the site
+- `styles.css`: legacy stylesheet from an earlier split file layout; not referenced by `index.html`.
+- `index-v2.html`, `index-v1-backup.html`, `index copy.html`, `older/2index.html`: older homepage snapshots (noindexed). Not canonical; they predate the RSVP fixes in `index.html`.
 
-## Next content updates
+## RSVP go live
 
-1. Replace the location card with the real venue name and address.
-2. Add hotel block and travel details in the overview and updates sections.
-3. Add registry links when ready.
-4. Replace the current save-the-date phase with a real RSVP section once there is a backend endpoint.
+The RSVP and shenanigans forms only reach Notion once both are done:
+
+1. `cd worker && npx wrangler secret put NOTION_API_KEY && npx wrangler deploy`
+2. Set `const API_BASE = 'https://<worker url>'` in `index.html` and push. While it is empty the forms do not call the worker and offer an email fallback instead.
 
 ## Local preview
 
