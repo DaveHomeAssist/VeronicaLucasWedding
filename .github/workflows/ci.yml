@@ -20,5 +20,8 @@ jobs:
       - name: Site behavior checks
         run: node tests/site-check.mjs
 
+      - name: Accessibility and privacy static checks
+        run: node tests/audit-check.mjs
+
       - name: Worker unit tests
         run: node --test worker/test/index.test.js

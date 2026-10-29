@@ -4,12 +4,9 @@
  * No dependencies — runs with plain Node:
  *   node tests/site-check.mjs
  *
- * Guards the class of failure the 2026-08-24 audit found (a visible core
- * form silently disconnected from its script):
  *   1. every inline <script> in index.html must parse as valid JavaScript;
  *   2. every element id the script looks up must exist in the markup;
- *   3. the RSVP form must stay wired to the worker endpoints, and both
- *      forms confirm only after the worker acknowledged the write;
+ *   3. RSVP and shenanigans collection stays closed (the wedding is over);
  *   4. ids must be unique so getElementById stays deterministic.
  */
 
@@ -49,53 +46,25 @@ for (const id of referencedIds) {
   }
 }
 
-// ── 3. The RSVP form must stay wired to the worker ───────────────────
+// ── 3. Collection stays closed now that the wedding is over ──────────
 const allScript = scripts.join('\n');
-if (!/apiPost\(\s*'\/rsvp'/.test(allScript)) {
-  failures.push("The RSVP submit handler no longer posts to '/rsvp' — the form is disconnected.");
+if (/apiPost\(/.test(allScript)) {
+  failures.push('index.html still posts form data. RSVP and shenanigans collection should stay closed.');
 }
-if (!/apiPost\(\s*'\/shenanigans'/.test(allScript)) {
-  failures.push("The shenanigans submit handler no longer posts to '/shenanigans'.");
+if (/localStorage\.setItem/.test(allScript)) {
+  failures.push('index.html still calls localStorage.setItem. Saved guest details should be cleared, not written.');
 }
-const apiBaseMatch = allScript.match(/const API_BASE = '([^']*)'/);
-if (!apiBaseMatch) {
-  failures.push('API_BASE is no longer defined in index.html.');
-} else if (apiBaseMatch[1] === '') {
-  warnings.push(
-    'API_BASE is empty: RSVP submissions fall back to the email path. '
-      + 'Deploy the worker and set API_BASE to go live (see worker/wrangler.toml).',
-  );
+if (!/localStorage\.removeItem/.test(allScript)) {
+  failures.push('index.html no longer removes saved guest details from localStorage.');
 }
-
-// ── 3b. "Submitted" must mean the worker acknowledged the write ──────
-// Guards the false-confirmation class (audit C-1): the browser may only
-// record an RSVP or shenanigan as submitted after apiPost() resolved ok.
-function handlerBody(endpoint) {
-  const call = allScript.indexOf(`apiPost('${endpoint}'`);
-  if (call < 0) return null;
-  return { start: allScript.lastIndexOf('addEventListener(', call), call };
+if (/id="rsvpForm"|id="rsvpSubmit"|class="shenanigan-form"|role="button"/.test(markup)) {
+  failures.push('The RSVP form or a guest-book role=button is back in the page.');
 }
-{
-  const rsvp = handlerBody('/rsvp');
-  if (rsvp) {
-    const awaited = /=\s*await\s+apiPost\(\s*'\/rsvp'/.test(allScript);
-    const okCheck = allScript.indexOf('if (!result.ok)', rsvp.call);
-    const confirm = allScript.indexOf('store.rsvp.submittedAt = new Date', rsvp.start);
-    if (!awaited) failures.push("RSVP submit does not await apiPost('/rsvp') — the result is never checked.");
-    if (okCheck < 0 || confirm < 0 || confirm < okCheck) {
-      failures.push('RSVP marks submittedAt before checking result.ok — a failed send would show a confirmation.');
-    }
-  }
-  const shen = handlerBody('/shenanigans');
-  if (shen) {
-    const awaited = /=\s*await\s+apiPost\(\s*'\/shenanigans'/.test(allScript);
-    const okCheck = allScript.indexOf('if (!result.ok)', shen.call);
-    const confirm = allScript.indexOf('submitted: true', shen.start);
-    if (!awaited) failures.push("Shenanigans submit does not await apiPost('/shenanigans') — the result is never checked.");
-    if (okCheck < 0 || confirm < 0 || confirm < okCheck) {
-      failures.push('Shenanigans marks the card submitted before checking result.ok — a failed send would show "Submitted".');
-    }
-  }
+if (!/cleared when this page loads/.test(markup)) {
+  failures.push('The privacy note no longer says saved details are cleared when the page loads.');
+}
+if (/2027-02-01/.test(html)) {
+  failures.push('index.html still mentions the old 2027-02-01 clear-out date.');
 }
 
 // ── 4. Element ids must be unique ────────────────────────────────────
@@ -113,10 +82,7 @@ if (failures.length > 0) {
   for (const f of failures) console.error(`FAIL: ${f}`);
   process.exit(1);
 }
-const live = apiBaseMatch && apiBaseMatch[1] !== '';
 console.log(
   `OK: ${scripts.length} inline script(s) parse, ${referencedIds.size} referenced ids resolve, `
-    + 'RSVP + shenanigans post to the worker and confirm only on a server ack '
-    + (live ? `(API_BASE=${apiBaseMatch[1]}), ` : '(API_BASE empty: NOT live, email fallback only), ')
-    + 'all ids unique.',
+    + 'RSVP and shenanigans collection stays closed, saved browser details are cleared, all ids unique.',
 );

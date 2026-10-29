@@ -251,6 +251,26 @@ test('an unknown shenanigan type is rejected with 400', async () => {
   assert.equal(res.status, 400);
 });
 
+test('Notion failures log a status code and not guest fields or the response body', async () => {
+  const errors = [];
+  const original = console.error;
+  console.error = (...args) => { errors.push(args.join(' ')); };
+  try {
+    notionFailures.add('api.notion.com/v1/pages');
+    const res = await worker.fetch(makeRequest('/rsvp', { body: { ...validRsvp, responseId: '' } }), env);
+    assert.equal(res.status, 502);
+    assert.ok(errors.some((line) => /HTTP 500/.test(line)));
+    const logged = errors.join('\n');
+    assert.equal(logged.includes('mock notion error'), false);
+    assert.equal(logged.includes('Test Guest'), false);
+    assert.equal(logged.includes('guest@example.com'), false);
+    assert.equal(logged.includes('vegetarian'), false);
+    assert.equal(logged.includes('So excited'), false);
+  } finally {
+    console.error = original;
+  }
+});
+
 test('a valid shenanigan writes to the Shenanigans database with the mapped type', async () => {
   const res = await worker.fetch(makeRequest('/shenanigans', { body: { author: 'Best Friend', type: 'songs', content: 'Play the classics', extra: '' } }), env);
   assert.equal(res.status, 200);
