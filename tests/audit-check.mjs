@@ -10,6 +10,7 @@
  */
 
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -168,6 +169,52 @@ if (/role="button"/.test(html)) {
 if (/2027-02-01/.test(html)) {
   failures.push('The old February 2027 clear-out date is still in index.html.');
 }
+if (/style\s*=/.test(html.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<script[\s\S]*?<\/script>/gi, ''))) {
+  failures.push('index.html still has an inline style attribute.');
+}
+if (/unsafe-inline/.test(html)) {
+  failures.push("index.html CSP still allows 'unsafe-inline'.");
+}
+
+function cspHash(source) {
+  return `'sha256-${createHash('sha256').update(source, 'utf8').digest('base64')}'`;
+}
+function inlineBlocks(source, tag) {
+  return [...source.matchAll(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`, 'g'))].map((match) => match[1]);
+}
+function expectPolicy(file, source, checks) {
+  const meta = source.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/);
+  if (!meta) {
+    failures.push(`${file} is missing a Content-Security-Policy meta tag.`);
+    return;
+  }
+  const policy = meta[1];
+  const head = source.slice(0, source.indexOf('</head>'));
+  const policyAt = head.indexOf('Content-Security-Policy');
+  const styleAt = head.indexOf('<style');
+  const scriptAt = head.indexOf('<script');
+  if (styleAt !== -1 && policyAt > styleAt) failures.push(`${file} CSP meta is after a style element.`);
+  if (scriptAt !== -1 && policyAt > scriptAt) failures.push(`${file} CSP meta is after a script element.`);
+  for (const tag of ['style', 'script']) {
+    for (const block of inlineBlocks(source, tag)) {
+      const token = cspHash(block);
+      if (!policy.includes(token)) failures.push(`${file} CSP is missing ${tag} hash ${token}.`);
+    }
+  }
+  for (const piece of checks) {
+    if (!policy.includes(piece)) failures.push(`${file} CSP is missing ${piece}.`);
+  }
+}
+expectPolicy('index.html', html, ["default-src 'none'", "font-src 'self'", "img-src 'self' data:", "connect-src 'none'", "form-action 'none'", 'upgrade-insecure-requests']);
+const page404 = readFileSync(join(root, '404.html'), 'utf8');
+expectPolicy('404.html', page404, ["default-src 'none'", "img-src 'self' data:", "form-action 'none'"]);
+if (/unsafe-inline/.test(page404)) failures.push("404.html CSP still allows 'unsafe-inline'.");
+for (const redirect of ['rsvp.html', 'registry.html', 'travel.html']) {
+  const redirectHtml = readFileSync(join(root, redirect), 'utf8');
+  if (/Content-Security-Policy/.test(redirectHtml)) {
+    failures.push(`${redirect} has a CSP meta tag; these redirects do not need one.`);
+  }
+}
 
 const markup = html
   .replace(/<script[\s\S]*?<\/script>/gi, '')
@@ -236,7 +283,6 @@ for (const file of ['index-v1-backup.html', 'index-v2.html', 'index copy.html', 
   }
 }
 
-const page404 = readFileSync(join(root, '404.html'), 'utf8');
 if (page404.includes('#B8956A')) failures.push('404.html still uses the low-contrast gold link color.');
 
 if (failures.length) {

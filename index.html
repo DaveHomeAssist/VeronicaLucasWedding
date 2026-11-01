@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-iQ9rircTBDUKpZ/tSN66VQtUNdzdS3m/5T8QEfTqIF4='; style-src 'self' 'sha256-dXkojNaW2yRjMJRz/7VeET0YXdX4SrZc/uyhQTTfC04='; font-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Veronica & Lucas — October 24, 2026</title>
 <meta name="description" content="Veronica and Lucas were married on October 24, 2026. Wedding details, photos, and a note of thanks.">
@@ -721,6 +722,19 @@
     color: var(--cream-muted);
     margin-bottom: 2rem;
     line-height: 1.8;
+  }
+  .story-follow { margin-top: 1.5rem; }
+  .section-lede {
+    max-width: 40rem;
+    margin-bottom: 2rem;
+  }
+  .divider-front {
+    position: relative;
+    z-index: 2;
+  }
+  .section-front {
+    position: relative;
+    z-index: 2;
   }
 
   .quick-links {
@@ -1704,6 +1718,10 @@
     font-size: 1.3rem;
     font-style: normal;
   }
+  .footer-mark {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
   footer .footer-date {
     font-family: var(--font-body);
     font-size: 0.75rem;
@@ -1884,7 +1902,7 @@
     <p>
       Some love stories announce themselves. This one snuck up on everyone — including them. The full version involves questionable timing, undeniable chemistry, and at least one moment that made the whole room say <em>"finally."</em>
     </p>
-    <p style="margin-top: 1.5rem;">
+    <p class="story-follow">
       We're getting the couple to sit still long enough to write it down. Check back soon for the unabridged edition — or just ask them at the reception after a glass of champagne.
     </p>
   </div>
@@ -2025,7 +2043,7 @@
   <div class="reveal">
     <p class="section-label">Plan Your Trip</p>
     <h2 class="section-title">Travel & Parking</h2>
-    <p style="max-width: 40rem; margin-bottom: 2rem;">Getting to Wallingford should be straightforward whether you're driving in, taking the train, or flying into Philadelphia.</p>
+    <p class="section-lede">Getting to Wallingford should be straightforward whether you're driving in, taking the train, or flying into Philadelphia.</p>
     <div class="details-grid">
       <div class="detail-card">
         <p class="detail-meta">Venue Address</p>
@@ -2099,12 +2117,12 @@
 </section>
 
 <!-- ─── REGISTRY ─── -->
-<div class="divider" style="position: relative; z-index: 2;"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
-<section id="registry" class="section--paper" style="position: relative; z-index: 2;">
+<div class="divider divider-front"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
+<section id="registry" class="section--paper section-front">
   <div class="reveal">
     <p class="section-label">Gifts</p>
     <h2 class="section-title">Registry</h2>
-    <p style="max-width: 40rem; margin-bottom: 2rem;">Your presence is truly the best present. If you'd still like to give a gift, we've put together a registry on Zola.</p>
+    <p class="section-lede">Your presence is truly the best present. If you'd still like to give a gift, we've put together a registry on Zola.</p>
     <div class="details-grid">
       <div class="detail-card">
         <p class="detail-meta">Registry Links</p>
@@ -2117,8 +2135,8 @@
 </section>
 
 <!-- ─── FAQ ─── -->
-<div class="divider" style="position: relative; z-index: 2;"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
-<section id="faq" class="section--paper" style="position: relative; z-index: 2;">
+<div class="divider divider-front"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
+<section id="faq" class="section--paper section-front">
   <div class="reveal">
     <p class="section-label">Questions</p>
     <h2 class="section-title">FAQ</h2>
@@ -2159,7 +2177,7 @@
 <!-- ─── FOOTER ─── -->
 <footer>
   <img class="footer-monogram" src="images/ornaments/monogram-vl.png" alt="V & L monogram" width="120" height="120" loading="lazy">
-  <p><span style="font-family:var(--font-display);font-style:italic;">V &amp; L</span> — <span class="footer-tagline">forever starts here</span></p>
+  <p><span class="footer-mark">V &amp; L</span> — <span class="footer-tagline">forever starts here</span></p>
   <p class="footer-date">October 24, 2026 &middot; Wallingford, PA</p>
   <p class="footer-contact">Questions? <a class="email-link" href="#privacy">Email us</a></p>
 </footer>
