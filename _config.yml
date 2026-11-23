@@ -1,0 +1,23 @@
+# GitHub Pages builds this repository with Jekyll. Only the guest site is
+# published. Internal notes, the worker, tests, and retired snapshots stay
+# in git and are left out of the site. Setting exclude replaces Jekyll's
+# defaults, so those defaults are repeated here.
+exclude:
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - AGENTS.md
+  - Context-Wedding-Site.md
+  - README.md
+  - wedding_brand_reference_html.html
+  - index-v1-backup.html
+  - index-v2.html
+  - "index copy.html"
+  - docs
+  - worker
+  - tests
+  - older

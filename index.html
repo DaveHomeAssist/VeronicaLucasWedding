@@ -2,18 +2,82 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-iQ9rircTBDUKpZ/tSN66VQtUNdzdS3m/5T8QEfTqIF4='; style-src 'self' 'sha256-dXkojNaW2yRjMJRz/7VeET0YXdX4SrZc/uyhQTTfC04='; font-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Veronica & Lucas — October 24, 2026</title>
-<meta name="description" content="Veronica and Lucas are getting married on October 24, 2026. Wedding details, photos, RSVP, and updates all in one place.">
+<meta name="description" content="Veronica and Lucas were married on October 24, 2026. Wedding details, photos, and a note of thanks.">
 <meta property="og:title" content="Veronica & Lucas — October 24, 2026">
-<meta property="og:description" content="Wedding details, photos, RSVP, and updates for Veronica and Lucas.">
+<meta property="og:description" content="Wedding details, photos, and a note of thanks for Veronica and Lucas.">
 <meta property="og:image" content="https://veronicaandlucas.com/images/00014-Veronica.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://veronicaandlucas.com">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1a18'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia, serif' font-size='28' font-style='italic' fill='%23d4b896'%3EV%26L%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2712%27%20fill%3D%27%231a1a18%27%2F%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2754%25%27%20text-anchor%3D%27middle%27%20dominant-baseline%3D%27middle%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2728%27%20font-style%3D%27italic%27%20fill%3D%27%23d4b896%27%3EV%26amp%3BL%3C%2Ftext%3E%3C%2Fsvg%3E">
 <style>
+  /* Self-hosted OFL faces (Cormorant Garamond, Libre Franklin, Pinyon Script), latin subset. */
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-400-italic.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-500-italic.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-300-normal.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-400-normal.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-500-normal.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('fonts/libre-franklin-300-normal.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/libre-franklin-400-normal.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('fonts/libre-franklin-500-normal.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Pinyon Script';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/pinyon-script-400-normal.woff2') format('woff2');
+  }
+
   :root {
     --bg: #1A1917;
     --bg-elevated: #242220;
@@ -27,6 +91,11 @@
     --gold: #B8956A;
     --gold-light: #D4B896;
     --gold-muted: rgba(184,149,106,0.35);
+    /* Text on cream. The decorative gold and sage tokens are too light for small type. */
+    --gold-ink: #6B4423;
+    --sage-ink: #4A5A3E;
+    --focus-ring: #F5F0E8;
+    --focus-contrast: #6B4423;
     --sage: #8B9E7E;
     --sage-light: #A3B595;
     --sage-muted: rgba(122,139,111,0.4);
@@ -46,7 +115,36 @@
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    z-index: 300;
+    padding: 0.75rem 1rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transform: translateY(-150%);
+  }
+  .skip-link:focus {
+    transform: translateY(0.75rem);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--focus-contrast);
+  }
 
   body {
     font-family: var(--font-body);
@@ -77,16 +175,18 @@
   }
   nav a {
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     text-decoration: none;
-    color: rgba(245, 240, 232, 0.84);
-    opacity: 0.82;
+    color: rgba(245, 240, 232, 0.92);
     transition: opacity 0.25s ease, color 0.25s ease;
     position: relative;
-    padding-bottom: 4px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 4px 0;
   }
   nav.scrolled a { color: var(--cream); }
   nav a::after {
@@ -102,8 +202,9 @@
   nav a:hover, nav a.nav-active { opacity: 1; color: var(--gold-light); }
   nav a:hover::after, nav a.nav-active::after { width: 100%; left: 0; }
   nav a:focus-visible {
-    outline: 2px solid rgba(212, 184, 150, 0.75);
-    outline-offset: 8px;
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--focus-contrast);
   }
   /* RSVP urgency pulse in nav */
   nav a.rsvp-urgent {
@@ -117,22 +218,23 @@
   .nav-toggle {
     display: none;
     background: none; border: none; cursor: pointer;
-    width: 28px; height: 20px;
+    width: 44px; height: 44px;
     position: relative;
     z-index: 101;
+    padding: 0;
   }
   .nav-toggle span {
-    display: block; width: 100%; height: 2px;
+    display: block; width: 22px; height: 2px;
     background: var(--cream);
-    position: absolute; left: 0;
-    transition: all 0.3s;
+    position: absolute; left: 11px;
+    transition: top 0.3s, transform 0.3s, opacity 0.3s;
   }
-  .nav-toggle span:nth-child(1) { top: 0; }
-  .nav-toggle span:nth-child(2) { top: 9px; }
-  .nav-toggle span:nth-child(3) { top: 18px; }
-  .nav-toggle.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+  .nav-toggle span:nth-child(1) { top: 14px; }
+  .nav-toggle span:nth-child(2) { top: 21px; }
+  .nav-toggle span:nth-child(3) { top: 28px; }
+  .nav-toggle.open span:nth-child(1) { top: 21px; transform: rotate(45deg); }
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+  .nav-toggle.open span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
 
   .nav-links { display: contents; }
 
@@ -156,7 +258,15 @@
       box-shadow: -10px 0 30px rgba(0,0,0,0.3);
     }
     .nav-links.open { right: 0; }
-    .nav-links a { font-size: 0.85rem; opacity: 0.8; color: var(--cream); }
+    .nav-links a {
+      font-size: 0.85rem;
+      opacity: 1;
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0.25rem 0;
+    }
     .nav-brand-mobile {
       font-family: var(--font-display);
       font-style: italic;
@@ -270,7 +380,7 @@
     font-style: normal;
     display: block;
     font-size: 0.5em;
-    color: var(--gold);
+    color: var(--gold-ink);
     margin: 0.2em 0;
   }
 
@@ -279,7 +389,7 @@
     font-size: 1.1rem;
     font-weight: 300;
     letter-spacing: 0.12em;
-    color: var(--gold);
+    color: var(--gold-ink);
     margin-top: 1.8rem;
     opacity: 0;
     animation: fadeUp 1s 1s forwards;
@@ -287,8 +397,8 @@
 
   .hero-location {
     font-family: var(--font-body);
-    font-size: 0.55rem;
-    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-soft);
     margin-top: 0.8rem;
@@ -298,10 +408,10 @@
 
   .hero-local-time {
     font-family: var(--font-body);
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(44,40,37,0.6);
+    color: var(--ink-soft);
     margin-top: 0.6rem;
     opacity: 0;
     animation: fadeUp 1s 1.2s forwards;
@@ -398,11 +508,20 @@
 
   .countdown-label {
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.52);
+    color: rgba(245,240,232,0.92);
     margin-top: 0.4rem;
+  }
+  .countdown-done {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--gold-light);
+    margin: 0;
+    padding: 0.35rem 1.25rem;
+    line-height: 1.35;
   }
 
   /* Hero CTA buttons */
@@ -416,8 +535,8 @@
 
   .hero-cta {
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 500;
     text-decoration: none;
@@ -432,13 +551,14 @@
 
   .hero-cta-primary {
     background: var(--gold);
-    color: var(--cream);
+    color: var(--ink);
     border: 1px solid var(--gold);
   }
 
   .hero-cta-primary:hover {
     background: var(--gold-light);
     border-color: var(--gold-light);
+    color: var(--ink);
   }
 
   .hero-cta-secondary {
@@ -474,11 +594,15 @@
     opacity: 0;
     animation: fadeUp 1s 1.8s forwards;
     cursor: pointer;
-  }
-
-  .scroll-hint:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 8px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
   }
 
   .scroll-hint span {
@@ -569,10 +693,10 @@
   }
   .section-label {
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.35em;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--gold-muted);
+    color: var(--gold-light);
     margin-bottom: 1.5rem;
   }
   .section-title {
@@ -598,6 +722,19 @@
     color: var(--cream-muted);
     margin-bottom: 2rem;
     line-height: 1.8;
+  }
+  .story-follow { margin-top: 1.5rem; }
+  .section-lede {
+    max-width: 40rem;
+    margin-bottom: 2rem;
+  }
+  .divider-front {
+    position: relative;
+    z-index: 2;
+  }
+  .section-front {
+    position: relative;
+    z-index: 2;
   }
 
   .quick-links {
@@ -668,7 +805,7 @@
   .rsvp-privacy {
     margin-top: 0.75rem;
     color: var(--cream-muted);
-    font-size: 0.85rem;
+    font-size: 1rem;
     line-height: 1.7;
   }
   .clear-data-link {
@@ -694,20 +831,27 @@
     margin: 0 auto;
     padding: 0 2rem;
   }
-  .section--paper .section-label { color: var(--sage); }
+  .section--paper .section-label { color: var(--sage-ink); }
   .section--paper .section-title { color: var(--ink); }
   .section--paper p { color: var(--ink-soft); }
-  .section--paper .detail-meta { color: var(--sage); }
+  .section--paper .detail-meta { color: var(--sage-ink); }
   .section--paper .section-intro { color: var(--ink-soft); }
   .section--paper .subsection-title { color: var(--ink); }
   .section--paper .detail-card h3 { color: var(--ink); }
   .section--paper .faq-item p { color: var(--ink-soft); }
-  .section--paper .timeline-time { color: var(--sage); }
+  .section--paper .timeline-time { color: var(--sage-ink); }
   .section--paper .timeline-event { color: var(--ink-soft); }
   .section--paper .timeline-item::before { box-shadow: 0 0 0 3px var(--paper); }
   .section--paper .rsvp-helper,
   .section--paper .rsvp-fallback,
-  .section--paper .rsvp-privacy { color: var(--sage); }
+  .section--paper .rsvp-privacy { color: var(--sage-ink); }
+  .section--paper .faq-item a {
+    color: var(--gold-ink);
+    display: inline-block;
+    min-height: 24px;
+    padding: 0.1rem 0;
+  }
+  .nowrap-link { white-space: nowrap; }
 
   @media (max-width: 768px) {
     .quick-links { flex-direction: column; align-items: stretch; }
@@ -742,8 +886,7 @@
   .info-pending {
     font-family: var(--font-display);
     font-style: italic;
-    color: var(--sage);
-    opacity: 0.7;
+    color: var(--sage-ink);
   }
 
   /* ─── DETAILS GRID ─── */
@@ -792,31 +935,45 @@
     line-height: 1.7;
   }
   .detail-card a {
-    color: var(--gold);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(184,149,106,0.3);
+    color: var(--gold-ink);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    display: inline-block;
+    min-height: 24px;
+    line-height: 1.5;
   }
-  .detail-card a:hover { border-bottom-color: var(--gold); }
+  .detail-card a:hover { text-decoration-thickness: 2px; }
   .detail-card .detail-meta {
     font-family: var(--font-body);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--sage);
+    color: var(--sage-ink);
     margin-bottom: 0.6rem;
+  }
+  .detail-aside {
+    font-size: 0.9rem;
+    color: var(--sage-ink);
+  }
+  .detail-kicker {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
   }
   /* Add-to-calendar button */
   .add-to-cal {
     display: inline-flex; align-items: center;
     margin-top: 1rem;
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 500;
     padding: 0.6rem 1.2rem;
-    border: 1px solid var(--gold-light);
-    color: var(--gold);
+    border: 1px solid var(--gold-ink);
+    color: var(--gold-ink);
     background: transparent;
     text-decoration: none;
     cursor: pointer;
@@ -825,20 +982,20 @@
   }
   .add-to-cal:hover {
     background: var(--gold);
-    color: var(--cream);
+    color: var(--ink);
   }
   /* Detail action links */
   .detail-action {
     display: inline-flex; align-items: center;
     margin-top: 1rem;
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 500;
     padding: 0.6rem 1.2rem;
-    border: 1px solid var(--gold-light);
-    color: var(--gold);
+    border: 1px solid var(--gold-ink);
+    color: var(--gold-ink);
     background: transparent;
     text-decoration: none;
     cursor: pointer;
@@ -847,7 +1004,7 @@
   }
   .detail-action:hover {
     background: var(--gold);
-    color: var(--cream);
+    color: var(--ink);
   }
 
   /* ─── TIMELINE ─── */
@@ -882,10 +1039,10 @@
   }
   .timeline-time {
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--sage);
+    color: var(--sage-ink);
     font-weight: 500;
   }
   .timeline-event {
@@ -940,22 +1097,14 @@
     padding: 2.5rem 2rem;
     border: 1px solid rgba(184,149,106,0.2);
     border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.3s;
     position: relative;
     background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 16px 36px rgba(0,0,0,0.12);
     min-height: 48px;
   }
   .shenanigan-card::before { display: none; }
-  .shenanigan-card:hover, .shenanigan-card:focus-within {
+  .shenanigan-card:hover {
     border-color: var(--gold);
-    background: rgba(184,149,106,0.05);
-    transform: translateY(-3px);
-  }
-  .shenanigan-card:focus-visible {
-    outline: 2px solid var(--gold-light);
-    outline-offset: 4px;
   }
   .shenanigan-card .card-icon {
     display: block;
@@ -1014,8 +1163,10 @@
     min-height: 44px;
   }
   .shenanigan-form textarea:focus, .shenanigan-form input:focus {
-    outline: none;
-    border-color: var(--gold);
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--focus-contrast);
+    border-color: var(--gold-ink);
   }
   .shenanigan-form textarea::placeholder, .shenanigan-form input::placeholder {
     color: rgba(245,240,232,0.3);
@@ -1174,7 +1325,7 @@
     margin: 0 auto;
     text-align: center;
   }
-  .gallery .section-label { color: var(--gold-muted); }
+  .gallery .section-label { color: var(--gold-light); }
   .gallery .section-title { color: var(--cream); }
   .gallery-grid {
     display: grid;
@@ -1203,8 +1354,9 @@
     box-shadow: 4px 6px 24px rgba(0,0,0,0.4);
   }
   .gallery-item:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 4px;
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--focus-contrast);
   }
   .gallery-item img {
     width: 100%; height: 100%;
@@ -1253,10 +1405,16 @@
     z-index: 200;
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
-    transition: opacity 0.35s ease;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
     cursor: pointer;
   }
-  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+    transition: opacity 0.35s ease, visibility 0s linear 0s;
+  }
   .lightbox img {
     max-width: 90vw; max-height: 85vh;
     object-fit: contain;
@@ -1270,10 +1428,10 @@
     position: absolute;
     top: 2rem; right: 2rem;
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.5);
+    color: rgba(245,240,232,0.92);
     cursor: pointer;
     transition: color 0.2s;
     background: none; border: none;
@@ -1305,9 +1463,14 @@
     padding: 8rem 2rem;
     color: var(--cream);
   }
-  .rsvp .section-label { color: var(--gold-muted); }
+  .rsvp .section-label { color: var(--gold-light); }
   .rsvp .section-title { color: var(--cream); }
   .rsvp > .reveal > p { color: var(--cream-muted); }
+  .rsvp a {
+    color: var(--gold-light);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
   .rsvp p { margin: 0 auto 2.5rem; }
 
   .rsvp-deadline-banner {
@@ -1339,10 +1502,10 @@
   .rsvp-form label {
     display: block;
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--sage);
+    color: var(--sage-ink);
     margin-bottom: 0.4rem;
     margin-top: 1.4rem;
   }
@@ -1359,9 +1522,12 @@
     transition: border-color 0.3s;
     min-height: 44px;
   }
-  .rsvp-form input:focus, .rsvp-form select:focus, .rsvp-form textarea:focus {
-    outline: none;
-    border-color: var(--gold);
+  .rsvp-form input:focus, .rsvp-form select:focus, .rsvp-form textarea:focus,
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--focus-contrast);
+    border-color: var(--gold-ink);
   }
   .rsvp-form .field-error {
     border-color: var(--wine) !important;
@@ -1552,27 +1718,35 @@
     font-size: 1.3rem;
     font-style: normal;
   }
+  .footer-mark {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
   footer .footer-date {
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--cream-muted);
+    color: rgba(245,240,232,0.92);
     margin-top: 1rem;
   }
   footer .footer-contact {
     font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--cream-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.92);
     margin-top: 0.6rem;
   }
   footer .footer-contact a {
-    color: var(--gold);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(184,149,106,0.3);
+    color: var(--gold-light);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    display: inline-block;
+    min-height: 24px;
+    line-height: 24px;
+    padding: 0 0.15rem;
   }
-  footer .footer-contact a:hover { border-bottom-color: var(--gold); }
+  footer .footer-contact a:hover { color: var(--cream); }
 
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
@@ -1647,15 +1821,19 @@
 
   /* Prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
   }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
 <nav id="mainNav">
   <span class="nav-brand-mobile">V & L</span>
   <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks" id="navToggle">
@@ -1664,13 +1842,14 @@
   <div class="nav-links" id="navLinks">
     <a href="#details" data-section="details">Details</a>
     <a href="#travel" data-section="travel">Travel</a>
-    <a href="#rsvp" data-section="rsvp" id="navRsvp">RSVP</a>
+    <a href="#rsvp" data-section="rsvp">Thanks</a>
     <a href="#gallery" data-section="gallery" class="hide-mobile">Photos</a>
     <a href="#registry" data-section="registry" class="hide-mobile">Registry</a>
     <a href="#faq" data-section="faq" class="hide-mobile">FAQ</a>
   </div>
 </nav>
 
+<main id="main" tabindex="-1">
 <!-- ─── HERO ─── -->
 <section class="hero">
   <div class="hero-composition">
@@ -1701,33 +1880,17 @@
 
   <!-- Countdown Timer -->
   <div class="countdown" id="countdown">
-    <div class="countdown-unit">
-      <div class="countdown-num" id="cd-days">---</div>
-      <div class="countdown-label">Days</div>
-    </div>
-    <div class="countdown-unit">
-      <div class="countdown-num" id="cd-hours">--</div>
-      <div class="countdown-label">Hours</div>
-    </div>
-    <div class="countdown-unit">
-      <div class="countdown-num" id="cd-min">--</div>
-      <div class="countdown-label">Minutes</div>
-    </div>
-    <div class="countdown-unit">
-      <div class="countdown-num" id="cd-sec">--</div>
-      <div class="countdown-label">Seconds</div>
-    </div>
+    <p class="countdown-done">October 24, 2026. We said the words.</p>
   </div>
 
-  <!-- CTAs and Welcome -->
+  <!-- CTAs -->
   <div class="hero-actions">
-    <a href="#rsvp" class="hero-cta hero-cta-primary">RSVP</a>
+    <a href="#rsvp" class="hero-cta hero-cta-primary">Thank You</a>
     <a href="#details" class="hero-cta hero-cta-secondary">View Details</a>
   </div>
-  <p class="welcome-back" id="welcomeBack"></p>
 
   <!-- Scroll Hint -->
-  <div class="scroll-hint" id="scrollHint" role="button" tabindex="0" aria-label="Scroll to story"><span></span></div>
+  <button class="scroll-hint" id="scrollHint" type="button" aria-label="Scroll to story"><span></span></button>
 </section>
 
 <!-- ─── STORY ─── -->
@@ -1739,7 +1902,7 @@
     <p>
       Some love stories announce themselves. This one snuck up on everyone — including them. The full version involves questionable timing, undeniable chemistry, and at least one moment that made the whole room say <em>"finally."</em>
     </p>
-    <p style="margin-top: 1.5rem;">
+    <p class="story-follow">
       We're getting the couple to sit still long enough to write it down. Check back soon for the unabridged edition — or just ask them at the reception after a glass of champagne.
     </p>
   </div>
@@ -1755,14 +1918,14 @@
     <div class="quick-links">
       <a href="#details" class="pill-link">Key Details</a>
       <a href="#travel" class="pill-link">Travel & Parking</a>
-      <a href="#rsvp" class="pill-link pill-link--primary">RSVP Now</a>
+      <a href="#rsvp" class="pill-link pill-link--primary">Thank You</a>
       <a href="#registry" class="pill-link">Registry</a>
     </div>
     <div class="details-grid">
       <div class="detail-card detail-card--highlight">
         <p class="detail-meta">Ceremony</p>
         <h3>The Main Event</h3>
-        <p>Saturday, October 24, 2026<br><strong>Arrive by 4:00 PM</strong><br>Ceremony begins at 4:30 PM<br><em>The Duke Sculpture Garden<br>at Dixon Mansion</em><br><a href="https://maps.google.com/?q=414+Plush+Mill+Rd+Wallingford+PA+19086" target="_blank" rel="noopener" style="color: var(--gold); font-size: 0.95rem;">414 Plush Mill Rd, Wallingford, PA</a></p>
+        <p>Saturday, October 24, 2026<br><strong>Arrive by 4:00 PM</strong><br>Ceremony begins at 4:30 PM<br><em>The Duke Sculpture Garden<br>at Dixon Mansion</em><br><a href="https://maps.google.com/?q=414+Plush+Mill+Rd+Wallingford+PA+19086" target="_blank" rel="noopener">414 Plush Mill Rd, Wallingford, PA</a></p>
         <button class="add-to-cal" id="addToCal" title="Add to your calendar">+ Add to Calendar</button>
       </div>
       <div class="detail-card">
@@ -1773,12 +1936,12 @@
       <div class="detail-card">
         <p class="detail-meta">Accommodations</p>
         <h3>Where to Stay</h3>
-        <p>Room block code: VERONICALUCAS<br><span style="font-size: 0.9rem; color: var(--sage);">The venue is in Wallingford, PA — about 20 min south of Philly.</span></p>
+        <p>Room block code: VERONICALUCAS<br><span class="detail-aside">The venue is in Wallingford, PA — about 20 min south of Philly.</span></p>
       </div>
       <div class="detail-card">
         <p class="detail-meta">Registry</p>
         <h3>Gifts</h3>
-        <p>Your presence is the present — but if you insist, we're on Zola.<br><a href="https://www.zola.com/registry/veronicalucas2026" target="_blank" rel="noopener" style="color: var(--gold); font-size: 0.95rem;">View our registry &rarr;</a></p>
+        <p>Your presence is the present — but if you insist, we're on Zola.<br><a href="https://www.zola.com/registry/veronicalucas2026" target="_blank" rel="noopener">View our registry &rarr;</a></p>
       </div>
       <div class="detail-card">
         <p class="detail-meta">Dress Code</p>
@@ -1789,11 +1952,11 @@
         <p class="detail-meta">Getting There</p>
         <h3>Travel & Parking</h3>
         <p>On-site parking available (~55 spots plus overflow). Handicapped-accessible parking on-site.<br><br>
-        <strong style="font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;">By train</strong><br>
+        <strong class="detail-kicker">By train</strong><br>
         SEPTA Regional Rail to Wallingford Station<br><br>
-        <strong style="font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;">From Philadelphia</strong><br>
+        <strong class="detail-kicker">From Philadelphia</strong><br>
         ~20 minutes south via I-476<br><br>
-        <strong style="font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;">Nearest airport</strong><br>
+        <strong class="detail-kicker">Nearest airport</strong><br>
         PHL (Philadelphia International) — ~30 min drive</p>
       </div>
     </div>
@@ -1845,32 +2008,32 @@
     <div class="gallery-grid">
       <button class="gallery-item" type="button" data-gallery-index="0" aria-label="Open photo: Date night">
         <img src="images/00011-Veronica.jpg" alt="Veronica and Lucas by the Christmas tree" loading="lazy">
-        <div class="photo-caption">Christmas, all dressed up</div>
+        <span class="photo-caption">Christmas, all dressed up</span>
       </button>
       <button class="gallery-item" type="button" data-gallery-index="1" aria-label="Open photo: The moment everything changed">
         <img src="images/00014-Veronica.jpg" alt="Lucas proposing to Veronica on the dock" loading="lazy">
-        <div class="photo-caption">The dock. The question. The yes.</div>
+        <span class="photo-caption">The dock. The question. The yes.</span>
       </button>
       <button class="gallery-item" type="button" data-gallery-index="2" aria-label="Open photo: Dressed to the nines">
         <img src="images/00020-Veronica.jpg" alt="Veronica and Lucas dressed up" loading="lazy">
-        <div class="photo-caption">Black tie energy</div>
+        <span class="photo-caption">Black tie energy</span>
       </button>
       <button class="gallery-item" type="button" data-gallery-index="3" aria-label="Open photo: These two">
         <img src="images/00025-Veronica.jpg" alt="Veronica and Lucas at a restaurant" loading="lazy">
-        <div class="photo-caption">Their spot</div>
+        <span class="photo-caption">Their spot</span>
       </button>
       <button class="gallery-item" type="button" data-gallery-index="4" aria-label="Open photo: Golden hour">
         <img src="images/00034-Veronica.jpg" alt="Veronica at the vineyard" loading="lazy">
-        <div class="photo-caption">Vineyard golden hour</div>
+        <span class="photo-caption">Vineyard golden hour</span>
       </button>
     </div>
   </div>
 </section>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" inert aria-hidden="true">
   <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close photo viewer">Close &times;</button>
   <button class="lightbox-nav prev" id="lightboxPrev" type="button" aria-label="Previous photo">&#8249;</button>
-  <img id="lightboxImg" src="" alt="">
+  <img id="lightboxImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
   <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Next photo">&#8250;</button>
 </div>
 
@@ -1880,12 +2043,12 @@
   <div class="reveal">
     <p class="section-label">Plan Your Trip</p>
     <h2 class="section-title">Travel & Parking</h2>
-    <p style="max-width: 40rem; margin-bottom: 2rem;">Getting to Wallingford should be straightforward whether you're driving in, taking the train, or flying into Philadelphia.</p>
+    <p class="section-lede">Getting to Wallingford should be straightforward whether you're driving in, taking the train, or flying into Philadelphia.</p>
     <div class="details-grid">
       <div class="detail-card">
         <p class="detail-meta">Venue Address</p>
         <h3>The Duke Sculpture Garden</h3>
-        <p><em>at Dixon Mansion</em><br><a href="https://maps.google.com/?q=414+Plush+Mill+Rd+Wallingford+PA+19086" target="_blank" rel="noopener noreferrer" style="color: var(--gold); font-size: 0.95rem;">414 Plush Mill Rd, Wallingford, PA</a></p>
+        <p><em>at Dixon Mansion</em><br><a href="https://maps.google.com/?q=414+Plush+Mill+Rd+Wallingford+PA+19086" target="_blank" rel="noopener noreferrer">414 Plush Mill Rd, Wallingford, PA</a></p>
       </div>
       <div class="detail-card">
         <p class="detail-meta">Parking</p>
@@ -1915,62 +2078,10 @@
 <div class="divider"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
 <section class="rsvp" id="rsvp">
   <div class="reveal">
-    <p class="section-label">Be There</p>
-    <h2 class="section-title">RSVP</h2>
-    <div class="rsvp-deadline-banner" id="rsvpDeadline"></div>
-    <p>We're saving a seat for you. Let us know if you'll be joining the celebration.</p>
-
-    <div class="rsvp-form" id="rsvpForm">
-      <label for="rsvpName">Your Name</label>
-      <input type="text" id="rsvpName" placeholder="First & Last" autocomplete="name">
-
-      <label for="rsvpEmail">Email</label>
-      <input type="email" id="rsvpEmail" placeholder="you@example.com" autocomplete="email">
-
-      <label for="rsvpAttending">Attending?</label>
-      <select id="rsvpAttending">
-        <option value="">Select one...</option>
-        <option value="yes">Joyfully Accepts</option>
-        <option value="no">Regretfully Declines</option>
-      </select>
-
-      <label for="rsvpPlusOne">Bringing a +1?</label>
-      <select id="rsvpPlusOne">
-        <option value="no">Just me</option>
-        <option value="yes">Yes, bringing a guest</option>
-      </select>
-
-      <div class="plus-one-fields" id="plusOneFields">
-        <label for="plusOneName">Guest Name</label>
-        <input type="text" id="plusOneName" placeholder="Your guest's name">
-        <label for="plusOneDiet">Guest Dietary Restrictions</label>
-        <input type="text" id="plusOneDiet" placeholder="Vegetarian, gluten-free, etc.">
-      </div>
-
-      <label for="rsvpDiet">Your Dietary Restrictions</label>
-      <input type="text" id="rsvpDiet" placeholder="Vegetarian, gluten-free, etc.">
-
-      <label for="rsvpNote">Anything Else?</label>
-      <textarea id="rsvpNote" placeholder="Song requests, accessibility needs, parking questions..."></textarea>
-
-      <div class="hp-field" aria-hidden="true">
-        <label for="rsvpWebsite">Website</label>
-        <input type="text" id="rsvpWebsite" name="website" tabindex="-1" autocomplete="off">
-      </div>
-
-      <button type="button" class="rsvp-submit" id="rsvpSubmit"><span>Send RSVP</span></button>
-      <p class="rsvp-status" id="rsvpStatus"></p>
-    </div>
-
-    <div class="rsvp-confirmed" id="rsvpConfirmed">
-      <h3>You're In!</h3>
-      <p id="rsvpConfirmText">Thanks for responding. We can't wait to celebrate with you.</p>
-      <button class="edit-rsvp" id="editRsvp">Change your response</button>
-    </div>
-
-    <p class="rsvp-helper">If you haven't RSVP'd yet, please email us.</p>
-    <p class="rsvp-fallback">If you have any trouble with the form, please email <a href="mailto:thefrancos2026@gmail.com">thefrancos2026@gmail.com</a>.</p>
-    <p class="rsvp-privacy">Your answers are kept in this browser so you can pick up where you left off, and they clear automatically after the wedding. Nothing is sent to Veronica and Lucas until you press Send RSVP. On a shared or public device, you can <button type="button" class="clear-data-link" id="clearLocalData">clear your saved info</button> at any time.</p>
+    <p class="section-label">With Thanks</p>
+    <h2 class="section-title">You Showed Up</h2>
+    <p>October 24 has come and gone, and the RSVP list is closed. If you were in the room, thank you for celebrating with us. If you couldn't make it, thank you for the kind thoughts. We felt them.</p>
+    <p class="rsvp-privacy" id="privacy">If this browser saved an RSVP or a shenanigans note, that copy is cleared when this page loads. Anything you already sent us is still with us. <a class="email-link" href="#privacy">Email us</a> if you'd like it deleted.</p>
   </div>
 </section>
 
@@ -1979,90 +2090,53 @@
   <div class="reveal">
     <p class="section-label">The Fun Stuff</p>
     <h2 class="section-title">Shenanigans Corner</h2>
-    <p>Every good wedding has a guest book. Ours has a little more personality. Tap a card to contribute.</p>
+    <p>The guest book is closed. Thank you for the toasts, the photo threats, the song requests, and the advice we didn't ask for and absolutely needed.</p>
     <div class="shenanigan-cards">
-      <div class="shenanigan-card" data-type="toast" tabindex="0" role="button" aria-label="Submit a toast roast" aria-expanded="false">
-        <span class="submitted-badge">Submitted</span>
+      <article class="shenanigan-card">
         <img class="card-icon" src="images/icons/icon-toast.png" alt="" width="286" height="389" loading="lazy">
         <h3>Toast Roast</h3>
-        <p>Submit your best (or worst) toast material. We dare you.</p>
-        <div class="shenanigan-form">
-          <input type="text" name="author" placeholder="Your name" autocomplete="name">
-          <textarea placeholder="Your toast material..." rows="3" style="margin-top:0.8rem"></textarea>
-          <div class="form-row">
-            <button type="button" class="form-submit" data-type="toast">Submit</button>
-            <button type="button" class="form-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-      <div class="shenanigan-card" data-type="photos" tabindex="0" role="button" aria-label="Submit a photo idea" aria-expanded="false">
-        <span class="submitted-badge">Submitted</span>
+        <p>The best (and worst) toast material. You delivered.</p>
+      </article>
+      <article class="shenanigan-card">
         <img class="card-icon" src="images/icons/icon-photos.png" alt="" width="283" height="368" loading="lazy">
         <h3>Photo Ops</h3>
         <p>Embarrassing photos of the couple. Bonus points for the haircuts.</p>
-        <div class="shenanigan-form">
-          <input type="text" name="author" placeholder="Your name" autocomplete="name">
-          <textarea placeholder="Describe the photo or paste a link..." rows="3" style="margin-top:0.8rem"></textarea>
-          <div class="form-row">
-            <button type="button" class="form-submit" data-type="photos">Submit</button>
-            <button type="button" class="form-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-      <div class="shenanigan-card" data-type="songs" tabindex="0" role="button" aria-label="Request a song" aria-expanded="false">
-        <span class="submitted-badge">Submitted</span>
+      </article>
+      <article class="shenanigan-card">
         <img class="card-icon" src="images/icons/icon-songs.png" alt="" width="397" height="265" loading="lazy">
         <h3>Song Requests</h3>
-        <p>Tell the DJ what to play. Or what NOT to play. Both are useful.</p>
-        <div class="shenanigan-form">
-          <input type="text" name="author" placeholder="Your name" autocomplete="name">
-          <input type="text" name="extra" placeholder="Song title & artist" style="margin-top:0.8rem">
-          <textarea placeholder="Play it? Or ban it? Any context..." rows="2" style="margin-top:0.8rem"></textarea>
-          <div class="form-row">
-            <button type="button" class="form-submit" data-type="songs">Submit</button>
-            <button type="button" class="form-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-      <div class="shenanigan-card" data-type="advice" tabindex="0" role="button" aria-label="Share advice or a prediction" aria-expanded="false">
-        <span class="submitted-badge">Submitted</span>
+        <p>What the DJ played, and what everyone agreed never to play again.</p>
+      </article>
+      <article class="shenanigan-card">
         <img class="card-icon" src="images/icons/icon-advice.png" alt="" width="330" height="224" loading="lazy">
-        <h3>Advice & Bets</h3>
-        <p>Marriage advice, predictions, or side bets on the first dance song.</p>
-        <div class="shenanigan-form">
-          <input type="text" name="author" placeholder="Your name" autocomplete="name">
-          <textarea placeholder="Your wisdom, prediction, or wager..." rows="3" style="margin-top:0.8rem"></textarea>
-          <div class="form-row">
-            <button type="button" class="form-submit" data-type="advice">Submit</button>
-            <button type="button" class="form-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
+        <h3>Advice &amp; Bets</h3>
+        <p>Marriage advice, predictions, and side bets on the first dance song.</p>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- ─── REGISTRY ─── -->
-<div class="divider" style="position: relative; z-index: 2;"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
-<section id="registry" class="section--paper" style="position: relative; z-index: 2;">
+<div class="divider divider-front"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
+<section id="registry" class="section--paper section-front">
   <div class="reveal">
     <p class="section-label">Gifts</p>
     <h2 class="section-title">Registry</h2>
-    <p style="max-width: 40rem; margin-bottom: 2rem;">Your presence is truly the best present. If you'd still like to give a gift, we've put together a registry on Zola.</p>
+    <p class="section-lede">Your presence is truly the best present. If you'd still like to give a gift, we've put together a registry on Zola.</p>
     <div class="details-grid">
       <div class="detail-card">
         <p class="detail-meta">Registry Links</p>
         <h3>Our Zola Registry</h3>
         <p>We're registered on Zola — everything from home essentials to a honeymoon fund. Thank you for thinking of us.</p>
-        <p><a href="https://www.zola.com/registry/veronicalucas2026" target="_blank" rel="noopener" style="color: var(--gold);">View our registry on Zola &rarr;</a></p>
+        <p><a href="https://www.zola.com/registry/veronicalucas2026" target="_blank" rel="noopener">View our registry on Zola &rarr;</a></p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ─── FAQ ─── -->
-<div class="divider" style="position: relative; z-index: 2;"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
-<section id="faq" class="section--paper" style="position: relative; z-index: 2;">
+<div class="divider divider-front"><img class="divider-ornament" src="images/ornaments/divider-floral.png" alt="" width="320" height="80" loading="lazy"></div>
+<section id="faq" class="section--paper section-front">
   <div class="reveal">
     <p class="section-label">Questions</p>
     <h2 class="section-title">FAQ</h2>
@@ -2077,11 +2151,11 @@
       </details>
       <details class="faq-item">
         <summary>Is there parking at the venue?</summary>
-        <p>Yes. On-site parking is available for about 55 vehicles, plus an overflow area. Handicapped-accessible spots are available. You can also take SEPTA Regional Rail to Wallingford Station. <a href="#travel" style="color: var(--gold); white-space: nowrap;">See Travel & Parking &uarr;</a></p>
+        <p>Yes. On-site parking is available for about 55 vehicles, plus an overflow area. Handicapped-accessible spots are available. You can also take SEPTA Regional Rail to Wallingford Station. <a href="#travel" class="nowrap-link">See Travel & Parking &uarr;</a></p>
       </details>
       <details class="faq-item">
         <summary>What's the weather like in late October?</summary>
-        <p>The Philadelphia area in late October is usually crisp and beautiful — expect highs in the mid-50s to low 60s and cooler evenings. A light jacket or wrap is a great idea, especially for any outdoor moments near the sculpture garden. <a href="#travel" style="color: var(--gold); white-space: nowrap;">See Travel & Parking &uarr;</a></p>
+        <p>The Philadelphia area in late October is usually crisp and beautiful — expect highs in the mid-50s to low 60s and cooler evenings. A light jacket or wrap is a great idea, especially for any outdoor moments near the sculpture garden. <a href="#travel" class="nowrap-link">See Travel & Parking &uarr;</a></p>
       </details>
       <details class="faq-item">
         <summary>Can I take photos during the ceremony?</summary>
@@ -2089,98 +2163,53 @@
       </details>
       <details class="faq-item">
         <summary>Is the venue accessible?</summary>
-        <p>Yes. Dixon Mansion is ADA-compliant with accessible parking, entrances, and restrooms. If you have specific accessibility needs, reach out and we'll make sure you're covered. <a href="#travel" style="color: var(--gold); white-space: nowrap;">See Travel & Parking &uarr;</a></p>
+        <p>Yes. Dixon Mansion is ADA-compliant with accessible parking, entrances, and restrooms. If you have specific accessibility needs, reach out and we'll make sure you're covered. <a href="#travel" class="nowrap-link">See Travel & Parking &uarr;</a></p>
       </details>
       <details class="faq-item">
         <summary>Who do I contact with questions?</summary>
-        <p>For anything at all, email us at <a href="mailto:thefrancos2026@gmail.com" style="color: var(--gold); white-space: nowrap;">thefrancos2026@gmail.com</a> and we'll get right back to you.</p>
+        <p>For anything at all, <a class="email-link" href="#privacy">email us</a> and we'll get right back to you.</p>
       </details>
     </div>
   </div>
 </section>
+</main>
 
 <!-- ─── FOOTER ─── -->
 <footer>
   <img class="footer-monogram" src="images/ornaments/monogram-vl.png" alt="V & L monogram" width="120" height="120" loading="lazy">
-  <p><span style="font-family:var(--font-display);font-style:italic;">V &amp; L</span> — <span class="footer-tagline">forever starts here</span></p>
+  <p><span class="footer-mark">V &amp; L</span> — <span class="footer-tagline">forever starts here</span></p>
   <p class="footer-date">October 24, 2026 &middot; Wallingford, PA</p>
-  <p class="footer-contact">Questions? Email us at <a href="mailto:thefrancos2026@gmail.com">thefrancos2026@gmail.com</a></p>
+  <p class="footer-contact">Questions? <a class="email-link" href="#privacy">Email us</a></p>
 </footer>
 
 <script>
-/* ═══════════════════════════════════════════════
-   CONFIGURATION
-   ═══════════════════════════════════════════════ */
-
-// Set this after deploying the Cloudflare Worker:
-const API_BASE = ''; // e.g. 'https://wedding-api.youraccount.workers.dev'
-
-/* ═══════════════════════════════════════════════
-   LOCAL STORAGE DATA MODEL
-   ═══════════════════════════════════════════════ */
-
-const STORE_KEY = 'vl_wedding';
-// Guest details (names, email, dietary/accessibility notes) should not sit
-// in a shared browser forever: everything stored under STORE_KEY is purged
-// automatically once the celebration is well past.
-const STORE_EXPIRY = Date.parse('2027-02-01T00:00:00-05:00');
-const DEFAULT_STORE = {
-  version: 1,
-  visitCount: 0,
-  firstVisit: null,
-  lastVisit: null,
-  guestName: null,
-  guestEmail: null,
-  responseId: null,
-  rsvp: { attending: null, plusOne: 'no', plusOneName: '', plusOneDiet: '', diet: '', note: '', submittedAt: null },
-  shenanigans: {
-    toast: { submitted: false, data: {} },
-    photos: { submitted: false, data: {} },
-    songs: { submitted: false, data: {} },
-    advice: { submitted: false, data: {} }
-  },
-  lastScrollSection: null
-};
-
-function getStore() {
+/* The wedding is over. Anything previously saved under vl_wedding
+   (names, email, notes) is removed on load, and this page will not write it back. */
+(function () {
+  function isGuestKey(k) {
+    return k === 'vl_wedding' || (typeof k === 'string' && k.indexOf('vl_') === 0);
+  }
   try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch { return null; }
-}
-
-function saveStore(data) {
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch {}
-}
-
-function initStore() {
-  if (Date.now() > STORE_EXPIRY) {
-    try { localStorage.removeItem(STORE_KEY); } catch {}
-  }
-  let store = getStore();
-  if (!store) {
-    store = { ...DEFAULT_STORE, firstVisit: new Date().toISOString(), visitCount: 1, lastVisit: new Date().toISOString() };
-  } else {
-    store.visitCount++;
-    store.lastVisit = new Date().toISOString();
-  }
-  // Stable per-browser response ID so an edited RSVP updates the same
-  // record instead of creating a duplicate.
-  if (!store.responseId) {
-    store.responseId = (window.crypto && crypto.randomUUID)
-      ? crypto.randomUUID()
-      : 'r-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
-  }
-  saveStore(store);
-  return store;
-}
-
-const store = initStore();
+    var doomed = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var existing = localStorage.key(i);
+      if (isGuestKey(existing)) doomed.push(existing);
+    }
+    doomed.forEach(function (k) { localStorage.removeItem(k); });
+  } catch (e) {}
+  var setItem = Storage.prototype.setItem;
+  Storage.prototype.setItem = function (k, value) {
+    if (isGuestKey(k)) {
+      try { this.removeItem(k); } catch (err) {}
+      return;
+    }
+    return setItem.call(this, k, value);
+  };
+})();
 
 function syncBodyOverflow() {
-  const navIsOpen = window.innerWidth <= 600 && navLinks.classList.contains('open');
-  const lightboxIsOpen = document.getElementById('lightbox')?.classList.contains('open');
+  var navIsOpen = window.innerWidth <= 600 && navLinks.classList.contains('open');
+  var lightboxIsOpen = lightbox.classList.contains('open');
   document.body.style.overflow = navIsOpen || lightboxIsOpen ? 'hidden' : '';
 }
 
@@ -2191,189 +2220,106 @@ function setNavOpen(isOpen) {
   syncBodyOverflow();
 }
 
-function markFieldError(el, hasError) {
-  if (!el) return;
-  el.classList.toggle('field-error', hasError);
-}
-
-/* ─── API HELPER ─── */
-async function apiPost(path, data) {
-  if (!API_BASE) return { ok: false, offline: true };
-  try {
-    const res = await fetch(`${API_BASE}${path}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const json = await res.json();
-    return { ok: res.ok, ...json };
-  } catch {
-    return { ok: false, error: 'Network error' };
-  }
-}
-
-/* ─── COUNTDOWN (timezone-aware) ─── */
-// Oct 24 2026 is still in EDT (DST ends Nov 1 2026). UTC-4 is correct.
-const WEDDING_DATE = new Date('2026-10-24T16:00:00-04:00'); // Eastern Daylight Time (Wallingford, PA)
-
-function updateCountdown() {
-  const now = new Date();
-  const diff = WEDDING_DATE - now;
-  if (diff <= 0) {
-    document.getElementById('countdown').innerHTML =
-      '<p style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);">Today is the day!</p>';
-    return;
-  }
-  const d = Math.floor(diff / 864e5);
-  const h = Math.floor((diff % 864e5) / 36e5);
-  const m = Math.floor((diff % 36e5) / 6e4);
-  const s = Math.floor((diff % 6e4) / 1e3);
-
-  setNum('cd-days', d);
-  setNum('cd-hours', String(h).padStart(2, '0'));
-  setNum('cd-min', String(m).padStart(2, '0'));
-  setNum('cd-sec', String(s).padStart(2, '0'));
-}
-
-function setNum(id, val) {
-  const el = document.getElementById(id);
-  if (el.textContent !== String(val)) {
-    el.textContent = val;
-    el.classList.add('tick');
-    setTimeout(() => el.classList.remove('tick'), 150);
-  }
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-// Show localized ceremony time
-const localTimeEl = document.getElementById('localTimeHint');
-const guestTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
-const localTime = WEDDING_DATE.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
-const venueTZ = 'Eastern Time';
-const venueTime = '4:00 PM ET';
-if (!guestTZ.includes('America/New_York')) {
-  localTimeEl.textContent = `${venueTime} · ${localTime} your time`;
-}
-
-/* ─── WELCOME BACK ─── */
-if (store.visitCount > 1) {
-  const wb = document.getElementById('welcomeBack');
-  if (store.guestName) {
-    wb.textContent = `Welcome back, ${store.guestName.split(' ')[0]}.`;
-  } else {
-    wb.textContent = 'Welcome back — we saved your spot.';
-  }
-  wb.classList.add('show');
-}
-
-/* ─── NAV: MOBILE TOGGLE ─── */
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
-const mainNav = document.getElementById('mainNav');
-const heroSection = document.querySelector('.hero');
+var navToggle = document.getElementById('navToggle');
+var navLinks = document.getElementById('navLinks');
+var mainNav = document.getElementById('mainNav');
+var heroSection = document.querySelector('.hero');
+var lightbox = document.getElementById('lightbox');
 
 function updateNavState() {
   mainNav.classList.toggle('scrolled', window.scrollY > 24);
 }
 
-navToggle.addEventListener('click', () => {
-  const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+navToggle.addEventListener('click', function () {
+  var isOpen = navToggle.getAttribute('aria-expanded') === 'true';
   setNavOpen(!isOpen);
 });
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    setNavOpen(false);
-  });
+navLinks.querySelectorAll('a').forEach(function (a) {
+  a.addEventListener('click', function () { setNavOpen(false); });
 });
-document.addEventListener('click', (event) => {
+document.addEventListener('click', function (event) {
   if (window.innerWidth > 600) return;
   if (!mainNav.contains(event.target)) setNavOpen(false);
 });
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', function (event) {
   if (event.key === 'Escape') setNavOpen(false);
 });
-window.addEventListener('resize', () => {
+window.addEventListener('resize', function () {
   if (window.innerWidth > 600) setNavOpen(false);
 });
 window.addEventListener('scroll', updateNavState, { passive: true });
-window.addEventListener('load', () => {
+window.addEventListener('load', function () {
   heroSection.classList.add('loaded');
   updateNavState();
 });
 updateNavState();
 
-/* ─── HERO: SCROLL HINT ─── */
-const scrollHint = document.getElementById('scrollHint');
-const storySection = document.getElementById('story');
+var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+var scrollHint = document.getElementById('scrollHint');
+var storySection = document.getElementById('story');
 function scrollToStory() {
-  storySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  storySection.scrollIntoView({
+    behavior: motionQuery.matches ? 'auto' : 'smooth',
+    block: 'start'
+  });
 }
 scrollHint.addEventListener('click', scrollToStory);
-scrollHint.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault();
-    scrollToStory();
-  }
-});
 
-/* ─── NAV: ACTIVE SECTION TRACKING ─── */
-const navSections = ['details', 'travel', 'rsvp', 'gallery', 'registry', 'faq', 'shenanigans'];
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.id;
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('nav-active'));
-      const active = document.querySelector(`nav a[data-section="${id}"]`);
-      if (active) active.classList.add('nav-active');
-      store.lastScrollSection = id;
-      saveStore(store);
-    }
+var navSections = ['details', 'travel', 'rsvp', 'gallery', 'registry', 'faq', 'shenanigans'];
+var sectionObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (!entry.isIntersecting) return;
+    var id = entry.target.id;
+    document.querySelectorAll('nav a').forEach(function (a) { a.classList.remove('nav-active'); });
+    var active = document.querySelector('nav a[data-section="' + id + '"]');
+    if (active) active.classList.add('nav-active');
   });
 }, { threshold: 0.3 });
-navSections.forEach(id => {
-  const el = document.getElementById(id);
+navSections.forEach(function (id) {
+  var el = document.getElementById(id);
   if (el) sectionObserver.observe(el);
 });
 
-/* ─── NAV: RSVP URGENCY ─── */
-const rsvpDeadline = new Date('2026-09-01T23:59:59-04:00');
-const daysUntilDeadline = Math.ceil((rsvpDeadline - new Date()) / 864e5);
-if (daysUntilDeadline <= 14 && daysUntilDeadline > 0 && !store.rsvp.submittedAt) {
-  document.getElementById('navRsvp').classList.add('rsvp-urgent');
-  const banner = document.getElementById('rsvpDeadline');
-  banner.textContent = `${daysUntilDeadline} day${daysUntilDeadline === 1 ? '' : 's'} left to RSVP`;
-  banner.classList.add('show');
-}
-
-/* ─── ADD TO CALENDAR ─── */
-document.getElementById('addToCal').addEventListener('click', () => {
-  const start = '20261024T200000Z'; // 4:00 PM EDT = 8:00 PM UTC
-  const end = '20261025T030000Z';   // 11:00 PM EDT = 3:00 AM UTC (7h event)
-  const title = encodeURIComponent('Veronica & Lucas Wedding');
-  const loc = encodeURIComponent('The Duke Sculpture Garden at Dixon Mansion, 414 Plush Mill Rd, Wallingford, PA 19086');
-  const details = encodeURIComponent('Ceremony at 4 PM, reception to follow. Details at veronicaandlucas.com');
-  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}&details=${details}`;
+document.getElementById('addToCal').addEventListener('click', function () {
+  var start = '20261024T200000Z';
+  var end = '20261025T030000Z';
+  var title = encodeURIComponent('Veronica & Lucas Wedding');
+  var loc = encodeURIComponent('The Duke Sculpture Garden at Dixon Mansion, 414 Plush Mill Rd, Wallingford, PA 19086');
+  var details = encodeURIComponent('Ceremony at 4 PM, reception to follow. Details at veronicaandlucas.com');
+  var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + title + '&dates=' + start + '/' + end + '&location=' + loc + '&details=' + details;
   window.open(url, '_blank', 'noopener');
 });
 
-/* ─── GALLERY / LIGHTBOX ─── */
-const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-const galleryImages = galleryItems.map((item) => {
-  const img = item.querySelector('img');
+var localTimeEl = document.getElementById('localTimeHint');
+var WEDDING_DATE = new Date('2026-10-24T16:00:00-04:00');
+var guestTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+var localTime = WEDDING_DATE.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+if (localTimeEl && guestTZ.indexOf('America/New_York') === -1) {
+  localTimeEl.textContent = '4:00 PM ET · ' + localTime + ' your time';
+}
+
+var galleryItems = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+var lightboxImg = document.getElementById('lightboxImg');
+var lightboxClose = document.getElementById('lightboxClose');
+var lightboxPrev = document.getElementById('lightboxPrev');
+var lightboxNext = document.getElementById('lightboxNext');
+var galleryImages = galleryItems.map(function (item) {
+  var img = item.querySelector('img');
   return { src: img.src, alt: img.alt };
 });
-let lightboxIndex = 0;
-let lightboxTrigger = null;
+var lightboxIndex = 0;
+var lightboxTrigger = null;
+
+function setLightboxOpen(isOpen) {
+  lightbox.classList.toggle('open', isOpen);
+  lightbox.inert = !isOpen;
+  if (isOpen) lightbox.removeAttribute('aria-hidden');
+  else lightbox.setAttribute('aria-hidden', 'true');
+  syncBodyOverflow();
+}
 
 function renderLightbox(index) {
-  const image = galleryImages[index];
+  var image = galleryImages[index];
   lightboxImg.src = image.src;
   lightboxImg.alt = image.alt;
 }
@@ -2382,407 +2328,82 @@ function openLightbox(index) {
   lightboxIndex = index;
   lightboxTrigger = galleryItems[index];
   renderLightbox(lightboxIndex);
-  lightbox.classList.add('open');
-  syncBodyOverflow();
+  setLightboxOpen(true);
   lightboxClose.focus();
 }
 
 function closeLightbox(event) {
   if (event && event.target !== event.currentTarget && !event.target.classList.contains('lightbox-close')) return;
-  lightbox.classList.remove('open');
-  syncBodyOverflow();
-  lightboxTrigger?.focus();
+  setLightboxOpen(false);
+  if (lightboxTrigger) lightboxTrigger.focus();
 }
 
 function navLightbox(event, dir) {
-  event?.stopPropagation();
+  if (event) event.stopPropagation();
   lightboxIndex = (lightboxIndex + dir + galleryImages.length) % galleryImages.length;
   renderLightbox(lightboxIndex);
 }
 
-galleryItems.forEach((item, index) => {
-  item.addEventListener('click', () => openLightbox(index));
+galleryItems.forEach(function (item, index) {
+  item.addEventListener('click', function () { openLightbox(index); });
 });
 
 lightbox.addEventListener('click', closeLightbox);
 lightboxClose.addEventListener('click', closeLightbox);
-lightboxPrev.addEventListener('click', (event) => navLightbox(event, -1));
-lightboxNext.addEventListener('click', (event) => navLightbox(event, 1));
+lightboxPrev.addEventListener('click', function (event) { navLightbox(event, -1); });
+lightboxNext.addEventListener('click', function (event) { navLightbox(event, 1); });
 
-/* ─── LIGHTBOX: TOUCH SWIPE (mobile) ─── */
-let touchStartX = 0;
-let touchStartY = 0;
-lightbox.addEventListener('touchstart', (e) => {
+var touchStartX = 0;
+var touchStartY = 0;
+lightbox.addEventListener('touchstart', function (e) {
   touchStartX = e.changedTouches[0].screenX;
   touchStartY = e.changedTouches[0].screenY;
 }, { passive: true });
-lightbox.addEventListener('touchend', (e) => {
-  const dx = e.changedTouches[0].screenX - touchStartX;
-  const dy = e.changedTouches[0].screenY - touchStartY;
+lightbox.addEventListener('touchend', function (e) {
+  var dx = e.changedTouches[0].screenX - touchStartX;
+  var dy = e.changedTouches[0].screenY - touchStartY;
   if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
-    if (dx > 0) navLightbox(null, -1);
-    else navLightbox(null, 1);
+    navLightbox(null, dx > 0 ? -1 : 1);
   }
 }, { passive: true });
 
-/* ─── LIGHTBOX: FOCUS TRAP ─── */
-lightbox.addEventListener('keydown', (e) => {
+lightbox.addEventListener('keydown', function (e) {
   if (!lightbox.classList.contains('open')) return;
-  const focusable = [lightboxClose, lightboxPrev, lightboxNext];
+  var focusable = [lightboxClose, lightboxPrev, lightboxNext];
   if (e.key === 'Tab') {
-    const idx = focusable.indexOf(document.activeElement);
-    if (e.shiftKey) {
-      e.preventDefault();
-      focusable[idx <= 0 ? focusable.length - 1 : idx - 1].focus();
-    } else {
-      e.preventDefault();
-      focusable[(idx + 1) % focusable.length].focus();
-    }
+    var idx = focusable.indexOf(document.activeElement);
+    e.preventDefault();
+    if (e.shiftKey) focusable[idx <= 0 ? focusable.length - 1 : idx - 1].focus();
+    else focusable[(idx + 1) % focusable.length].focus();
   }
 });
 
-/* ─── RSVP FORM ─── */
-const rsvpForm = document.getElementById('rsvpForm');
-const rsvpConfirmed = document.getElementById('rsvpConfirmed');
-const rsvpStatus = document.getElementById('rsvpStatus');
-
-// Pre-fill from stored data
-if (store.rsvp.submittedAt) {
-  rsvpForm.style.display = 'none';
-  rsvpConfirmed.classList.add('show');
-  const name = store.guestName ? store.guestName.split(' ')[0] : '';
-  document.getElementById('rsvpConfirmText').textContent =
-    store.rsvp.attending === 'yes'
-      ? `Thanks${name ? ', ' + name : ''}! We can't wait to celebrate with you.`
-      : `We'll miss you${name ? ', ' + name : ''}. Thanks for letting us know.`;
-} else {
-  if (store.guestName) document.getElementById('rsvpName').value = store.guestName;
-  if (store.guestEmail) document.getElementById('rsvpEmail').value = store.guestEmail;
-  document.getElementById('rsvpAttending').value = store.rsvp.attending || '';
-  document.getElementById('rsvpPlusOne').value = store.rsvp.plusOne || 'no';
-  document.getElementById('plusOneName').value = store.rsvp.plusOneName || '';
-  document.getElementById('plusOneDiet').value = store.rsvp.plusOneDiet || '';
-  document.getElementById('rsvpDiet').value = store.rsvp.diet || '';
-  document.getElementById('rsvpNote').value = store.rsvp.note || '';
-  if (store.rsvp.plusOne === 'yes') document.getElementById('plusOneFields').classList.add('show');
-}
-
-// +1 toggle
-document.getElementById('rsvpPlusOne').addEventListener('change', function() {
-  document.getElementById('plusOneFields').classList.toggle('show', this.value === 'yes');
-  store.rsvp.plusOne = this.value;
-  saveStore(store);
-});
-
-document.getElementById('rsvpAttending').addEventListener('change', function() {
-  markFieldError(this, false);
-  store.rsvp.attending = this.value || null;
-  saveStore(store);
-});
-
-// Auto-save on blur
-['rsvpName', 'rsvpEmail', 'rsvpDiet', 'rsvpNote', 'plusOneName', 'plusOneDiet'].forEach(id => {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.addEventListener('blur', () => {
-    if (id === 'rsvpName') store.guestName = el.value;
-    if (id === 'rsvpEmail') store.guestEmail = el.value;
-    if (id === 'rsvpDiet') store.rsvp.diet = el.value;
-    if (id === 'rsvpNote') store.rsvp.note = el.value;
-    if (id === 'plusOneName') store.rsvp.plusOneName = el.value;
-    if (id === 'plusOneDiet') store.rsvp.plusOneDiet = el.value;
-    saveStore(store);
-  });
-  el.addEventListener('input', () => markFieldError(el, false));
-});
-
-document.getElementById('rsvpSubmit').addEventListener('click', async () => {
-  const nameField = document.getElementById('rsvpName');
-  const emailField = document.getElementById('rsvpEmail');
-  const attendingField = document.getElementById('rsvpAttending');
-  const plusOneField = document.getElementById('rsvpPlusOne');
-  const plusOneNameField = document.getElementById('plusOneName');
-  const plusOneDietField = document.getElementById('plusOneDiet');
-  const dietField = document.getElementById('rsvpDiet');
-  const noteField = document.getElementById('rsvpNote');
-  const submitBtn = document.getElementById('rsvpSubmit');
-  const name = nameField.value.trim();
-  const email = emailField.value.trim();
-  const attending = attendingField.value;
-  const plusOne = plusOneField.value;
-
-  markFieldError(nameField, false);
-  markFieldError(attendingField, false);
-  markFieldError(plusOneNameField, false);
-  rsvpStatus.textContent = '';
-  rsvpStatus.className = 'rsvp-status';
-
-  if (!name || !attending) {
-    markFieldError(nameField, !name);
-    markFieldError(attendingField, !attending);
-    (name ? attendingField : nameField).focus();
-    return;
-  }
-
-  if (plusOne === 'yes' && !plusOneNameField.value.trim()) {
-    markFieldError(plusOneNameField, true);
-    plusOneNameField.focus();
-    return;
-  }
-
-  // Save locally first (submittedAt is only set once the send succeeds)
-  store.guestName = name;
-  store.guestEmail = email;
-  store.rsvp.attending = attending;
-  store.rsvp.plusOne = plusOne;
-  store.rsvp.plusOneName = plusOneNameField.value;
-  store.rsvp.plusOneDiet = plusOneDietField.value;
-  store.rsvp.diet = dietField.value;
-  store.rsvp.note = noteField.value;
-  saveStore(store);
-
-  // Send to Notion via worker
-  submitBtn.disabled = true;
-  rsvpStatus.textContent = 'Sending...';
-  rsvpStatus.className = 'rsvp-status sending';
-
-  const result = await apiPost('/rsvp', {
-    name, email, attending, plusOne,
-    plusOneName: plusOneNameField.value,
-    plusOneDiet: plusOneDietField.value,
-    diet: dietField.value,
-    note: noteField.value,
-    responseId: store.responseId,
-    website: document.getElementById('rsvpWebsite')?.value || '',
-  });
-
-  submitBtn.disabled = false;
-
-  if (!result.ok) {
-    // Do NOT pretend the RSVP went through — keep the form up and give the
-    // guest a working email fallback so no response is silently lost.
-    const lines = [
-      `Name: ${name}`,
-      email ? `Email: ${email}` : '',
-      `Attending: ${attending === 'yes' ? 'Joyfully Accepts' : 'Regretfully Declines'}`,
-      `Plus one: ${plusOne === 'yes' ? 'Yes — ' + plusOneNameField.value : 'No'}`,
-      plusOne === 'yes' && plusOneDietField.value ? `Guest dietary: ${plusOneDietField.value}` : '',
-      dietField.value ? `Dietary: ${dietField.value}` : '',
-      noteField.value ? `Note: ${noteField.value}` : '',
-    ].filter(Boolean);
-    const mailto = 'mailto:thefrancos2026@gmail.com'
-      + '?subject=' + encodeURIComponent(`Wedding RSVP — ${name}`)
-      + '&body=' + encodeURIComponent(lines.join('\n'));
-    rsvpStatus.textContent = result.offline
-      ? 'The online RSVP isn\'t live yet, so your response was not sent — please '
-      : 'We couldn\'t send your RSVP. Your answers are saved on this device — please try again, or ';
-    const link = document.createElement('a');
-    link.href = mailto;
-    link.textContent = 'email us your RSVP instead';
-    rsvpStatus.appendChild(link);
-    rsvpStatus.appendChild(document.createTextNode('.'));
-    rsvpStatus.className = 'rsvp-status error';
-    return;
-  }
-
-  store.rsvp.submittedAt = new Date().toISOString();
-  saveStore(store);
-
-  // Show confirmation
-  rsvpStatus.textContent = '';
-  rsvpStatus.className = 'rsvp-status';
-  rsvpForm.style.display = 'none';
-  rsvpConfirmed.classList.add('show');
-  const firstName = name.split(' ')[0];
-  document.getElementById('rsvpConfirmText').textContent =
-    attending === 'yes'
-      ? `Thanks, ${firstName}! We can't wait to celebrate with you.`
-      : `We'll miss you, ${firstName}. Thanks for letting us know.`;
-});
-
-// Edit RSVP
-document.getElementById('editRsvp').addEventListener('click', () => {
-  rsvpConfirmed.classList.remove('show');
-  rsvpForm.style.display = 'block';
-  document.getElementById('rsvpName').value = store.guestName || '';
-  document.getElementById('rsvpEmail').value = store.guestEmail || '';
-  document.getElementById('rsvpAttending').value = store.rsvp.attending || '';
-  document.getElementById('rsvpPlusOne').value = store.rsvp.plusOne || 'no';
-  document.getElementById('plusOneName').value = store.rsvp.plusOneName || '';
-  document.getElementById('plusOneDiet').value = store.rsvp.plusOneDiet || '';
-  document.getElementById('rsvpDiet').value = store.rsvp.diet || '';
-  document.getElementById('rsvpNote').value = store.rsvp.note || '';
-  if (store.rsvp.plusOne === 'yes') document.getElementById('plusOneFields').classList.add('show');
-  store.rsvp.submittedAt = null;
-  saveStore(store);
-});
-
-/* ─── PRIVACY: CLEAR SAVED DATA ─── */
-// Removes everything this site keeps in the browser (RSVP answers, name,
-// email, dietary notes, visit history) — for guests on shared devices.
-document.getElementById('clearLocalData').addEventListener('click', () => {
-  try { localStorage.removeItem(STORE_KEY); } catch {}
-  location.reload();
-});
-
-/* ─── SHENANIGANS: INLINE FORMS ─── */
-document.querySelectorAll('.shenanigan-card').forEach(card => {
-  const type = card.dataset.type;
-  const form = card.querySelector('.shenanigan-form');
-  const formFields = card.querySelectorAll('.shenanigan-form input, .shenanigan-form textarea');
-  card.setAttribute('role', 'button');
-  card.setAttribute('aria-expanded', 'false');
-
-  if (store.shenanigans[type]?.submitted) {
-    card.classList.add('has-submitted');
-  }
-
-  const authorInput = card.querySelector('input[name="author"]');
-  if (authorInput && store.guestName) {
-    authorInput.value = store.guestName;
-  }
-
-  function closeCard() {
-    card.classList.remove('form-open');
-    card.setAttribute('aria-expanded', 'false');
-  }
-
-  function openCard() {
-    document.querySelectorAll('.shenanigan-card.form-open').forEach(c => {
-      if (c !== card) {
-        c.classList.remove('form-open');
-        c.setAttribute('aria-expanded', 'false');
-      }
-    });
-    card.classList.add('form-open');
-    card.setAttribute('aria-expanded', 'true');
-    const firstField = form?.querySelector('input, textarea');
-    if (firstField) firstField.focus();
-  }
-
-  card.addEventListener('click', (e) => {
-    if (e.target.closest('.shenanigan-form')) return;
-    if (card.classList.contains('form-open')) closeCard();
-    else openCard();
-  });
-  card.addEventListener('keydown', (e) => {
-    if (e.target.closest('.shenanigan-form')) return;
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      if (card.classList.contains('form-open')) closeCard();
-      else openCard();
-    }
-  });
-
-  card.querySelector('.form-cancel')?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    closeCard();
-    card.focus();
-  });
-
-  card.querySelector('.form-submit')?.addEventListener('click', async (e) => {
-    e.stopPropagation();
-    const data = {};
-    formFields.forEach((inp, i) => {
-      data[`field_${i}`] = inp.value;
-      inp.style.borderColor = '';
-    });
-    const contributionFields = [...formFields].filter((inp) => inp.name !== 'author' && inp.name !== 'extra');
-    const extraField = card.querySelector('input[name="extra"]');
-    const hasContent = contributionFields.some((inp) => inp.value.trim()) || (extraField && extraField.value.trim());
-    if (!hasContent) {
-      const target = contributionFields[0] || extraField;
-      if (target) {
-        target.style.borderColor = 'var(--gold)';
-        target.focus();
-      }
-      return;
-    }
-
-    if (authorInput?.value) {
-      store.guestName = authorInput.value;
-      document.querySelectorAll('.shenanigan-card input[name="author"]').forEach((input) => {
-        input.value = authorInput.value;
-      });
-    }
-
-    // Build content from textarea(s)
-    const contentParts = [...contributionFields].map(f => f.value.trim()).filter(Boolean);
-    const content = contentParts.join('\n');
-    const extra = extraField ? extraField.value : '';
-    const author = authorInput?.value || 'Anonymous';
-
-    // Keep the draft locally, but "submitted" is only true once the
-    // worker acknowledges the write (same contract as the RSVP form).
-    store.shenanigans[type] = { submitted: false, data };
-    saveStore(store);
-
-    const submitBtn = card.querySelector('.form-submit');
-    let status = form.querySelector('.shenanigan-status');
-    if (!status) {
-      status = document.createElement('p');
-      status.className = 'shenanigan-status';
-      status.setAttribute('role', 'status');
-      form.appendChild(status);
-    }
-    status.textContent = 'Sending...';
-    status.className = 'shenanigan-status sending';
-    submitBtn.disabled = true;
-
-    // Send to Notion via worker
-    const result = await apiPost('/shenanigans', { author, type, content, extra });
-
-    submitBtn.disabled = false;
-
-    if (!result.ok) {
-      // Do NOT mark the card submitted for a contribution that never left
-      // the browser: keep the form open and offer a working email fallback.
-      const title = card.querySelector('h3')?.textContent || 'Shenanigans';
-      const mailto = 'mailto:thefrancos2026@gmail.com'
-        + '?subject=' + encodeURIComponent(`${title} — ${author}`)
-        + '&body=' + encodeURIComponent([`From: ${author}`, extra ? `Extra: ${extra}` : '', content].filter(Boolean).join('\n'));
-      status.textContent = result.offline
-        ? 'This form isn\'t live yet, so your entry was not sent — please '
-        : 'We couldn\'t send your entry. It\'s saved on this device — please try again, or ';
-      const link = document.createElement('a');
-      link.href = mailto;
-      link.textContent = 'email it to us instead';
-      status.appendChild(link);
-      status.appendChild(document.createTextNode('.'));
-      status.className = 'shenanigan-status error';
-      return;
-    }
-
-    status.textContent = '';
-    status.className = 'shenanigan-status';
-    store.shenanigans[type] = { submitted: true, data, submittedAt: new Date().toISOString() };
-    saveStore(store);
-
-    card.classList.add('has-submitted');
-    closeCard();
-  });
-});
-
-/* ─── KEYBOARD: LIGHTBOX ─── */
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', function (event) {
   if (!lightbox.classList.contains('open')) return;
   if (event.key === 'Escape') closeLightbox();
   if (event.key === 'ArrowRight') navLightbox(event, 1);
   if (event.key === 'ArrowLeft') navLightbox(event, -1);
 });
 
-/* ─── SCROLL REVEAL ─── */
-const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+function coupleAddress() {
+  var user = ['thefrancos', '2026'].join('');
+  var host = ['gmail', 'com'].join('.');
+  return user + String.fromCharCode(64) + host;
+}
+document.querySelectorAll('.email-link').forEach(function (anchor) {
+  anchor.href = 'mailto:' + coupleAddress();
+});
+
+var reveals = document.querySelectorAll('.reveal');
+var revealObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
       revealObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.15 });
-reveals.forEach(el => revealObserver.observe(el));
-
+reveals.forEach(function (el) { revealObserver.observe(el); });
 </script>
 
 </body>

@@ -1,0 +1,6 @@
+Cormorant Garamond — copyright 2015 The Cormorant Project Authors.
+Libre Franklin — copyright 2020 The Libre Franklin Project Authors.
+Pinyon Script — copyright 2011 The Pinyon Script Project Authors.
+
+These latin subsets are licensed under the SIL Open Font License 1.1.
+https://openfontlicense.org

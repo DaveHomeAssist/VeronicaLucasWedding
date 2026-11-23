@@ -78,6 +78,15 @@ function notionHeaders(env) {
   };
 }
 
+// Notion error bodies can echo guest names, email, and notes. Log the
+// status only. This worker does not delete Notion rows; if any were
+// created before the wedding, remove them in Notion when they are no
+// longer needed.
+async function logNotionFailure(action, response) {
+  try { await response.body?.cancel(); } catch { /* body already consumed */ }
+  console.error(`Notion ${action} failed: HTTP ${response.status}`);
+}
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RESPONSE_ID_RE = /^[A-Za-z0-9-]{8,64}$/;
 
@@ -93,7 +102,7 @@ async function findExistingRSVP(responseId, env) {
   });
   if (!res.ok) {
     // Likely the "Response ID" property does not exist yet — fall back to create.
-    console.error('Notion RSVP query error:', await res.text());
+    await logNotionFailure('RSVP query', res);
     return null;
   }
   const body = await res.json();
@@ -139,7 +148,7 @@ async function handleRSVP(data, env) {
         body: JSON.stringify({ properties: { ...properties, 'Response ID': { rich_text: text(responseId) } } }),
       });
       if (!patch.ok) {
-        console.error('Notion RSVP update error:', await patch.text());
+        await logNotionFailure('RSVP update', patch);
         return { error: 'Failed to update RSVP', status: 502 };
       }
       return { success: true, updated: true, status: 200 };
@@ -156,7 +165,7 @@ async function handleRSVP(data, env) {
   if (!response.ok && properties['Response ID']) {
     // The database may not have the "Response ID" property yet.
     // Never lose an RSVP over dedupe metadata — retry without it.
-    console.error('Notion RSVP create error (with Response ID):', await response.text());
+    await logNotionFailure('RSVP create', response);
     delete properties['Response ID'];
     response = await fetch(NOTION_API, {
       method: 'POST',
@@ -166,7 +175,7 @@ async function handleRSVP(data, env) {
   }
 
   if (!response.ok) {
-    console.error('Notion RSVP error:', await response.text());
+    await logNotionFailure('RSVP create', response);
     return { error: 'Failed to save RSVP', status: 502 };
   }
 
@@ -209,7 +218,7 @@ async function handleShenanigans(data, env) {
   });
 
   if (!response.ok) {
-    console.error('Notion Shenanigans error:', await response.text());
+    await logNotionFailure('Shenanigans create', response);
     return { error: 'Failed to save', status: 502 };
   }
 

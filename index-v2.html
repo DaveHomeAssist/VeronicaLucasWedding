@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+/* Retired page. Guest details must not stay in this browser. */
+(function () {
+  function isGuestKey(k) {
+    return k === 'vl_wedding' || (typeof k === 'string' && k.indexOf('vl_') === 0);
+  }
+  try {
+    var doomed = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var existing = localStorage.key(i);
+      if (isGuestKey(existing)) doomed.push(existing);
+    }
+    doomed.forEach(function (k) { localStorage.removeItem(k); });
+  } catch (e) {}
+  var setItem = Storage.prototype.setItem;
+  Storage.prototype.setItem = function (k, value) {
+    if (isGuestKey(k)) {
+      try { this.removeItem(k); } catch (err) {}
+      return;
+    }
+    return setItem.call(this, k, value);
+  };
+})();
+</script>
+
 <meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
